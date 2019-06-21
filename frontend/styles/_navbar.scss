@@ -1,0 +1,21 @@
+.navbar {
+    &.is-transparent {
+        background-color: transparent;
+    }
+
+    .separator {
+        display: flex;
+        align-items: center;
+
+        @include touch() {
+            display: none;
+        }
+    }
+
+    .navbar-item {
+        &.is-active {
+            color: red;
+        }
+    }
+}
+
