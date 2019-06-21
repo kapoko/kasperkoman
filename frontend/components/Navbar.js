@@ -3,7 +3,7 @@ import NavbarItem from './NavbarItem'
 export default function Header() {
     return (
         <header>
-            <nav className="navbar is-fixed-top is-transparent" role="navigation" aria-label="main navigation">
+            <nav className="navbar is-fixed-top is-transparent is-spaced" role="navigation" aria-label="main navigation">
                 <div className="navbar-brand">
                     <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
                         <span aria-hidden="true"></span>
@@ -16,8 +16,8 @@ export default function Header() {
                         <a>Home</a>
                     </NavbarItem>
                     <div className="separator">/</div>
-                    <NavbarItem href="/about">
-                        <a>About</a>
+                    <NavbarItem href="/releases">
+                        <a>Releases</a>
                     </NavbarItem>
                     <div className="separator">/</div>
                     <NavbarItem href="/bookings">

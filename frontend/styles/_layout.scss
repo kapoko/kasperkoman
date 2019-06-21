@@ -1,0 +1,14 @@
+main.main {
+    > .columns {
+
+        > .column {
+            @include desktop() {
+                min-height: 100vh;
+            }
+
+            &:nth-child(1) {
+                background: darken($background, 5%);
+            }
+        }
+    }
+}

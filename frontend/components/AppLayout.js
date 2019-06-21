@@ -1,4 +1,5 @@
 import React from "react";
+import App, { Container } from 'next/app'
 import Head from "next/head";
 import Navbar from './Navbar';
 import Fonts from './Fonts'
@@ -15,11 +16,10 @@ class Layout extends React.Component {
     }
 
     render() {
-        const { children } = this.props;
         const title = "Kasper Koman";
       
         return (
-            <div>
+            <Container>
                 <Head>
                     <title>{ title }</title>
                     <meta charSet="utf-8" />
@@ -28,11 +28,18 @@ class Layout extends React.Component {
 
                 <Navbar />
 
-                <div className="container is-fluid">
-                    { children }
-                </div>
+                <main className="main container is-fluid">
+                    <div className="columns is-marginless">
+                        <div className="column is-half is-marginless">
+                            { this.props.children }
+                        </div>
+                        <div className="column is-half is-marginless">
+                            { this.props.children.left }
+                        </div>
+                    </div>
+                </main>
 
-            </div>
+            </Container>
         );
     }
 }

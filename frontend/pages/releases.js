@@ -1,5 +1,5 @@
 export default () => {
     return (
-        <p>Bookings page</p>
-    )
+        <h1>hi</h1>
+    ) 
 }

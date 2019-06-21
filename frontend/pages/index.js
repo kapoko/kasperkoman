@@ -1,9 +1,11 @@
-import Layout from '../components/Layout.js'
+export default class extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
-export default function Index() {
-    return (
-        <Layout>
-            <p>Hello Next.js</p>
-        </Layout>
-    )
+    render() {
+        return (
+            <p>Hello next</p>
+        )
+    }
 }
