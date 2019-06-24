@@ -9,9 +9,7 @@ const Fonts = () => {
     
     const robotoMono = new FontFaceObserver('Roboto Mono');
     
-    robotoMono.load(null, 5000).then(() => {
-        document.documentElement.classList.add('roboto-mono');
-    })
+    robotoMono.load(null, 5000);
 }
 
 export default Fonts

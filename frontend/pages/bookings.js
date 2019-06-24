@@ -1,5 +1,10 @@
+import TwoColumnLayout from '../components/TwoColumnLayout';
+
 export default () => {
+    const left = (<p>Bookings left</p>)
+    const right = (<p>bookings right</p>)
+
     return (
-        <p>Bookings page</p>
+        <TwoColumnLayout left={left} right={right} />
     )
 }
