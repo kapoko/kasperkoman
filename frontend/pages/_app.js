@@ -1,7 +1,13 @@
 import React from 'react';
 import App, { Container } from 'next/app';
+import Head from "next/head";
 
-import Layout from '../components/AppLayout'
+
+import "../styles/main.scss";
+
+import Fonts from '../components/Fonts'
+import Navbar from '../components/Navbar';
+
 
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }) {
@@ -13,15 +19,29 @@ class MyApp extends App {
         
         return { pageProps };
     }
+
+    componentDidMount() {
+        Fonts();
+    }
     
     render() {
         const { Component, pageProps } = this.props;
         
         return (
+
             <Container>
-                <Layout>
+                <Head>
+                    <title>Kasper Koman</title>
+                    <meta charSet="utf-8" />
+                    <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+                </Head>
+            
+                <Navbar />
+                
+                <main className="main container is-fluid">
                     <Component {...pageProps} />
-                </Layout>
+                </main>
+            
             </Container>
         )
     }

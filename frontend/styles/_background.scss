@@ -1,0 +1,20 @@
+.background {
+    @include stretch-div();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    > .inner {
+        @include stretch-div();
+        @include stretch-background();
+
+        opacity: 0;
+        transition: opacity 1s $easeInOutQuad;
+    }
+
+    &.is-loaded {
+        > .inner {
+            opacity: 1;
+        }
+    }
+}

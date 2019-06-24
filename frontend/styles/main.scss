@@ -3,6 +3,9 @@
 @import "~bulma/bulma";
 @import "~sass-easing/_easings.scss";
 
+@import "utilities";   
 @import "global";   
 @import "layout";
 @import "navbar";
+@import "background";
+@import "loader";

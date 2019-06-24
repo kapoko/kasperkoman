@@ -2,7 +2,10 @@ main.main {
     > .columns {
 
         > .column {
-            @include desktop() {
+            position: relative;
+            min-height: 300px;
+
+            @include tablet() {
                 min-height: 100vh;
             }
 

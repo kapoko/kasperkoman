@@ -1,0 +1,14 @@
+.loader {
+    width: 5em;
+    height: 5em;
+    border-color: #fff;
+    border-width: 3px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    opacity: 1;
+    transition: opacity .2s $easeInOutQuad;
+
+    .is-loaded & {
+        opacity: 0;
+    }
+}
