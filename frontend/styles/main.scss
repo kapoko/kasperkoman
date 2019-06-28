@@ -5,8 +5,9 @@
 
 @import "utilities";   
 @import "global";   
-@import "typography";   
-@import "layout";
-@import "navbar";
-@import "background";
+@import "typography";
 @import "loader";
+@import "components/two-columns";
+@import "components/navbar";
+@import "components/background";
+@import "components/center";

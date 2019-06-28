@@ -1,6 +1,7 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from "next/head";
+import svg4everybody from 'svg4everybody'
 
 // import withData from "../lib/apollo";
 import withApolloClient from '../lib/with-apollo-client'
@@ -10,6 +11,8 @@ import "../styles/main.scss";
 
 import Fonts from '../components/Fonts'
 import Navbar from '../components/Navbar';
+
+
  
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
@@ -24,6 +27,7 @@ class MyApp extends App {
 
     componentDidMount() {
         Fonts();
+        svg4everybody();
     }
     
     render() {

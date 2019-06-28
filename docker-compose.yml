@@ -4,6 +4,7 @@ services:
   api:
     build: ./backend
     image: strapi/strapi
+    container_name: kk_api
     environment:
       - APP_NAME=strapi-app
       - DATABASE_CLIENT=mongo
@@ -26,6 +27,7 @@ services:
 
   db:
     image: mongo
+    container_name: kk_db
     environment:
       - MONGO_INITDB_DATABASE=strapi
     ports:
@@ -34,8 +36,9 @@ services:
       - ./backend/db:/data/db
     restart: always
   
-  frontend:
+  app:
     image: node:12
+    container_name: kk_app
     ports:
       - 3000:3000
     volumes:

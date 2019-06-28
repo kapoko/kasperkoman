@@ -1,0 +1,58 @@
+main.main {
+    > .columns {
+
+        > .column {
+            position: relative;
+            min-height: 400px;
+
+            @include tablet() {
+                min-height: 100vh;
+            }
+
+            &:nth-child(1) {
+                background: darken($background, 5%);
+            }
+        }
+    }
+}
+
+$logo-ratio:    276.34 / 228.07;
+
+@mixin logo-positions($width, $position: 'right') {
+    $height: $width / $logo-ratio;
+
+    width: $width;
+    height: $height;
+
+    @if($position == 'right') {
+        top: 50%;
+        margin-top: -$height / 2;
+        right: -$width / 2;
+    } @else if($position == 'bottom') {
+        left: 50%;
+        bottom: -$height / 2;
+        margin-left: -$width / 2;
+    }
+}
+
+.logo {
+    position: absolute;
+    fill: #fff;
+    stroke: #fff;
+
+    @include mobile() {
+        @include logo-positions(120px, 'bottom');
+    }
+
+    @include tablet() {
+        @include logo-positions(110px, 'right');
+    }
+
+    @include desktop() {
+        @include logo-positions(140px, 'right');
+    }
+    
+    @include widescreen() {
+        @include logo-positions(150px, 'right');
+    }
+}

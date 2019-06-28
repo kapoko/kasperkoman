@@ -1,4 +1,4 @@
-import TwoColumnLayout from '../components/TwoColumnLayout';
+import TwoColumns from '../components/TwoColumns';
 import Background from '../components/Background'; 
 import GigList from '../components/GigList';
 import Center from '../components/Center';
@@ -13,6 +13,6 @@ export default () => {
     );
 
     return (
-        <TwoColumnLayout left={left} right={right} />
+        <TwoColumns left={left} right={right} />
     )
 }

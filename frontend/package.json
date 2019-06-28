@@ -10,6 +10,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@svgr/webpack": "^4.3.0",
     "@zeit/next-sass": "^1.0.1",
     "apollo-boost": "^0.4.3",
     "bulma": "^0.7.5",
@@ -26,6 +27,7 @@
     "react-apollo": "^2.5.8",
     "react-dom": "^16.8.6",
     "recompose": "^0.30.0",
-    "sass-easing": "^1.0.3"
+    "sass-easing": "^1.0.3",
+    "svg4everybody": "^2.1.9"
   }
 }
