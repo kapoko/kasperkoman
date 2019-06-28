@@ -3,6 +3,7 @@ $primary:               #c0392b;
 $background:            #EDE9E1;
 $background-dark:       #191919;
 $text:                  #767470;
+$text-light:            transparentize($text, .6);
 
 $family-primary:        'Roboto Mono', monospace;
 

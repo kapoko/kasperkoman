@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  api:
+    build: ./backend
+    image: strapi/strapi
+    environment:
+      - APP_NAME=strapi-app
+      - DATABASE_CLIENT=mongo
+      - DATABASE_HOST=db
+      - DATABASE_PORT=27017
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=
+      - DATABASE_PASSWORD=
+      - DATABASE_SSL=false
+      - DATABASE_AUTHENTICATION_DATABASE=strapi
+      - HOST=localhost
+    ports:
+      - 1337:1337
+    volumes:
+      - ./backend/strapi-app:/usr/src/api/strapi-app
+      #- /usr/src/api/strapi-app/node_modules
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=strapi
+    ports:
+      - 27017:27017
+    volumes:
+      - ./backend/db:/data/db
+    restart: always
+  
+  frontend:
+    image: node:12
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/local/app
+    depends_on:
+      - api
+    restart: always
+    working_dir: /usr/local/app
+    entrypoint: /bin/bash
+    command: "-c \"if [ ! -d \"node_modules\" ]; then yarn install; fi; yarn run dev\""

@@ -6,7 +6,6 @@
     .separator {
         display: flex;
         align-items: center;
-        color: lighten($text, 30%);
         font-size: 1.2em;
 
         @include touch() {

@@ -1,8 +1,8 @@
 .loader {
     width: 5em;
     height: 5em;
-    border-color: #fff;
-    border-width: 3px;
+    border-color: transparentize(#fff, .2);
+    border-width: 4px;
     border-right-color: transparent;
     border-top-color: transparent;
     opacity: 1;

@@ -1,0 +1,33 @@
+{
+  "connection": "default",
+  "collectionName": "gig",
+  "info": {
+    "name": "gig",
+    "description": "Planned gigs with locations and optional ticket links."
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "date": {
+      "default": "",
+      "type": "date"
+    },
+    "city": {
+      "default": "",
+      "type": "string"
+    },
+    "countryCode": {
+      "default": "",
+      "type": "string"
+    },
+    "ticketUrl": {
+      "default": "",
+      "type": "string"
+    }
+  }
+}

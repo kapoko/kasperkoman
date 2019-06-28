@@ -2,15 +2,17 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Head from "next/head";
 
+// import withData from "../lib/apollo";
+import withApolloClient from '../lib/with-apollo-client'
+import { ApolloProvider } from 'react-apollo'
 
 import "../styles/main.scss";
 
 import Fonts from '../components/Fonts'
 import Navbar from '../components/Navbar';
-
-
+ 
 class MyApp extends App {
-    static async getInitialProps({ Component, ctx }) {
+    static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {};
         
         if (Component.getInitialProps) {
@@ -25,7 +27,7 @@ class MyApp extends App {
     }
     
     render() {
-        const { Component, pageProps } = this.props;
+        const { Component, pageProps, apolloClient } = this.props;
         
         return (
 
@@ -39,12 +41,13 @@ class MyApp extends App {
                 <Navbar />
                 
                 <main className="main container is-fluid">
-                    <Component {...pageProps} />
+                    <ApolloProvider client={apolloClient}>
+                        <Component {...pageProps} />
+                    </ApolloProvider>
                 </main>
             
             </Container>
         )
     }
 }
-    
-export default MyApp;
+export default withApolloClient(MyApp);

@@ -10,6 +10,10 @@
 
         opacity: 0;
         transition: opacity 1s $easeInOutQuad;
+
+        @include mobile() {
+            background-position: center 25%;
+        }
     }
 
     &.is-loaded {

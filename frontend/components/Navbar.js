@@ -1,6 +1,6 @@
 import NavbarItem from './NavbarItem'
 
-export default function Header() {
+export default function Navbar() {
     return (
         <header>
             <nav className="navbar is-fixed-top is-transparent is-spaced" role="navigation" aria-label="main navigation">
