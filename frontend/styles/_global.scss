@@ -1,4 +1,9 @@
 html, body {
     background-color: $background;
     color: $text;
+    line-height: 1.7;
+}
+
+.pinky {
+    border: 2px red solid;
 }

@@ -3,7 +3,7 @@ main.main {
 
         > .column {
             position: relative;
-            min-height: 300px;
+            min-height: 400px;
 
             @include tablet() {
                 min-height: 100vh;
@@ -14,4 +14,12 @@ main.main {
             }
         }
     }
+}
+
+.center-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
 }
