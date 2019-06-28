@@ -1,7 +1,29 @@
 import gql from "graphql-tag";
 import { graphql } from "react-apollo";
+import { groupBy } from "lodash";
 
-import Date from './Date'
+import Gig from './Gig';
+
+/**
+ * Splits gigs into upcoming and past gigs
+ * 
+ * @param {array} gigs 
+ */
+const sortGigs = (gigs) => {
+    // Split gigs in past & upcoming
+    let now = new Date().toISOString();
+
+    let grouped = groupBy(gigs, (gig) => {
+        return (gig.date > now);
+    });
+
+    // Reverse upcoming gigs if any to show closest first
+    if (grouped.true) {
+        grouped.true = grouped.true.reverse();   
+    }
+
+    return { upcoming: grouped.true, past: grouped.false }
+}
 
 const GigList = (
     { data: { loading, error, gigs } },
@@ -9,32 +31,49 @@ const GigList = (
 ) => {
     if (error) return "Couldn't retrieve gigs";
          
-    if (gigs && gigs.length) {
-        return (
-            <ul>
-                { gigs.map(gig => {
-                    return (
-                        <li key={ gig._id }>
-                            <Date isoDate={gig.date} /> { gig.title } <span className="separator">|</span> { gig.city }, { gig.countryCode }
-                        </li>
-                    )
-                })}
-            </ul>
-        )
-    } else {
-        return null;
+    if (!gigs || !gigs.length) {
+        return;
     }
+
+    gigs = sortGigs(gigs);
+    
+    return (
+        <div className="gig-list">
+            {gigs.upcoming && (
+                <ul>
+                    { gigs.upcoming.map(gig => {
+                        return (
+                            <Gig key={ gig._id } gig={ gig } />
+                        )
+                    })}
+                </ul>
+            )}
+            {gigs.past && (
+                <>
+                    <h6 className="">Past</h6>
+                    <ul className="past">
+                        { gigs.past.map(gig => {
+                            return (
+                                <Gig key={ gig._id } gig={ gig } />
+                            )
+                        })}
+                    </ul>
+                </>
+            )}
+        </div>
+    )
 }
     
 const query = gql`
 {
-    gigs ( sort: "date:asc" ){
+    gigs (limit:10, sort:"date:desc"){
         _id
         title
         date,
         city,
         countryCode,
-        ticketUrl
+        url,
+        venue
     }
 }
 `;

@@ -6,7 +6,15 @@ class Background extends React.Component {
         const imgLoader = new Image();
         imgLoader.src = this.props.src;
 
+        let timer = setTimeout(() => {
+            // If not loaded after 500ms, show loader
+            if (!this.state.src) {
+                this.setState({ showLoader: true });
+            }
+        }, 500);
+
         imgLoader.onload = () => {
+            clearTimeout(timer);
             this.setState({ src });
         }
     }
@@ -16,7 +24,7 @@ class Background extends React.Component {
             <div 
                 key={this.props.src}
                 className={'background' + ((this.state.src) ? ' is-loaded' : '')} >
-                    <div className="loader"></div>
+                    <div className={`loader ${(this.state.showLoader) ? 'is-active' : ''}`}></div>
                     <div className="inner" style={{ backgroundImage: `url(${this.state.src || ''})` }}></div>
             </div>
         ])

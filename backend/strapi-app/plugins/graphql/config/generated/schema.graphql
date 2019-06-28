@@ -6,6 +6,14 @@ type createGigPayload {
   gig: Gig
 }
 
+input createReleaseInput {
+  data: ReleaseInput
+}
+
+type createReleasePayload {
+  release: Release
+}
+
 input createRoleInput {
   data: RoleInput
 }
@@ -33,6 +41,14 @@ input deleteGigInput {
 
 type deleteGigPayload {
   gig: Gig
+}
+
+input deleteReleaseInput {
+  where: InputID
+}
+
+type deleteReleasePayload {
+  release: Release
 }
 
 input deleteRoleInput {
@@ -69,7 +85,18 @@ input editGigInput {
   date: DateTime
   city: String
   countryCode: String
-  ticketUrl: String
+  url: String
+  venue: String
+}
+
+input editReleaseInput {
+  title: String
+  subtitle: String
+  releaseDate: DateTime
+  label: String
+  links: String
+  cover: ID
+  originalArtist: String
 }
 
 input editRoleInput {
@@ -114,7 +141,8 @@ type Gig {
   date: DateTime
   city: String
   countryCode: String
-  ticketUrl: String
+  url: String
+  venue: String
 }
 
 type GigAggregator {
@@ -158,11 +186,6 @@ type GigConnectionId {
   connection: GigConnection
 }
 
-type GigConnectionTicketUrl {
-  key: String
-  connection: GigConnection
-}
-
 type GigConnectionTitle {
   key: String
   connection: GigConnection
@@ -170,6 +193,16 @@ type GigConnectionTitle {
 
 type GigConnectionUpdatedAt {
   key: DateTime
+  connection: GigConnection
+}
+
+type GigConnectionUrl {
+  key: String
+  connection: GigConnection
+}
+
+type GigConnectionVenue {
+  key: String
   connection: GigConnection
 }
 
@@ -182,7 +215,8 @@ type GigGroupBy {
   date: [GigConnectionDate]
   city: [GigConnectionCity]
   countryCode: [GigConnectionCountryCode]
-  ticketUrl: [GigConnectionTicketUrl]
+  url: [GigConnectionUrl]
+  venue: [GigConnectionVenue]
 }
 
 input GigInput {
@@ -190,7 +224,8 @@ input GigInput {
   date: DateTime
   city: String
   countryCode: String
-  ticketUrl: String
+  url: String
+  venue: String
 }
 
 input InputID {
@@ -205,12 +240,15 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Gig | createGigPayload | updateGigPayload | deleteGigPayload | GigConnection | GigAggregator | GigGroupBy | GigConnection_id | GigConnectionId | GigConnectionCreatedAt | GigConnectionUpdatedAt | GigConnectionTitle | GigConnectionDate | GigConnectionCity | GigConnectionCountryCode | GigConnectionTicketUrl | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Gig | createGigPayload | updateGigPayload | deleteGigPayload | GigConnection | GigAggregator | GigGroupBy | GigConnection_id | GigConnectionId | GigConnectionCreatedAt | GigConnectionUpdatedAt | GigConnectionTitle | GigConnectionDate | GigConnectionCity | GigConnectionCountryCode | GigConnectionUrl | GigConnectionVenue | Release | createReleasePayload | updateReleasePayload | deleteReleasePayload | ReleaseConnection | ReleaseAggregator | ReleaseGroupBy | ReleaseConnection_id | ReleaseConnectionId | ReleaseConnectionCreatedAt | ReleaseConnectionUpdatedAt | ReleaseConnectionTitle | ReleaseConnectionSubtitle | ReleaseConnectionReleaseDate | ReleaseConnectionLabel | ReleaseConnectionLinks | ReleaseConnectionCover | ReleaseConnectionOriginalArtist | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createGig(input: createGigInput): createGigPayload
   updateGig(input: updateGigInput): updateGigPayload
   deleteGig(input: deleteGigInput): deleteGigPayload
+  createRelease(input: createReleaseInput): createReleasePayload
+  updateRelease(input: updateReleaseInput): updateReleasePayload
+  deleteRelease(input: deleteReleaseInput): deleteReleasePayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -236,6 +274,9 @@ type Query {
   gig(id: ID!): Gig
   gigs(sort: String, limit: Int, start: Int, where: JSON): [Gig]
   gigsConnection(sort: String, limit: Int, start: Int, where: JSON): GigConnection
+  release(id: ID!): Release
+  releases(sort: String, limit: Int, start: Int, where: JSON): [Release]
+  releasesConnection(sort: String, limit: Int, start: Int, where: JSON): ReleaseConnection
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!): UsersPermissionsRole
@@ -249,6 +290,110 @@ type Query {
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
   usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
   me: UsersPermissionsMe
+}
+
+type Release {
+  _id: ID!
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  title: String
+  subtitle: String
+  releaseDate: DateTime
+  label: String
+  links: String
+  cover: UploadFile
+  originalArtist: String
+}
+
+type ReleaseAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ReleaseConnection {
+  values: [Release]
+  groupBy: ReleaseGroupBy
+  aggregate: ReleaseAggregator
+}
+
+type ReleaseConnection_id {
+  key: ID
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionCover {
+  key: ID
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionCreatedAt {
+  key: DateTime
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionId {
+  key: ID
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionLabel {
+  key: String
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionLinks {
+  key: String
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionOriginalArtist {
+  key: String
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionReleaseDate {
+  key: DateTime
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionSubtitle {
+  key: String
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionTitle {
+  key: String
+  connection: ReleaseConnection
+}
+
+type ReleaseConnectionUpdatedAt {
+  key: DateTime
+  connection: ReleaseConnection
+}
+
+type ReleaseGroupBy {
+  _id: [ReleaseConnection_id]
+  id: [ReleaseConnectionId]
+  createdAt: [ReleaseConnectionCreatedAt]
+  updatedAt: [ReleaseConnectionUpdatedAt]
+  title: [ReleaseConnectionTitle]
+  subtitle: [ReleaseConnectionSubtitle]
+  releaseDate: [ReleaseConnectionReleaseDate]
+  label: [ReleaseConnectionLabel]
+  links: [ReleaseConnectionLinks]
+  cover: [ReleaseConnectionCover]
+  originalArtist: [ReleaseConnectionOriginalArtist]
+}
+
+input ReleaseInput {
+  title: String
+  subtitle: String
+  releaseDate: DateTime
+  label: String
+  links: String
+  cover: ID
+  originalArtist: String
 }
 
 input RoleInput {
@@ -266,6 +411,15 @@ input updateGigInput {
 
 type updateGigPayload {
   gig: Gig
+}
+
+input updateReleaseInput {
+  where: InputID
+  data: editReleaseInput
+}
+
+type updateReleasePayload {
+  release: Release
 }
 
 input updateRoleInput {

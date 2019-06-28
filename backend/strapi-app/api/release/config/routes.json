@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/releases",
+      "handler": "Release.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/releases/count",
+      "handler": "Release.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/releases/:_id",
+      "handler": "Release.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/releases",
+      "handler": "Release.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/releases/:_id",
+      "handler": "Release.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/releases/:_id",
+      "handler": "Release.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

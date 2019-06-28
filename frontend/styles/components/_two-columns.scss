@@ -38,18 +38,17 @@ $logo-ratio:    276.34 / 228.07;
 .logo {
     position: absolute;
     fill: #fff;
-    stroke: #fff;
 
     @include mobile() {
         @include logo-positions(120px, 'bottom');
     }
 
     @include tablet() {
-        @include logo-positions(110px, 'right');
+        @include logo-positions(90px, 'right');
     }
 
     @include desktop() {
-        @include logo-positions(140px, 'right');
+        @include logo-positions(130px, 'right');
     }
     
     @include widescreen() {

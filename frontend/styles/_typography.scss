@@ -1,3 +1,10 @@
 .separator {
     color: $text-light;
 }
+
+h6 {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: .8em;
+    color: $text-light;
+}

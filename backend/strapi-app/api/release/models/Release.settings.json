@@ -1,9 +1,9 @@
 {
   "connection": "default",
-  "collectionName": "gig",
+  "collectionName": "release",
   "info": {
-    "name": "gig",
-    "description": "Planned gigs with locations and optional ticket links."
+    "name": "release",
+    "description": ""
   },
   "options": {
     "timestamps": true
@@ -13,23 +13,29 @@
       "default": "",
       "type": "string"
     },
-    "date": {
+    "subtitle": {
+      "default": "",
+      "type": "string"
+    },
+    "releaseDate": {
       "default": "",
       "type": "date"
     },
-    "city": {
+    "label": {
       "default": "",
       "type": "string"
     },
-    "countryCode": {
+    "links": {
       "default": "",
-      "type": "string"
+      "type": "text"
     },
-    "url": {
-      "default": "",
-      "type": "string"
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     },
-    "venue": {
+    "originalArtist": {
       "default": "",
       "type": "string"
     }
