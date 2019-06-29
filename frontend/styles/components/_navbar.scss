@@ -18,24 +18,15 @@
         
         a {
             position: relative;
-            color: $text;
 
             &:hover {
                 color: darken($text, 15%);
             }
 
-            &:active {
-                color: darken($text, 50%);
-            }
-
             &::before {
-                content: "";
-                position: absolute;
-                background-color: #fff;
+                @include linkLine();
+                margin-top: 0;
                 height: .6em;
-                top: .8em;
-                left: 0;
-                right: 0;
                 z-index: -1;
                 opacity: 0;
                 transform: translate3d(0, 1.25em, 0);

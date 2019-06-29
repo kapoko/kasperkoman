@@ -8,3 +8,70 @@ h6 {
     font-size: .8em;
     color: $text-light;
 }
+
+a {
+    color: $text;
+
+    &:hover {
+        color: $text;
+    }
+
+    &:active {
+        color: darken($text, 30%);
+    }
+}
+
+@mixin linkLine() {
+    content: "";
+    width: 100%;
+    height: 4px;
+    margin-top: -1px;
+    top: 50%;
+    left: 0;
+    background-color: #fff;
+    position: absolute;
+}
+
+a:not(.is-stripeless) {
+    $animation-speed: .3s;
+
+    display: inline-block;
+    position: relative;
+    z-index: 0;
+    vertical-align: bottom;
+    overflow: hidden;
+
+    &::before {
+        @include linkLine();
+
+        z-index: -1;
+        transform: translate3d(0, 0, 0);
+        transition: transform $animation-speed $easeInCubic;
+        transition-delay: 0s;
+        opacity: .75;
+    }
+
+    &::after {
+        @include linkLine();
+
+        z-index: 1;
+        transform: translate3d(calc(-102%), 0, 0);
+        transition: transform $animation-speed $easeInCubic;
+        transition-delay: 0s;
+    }
+
+    &:hover {
+        &::before {
+            transform: translate3d(calc(102%), 0, 0);
+            transition-timing-function: $easeOutCubic;
+            transition-delay: 0s;
+        }
+            
+
+        &::after {
+            transform: translate3d(0, 0, 0);
+            transition-timing-function: $easeOutCubic;
+            transition-delay: $animation-speed;
+        }
+    }
+}

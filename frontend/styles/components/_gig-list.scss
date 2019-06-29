@@ -7,16 +7,21 @@
 
     ul.past {
         position: relative;
-        font-size: .85em;
+        font-size: 1em;
+        color: $text-light;
 
         &::after {
             content: "";
             position: absolute;
-            top: 33%;
+            top: 50%;
             bottom: 0;
             left: 0;
             right: 0;
             background-image: linear-gradient(to bottom, transparent, $background);        
         }
+    }
+
+    .button-kk {
+        margin-left: .75em;
     }
 }

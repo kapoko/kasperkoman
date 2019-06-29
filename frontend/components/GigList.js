@@ -25,6 +25,20 @@ const sortGigs = (gigs) => {
     return { upcoming: grouped.true, past: grouped.false }
 }
 
+const query = gql`
+{
+    gigs (limit:10, sort:"date:desc"){
+        _id
+        title
+        date,
+        city,
+        countryCode,
+        url,
+        venue
+    }
+}
+`;
+
 const GigList = (
     { data: { loading, error, gigs } },
     req
@@ -43,7 +57,7 @@ const GigList = (
                 <ul>
                     { gigs.upcoming.map(gig => {
                         return (
-                            <Gig key={ gig._id } gig={ gig } />
+                            <Gig key={ gig._id } gig={ gig } hasInfoButton />
                         )
                     })}
                 </ul>
@@ -63,22 +77,9 @@ const GigList = (
         </div>
     )
 }
-    
-const query = gql`
-{
-    gigs (limit:10, sort:"date:desc"){
-        _id
-        title
-        date,
-        city,
-        countryCode,
-        url,
-        venue
-    }
-}
-`;
+
 // The `graphql` wrapper executes a GraphQL query and makes the results
-// available on the `data` prop of the wrapped component (RestaurantList)
+// available on the `data` prop of the wrapped component
 export default graphql(query, {
     props: ({ data }) => ({
         data
