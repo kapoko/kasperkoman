@@ -12,8 +12,6 @@ import "../styles/main.scss";
 import Fonts from '../components/Fonts'
 import Navbar from '../components/Navbar';
 
-
- 
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {};
@@ -35,7 +33,7 @@ class MyApp extends App {
         
         return (
 
-            <Container>
+            <Container clas>
                 <Head>
                     <title>Kasper Koman</title>
                     <meta charSet="utf-8" />

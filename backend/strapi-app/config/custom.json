@@ -1,3 +1,26 @@
 {
-  "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration"
+  "myCustomConfiguration": "This configuration is accessible through strapi.config.myCustomConfiguration",
+  "imageVariants": [
+    {
+      "maxSize": 1500,
+      "scaleType": "resize",
+      "prefix": "large_",
+      "quality": 70,
+      "attributes": "url"
+    },
+    {
+      "maxSize": 1000,
+      "scaleType": "cover",
+      "prefix": "square_",
+      "quality": 70,
+      "attributes": "square"
+    },
+    {
+      "maxSize": 400,
+      "scaleType": "cover",
+      "prefix": "thumb_",
+      "quality": 70,
+      "attributes": "thumb"
+    }
+  ]
 }

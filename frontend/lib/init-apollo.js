@@ -1,5 +1,7 @@
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost'
 import fetch from 'isomorphic-unfetch'
+import getConfig from 'next/config'
+const { API_URL, API_URL_SERVER } = getConfig().publicRuntimeConfig
 
 let apolloClient = null
 
@@ -10,7 +12,7 @@ function create (initialState) {
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
         link: new HttpLink({
-            uri: 'http://api:1337/graphql', // Server URL (must be absolute)
+            uri: (isBrowser ? API_URL : API_URL_SERVER) + '/graphql', // Server URL (must be absolute)
             credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
             // Use fetch() polyfill on the server
             fetch: !isBrowser && fetch

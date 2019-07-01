@@ -1,7 +1,5 @@
 import FormattedDate from './FormattedDate';
 
-
-
 export default ({ gig, hasInfoButton = false }) => {
 
     const gigComponent = (

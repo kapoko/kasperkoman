@@ -2,7 +2,7 @@
     color: $text-light;
 }
 
-h6 {
+h6, .content h6 {
     text-transform: uppercase;
     font-weight: bold;
     font-size: .8em;
@@ -32,7 +32,7 @@ a {
     position: absolute;
 }
 
-a:not(.is-stripeless) {
+.content a {
     $animation-speed: .3s;
 
     display: inline-block;

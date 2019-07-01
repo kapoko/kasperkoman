@@ -8,5 +8,9 @@ module.exports = withSass({
     });
 
     return config;
+  },
+  publicRuntimeConfig: { // Will be available on both server and client
+    API_URL: 'http://localhost:1337',
+    API_URL_SERVER: 'http://api:1337'
   }
 })

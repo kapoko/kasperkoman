@@ -75,6 +75,8 @@ input editFileInput {
   mime: String
   size: String
   url: String
+  square: String
+  thumb: String
   provider: String
   public_id: String
   related: [ID]
@@ -126,6 +128,8 @@ input FileInput {
   mime: String!
   size: String!
   url: String!
+  square: String!
+  thumb: String!
   provider: String!
   public_id: String
   related: [ID]
@@ -240,7 +244,7 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Gig | createGigPayload | updateGigPayload | deleteGigPayload | GigConnection | GigAggregator | GigGroupBy | GigConnection_id | GigConnectionId | GigConnectionCreatedAt | GigConnectionUpdatedAt | GigConnectionTitle | GigConnectionDate | GigConnectionCity | GigConnectionCountryCode | GigConnectionUrl | GigConnectionVenue | Release | createReleasePayload | updateReleasePayload | deleteReleasePayload | ReleaseConnection | ReleaseAggregator | ReleaseGroupBy | ReleaseConnection_id | ReleaseConnectionId | ReleaseConnectionCreatedAt | ReleaseConnectionUpdatedAt | ReleaseConnectionTitle | ReleaseConnectionSubtitle | ReleaseConnectionReleaseDate | ReleaseConnectionLabel | ReleaseConnectionLinks | ReleaseConnectionCover | ReleaseConnectionOriginalArtist | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Gig | createGigPayload | updateGigPayload | deleteGigPayload | GigConnection | GigAggregator | GigGroupBy | GigConnection_id | GigConnectionId | GigConnectionCreatedAt | GigConnectionUpdatedAt | GigConnectionTitle | GigConnectionDate | GigConnectionCity | GigConnectionCountryCode | GigConnectionUrl | GigConnectionVenue | Release | createReleasePayload | updateReleasePayload | deleteReleasePayload | ReleaseConnection | ReleaseAggregator | ReleaseGroupBy | ReleaseConnection_id | ReleaseConnectionId | ReleaseConnectionCreatedAt | ReleaseConnectionUpdatedAt | ReleaseConnectionTitle | ReleaseConnectionSubtitle | ReleaseConnectionReleaseDate | ReleaseConnectionLabel | ReleaseConnectionLinks | ReleaseConnectionCover | ReleaseConnectionOriginalArtist | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionId | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionSquare | UploadFileConnectionThumb | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole
 
 type Mutation {
   createGig(input: createGigInput): createGigPayload
@@ -455,6 +459,8 @@ type UploadFile {
   mime: String!
   size: String!
   url: String!
+  square: String!
+  thumb: String!
   provider: String!
   public_id: String
   related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
@@ -526,6 +532,16 @@ type UploadFileConnectionSize {
   connection: UploadFileConnection
 }
 
+type UploadFileConnectionSquare {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionThumb {
+  key: String
+  connection: UploadFileConnection
+}
+
 type UploadFileConnectionUpdatedAt {
   key: DateTime
   connection: UploadFileConnection
@@ -548,6 +564,8 @@ type UploadFileGroupBy {
   mime: [UploadFileConnectionMime]
   size: [UploadFileConnectionSize]
   url: [UploadFileConnectionUrl]
+  square: [UploadFileConnectionSquare]
+  thumb: [UploadFileConnectionThumb]
   provider: [UploadFileConnectionProvider]
   public_id: [UploadFileConnectionPublic_id]
 }

@@ -39,20 +39,20 @@ const query = gql`
 }
 `;
 
-const GigList = (
-    { data: { loading, error, gigs } },
-    req
-) => {
-    if (error) return "Couldn't retrieve gigs";
+const GigList = ({ data: { loading, error, gigs } }, req) => {
+    if (error) {
+        console.error(error);
+        return "Couldn't retrieve gigs";
+    }
          
     if (!gigs || !gigs.length) {
-        return;
+        return null;
     }
 
     gigs = sortGigs(gigs);
     
     return (
-        <div className="gig-list">
+        <div className="gig-list content">
             {gigs.upcoming && (
                 <ul>
                     { gigs.upcoming.map(gig => {
@@ -64,7 +64,7 @@ const GigList = (
             )}
             {gigs.past && (
                 <>
-                    <h6 className="">Past</h6>
+                    <h6>Past</h6>
                     <ul className="past">
                         { gigs.past.map(gig => {
                             return (

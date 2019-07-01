@@ -32,6 +32,11 @@ then
     ( cd ./$APP_NAME && strapi install graphql )
 fi
 
+if [ ! -d "$APP_NAME/plugins/upload/node_modules/strapi-provider-upload-local-resize" ]
+then
+    ( cd ./$APP_NAME/plugins/upload && npm install https://github.com/kapoko/strapi-provider-upload-local-resize/archive/master.tar.gz )
+fi
+
 cd $APP_NAME
 strapi start &
 

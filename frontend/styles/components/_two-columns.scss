@@ -25,10 +25,12 @@ $logo-ratio:    276.34 / 228.07;
     height: $height;
 
     @if($position == 'right') {
+        position: fixed;
         top: 50%;
         margin-top: -$height / 2;
-        right: -$width / 2;
+        right: calc(50% - #{$width / 2});
     } @else if($position == 'bottom') {
+        position: absolute;
         left: 50%;
         bottom: -$height / 2;
         margin-left: -$width / 2;
@@ -36,22 +38,23 @@ $logo-ratio:    276.34 / 228.07;
 }
 
 .logo {
-    position: absolute;
     fill: #fff;
+    z-index: 10;
+    transition: fill 1s $easeInOutQuad;
 
     @include mobile() {
-        @include logo-positions(120px, 'bottom');
+        @include logo-positions($logo-size-mobile, 'bottom');
     }
 
     @include tablet() {
-        @include logo-positions(90px, 'right');
+        @include logo-positions($logo-size-tablet, 'right');
     }
 
     @include desktop() {
-        @include logo-positions(130px, 'right');
+        @include logo-positions($logo-size-desktop, 'right');
     }
     
     @include widescreen() {
-        @include logo-positions(150px, 'right');
+        @include logo-positions($logo-size-widescreen, 'right');
     }
 }

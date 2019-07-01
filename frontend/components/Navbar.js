@@ -13,15 +13,15 @@ export default function Navbar() {
                 </div>
                 <div className="navbar-end">
                     <NavbarItem href="/">
-                        <a className="is-stripeless">Home</a>
+                        <a>Home</a>
                     </NavbarItem>
                     <div className="separator">/</div>
                     <NavbarItem href="/releases">
-                        <a className="is-stripeless">Releases</a>
+                        <a>Releases</a>
                     </NavbarItem>
                     <div className="separator">/</div>
                     <NavbarItem href="/bookings">
-                        <a className="is-stripeless">Bookings</a>
+                        <a>Bookings</a>
                     </NavbarItem>
                 </div>
             </nav>

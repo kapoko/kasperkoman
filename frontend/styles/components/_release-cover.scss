@@ -1,0 +1,22 @@
+.release-cover {
+    background: darken($background, 10%);
+    width: 100%;
+    position: relative;
+
+    &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    img {
+        vertical-align: middle;
+        position: absolute;
+        width: 100%;
+        height: auto;
+    }
+
+    &:not(:last-child) {
+        margin-bottom: 50%;
+    }
+}

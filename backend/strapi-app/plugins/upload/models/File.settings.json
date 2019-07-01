@@ -41,6 +41,16 @@
       "configurable": false,
       "required": true
     },
+    "square": {
+      "type": "string",
+      "configurable": false,
+      "required": true      
+    },
+    "thumb": {
+      "type": "string",
+      "configurable": false,
+      "required": true      
+    },
     "provider": {
       "type": "string",
       "configurable": false,
