@@ -48,7 +48,8 @@ export default App => {
                 apolloState
             }
         }
-        
+
+
         constructor (props) {
             super(props)
             this.apolloClient = initApollo(props.apolloState)

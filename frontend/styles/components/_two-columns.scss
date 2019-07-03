@@ -10,7 +10,11 @@ main.main {
             }
 
             &:nth-child(1) {
-                background: darken($background, 5%);
+                background: $background-light-shade;
+
+                .dark & {
+                    background: $background-dark-shade;
+                }
             }
         }
     }
@@ -38,9 +42,12 @@ $logo-ratio:    276.34 / 228.07;
 }
 
 .logo {
-    fill: #fff;
+    fill: $logo-color;
     z-index: 10;
-    transition: fill 1s $easeInOutQuad;
+
+    .dark & {
+        fill: $logo-color-dark;
+    }
 
     @include mobile() {
         @include logo-positions($logo-size-mobile, 'bottom');

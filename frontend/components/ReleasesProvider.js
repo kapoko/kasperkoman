@@ -8,7 +8,10 @@ const query = gql`{
     ) {
         _id,
         title,
+        subtitle,
         releaseDate,
+        label,
+        links,
         cover {
             square
         }

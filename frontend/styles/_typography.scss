@@ -30,6 +30,10 @@ a {
     left: 0;
     background-color: #fff;
     position: absolute;
+
+    .dark & {
+        background-color: $logo-color-dark;
+    }
 }
 
 .content a {

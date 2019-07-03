@@ -1,16 +1,21 @@
-$primary:               #c0392b;     
+$primary:                   #c0392b;     
 
-$background:            #EDE9E1;
-$background-dark:       #191919;
-$text:                  #767470;
-$text-light:            transparentize($text, .6);
+$background-light:          #EDE9E1;
+$background-light-shade:    #EDE9E1;
+$background-dark:           #262624;
+$background-dark-shade:     #191919;
+$text:                      #767470;
+$text-light:                transparentize($text, .6);
 
-$family-primary:        'Roboto Mono', monospace;
+$family-primary:            'Roboto Mono', monospace;
 
-$body-font-size:        .9em;
-$gap:                   0;
+$body-font-size:            .9em;
+$gap:                       0;
 
-$logo-size-mobile:      120px;
-$logo-size-tablet:      90px;
-$logo-size-desktop:     130px;
-$logo-size-widescreen:  150px;
+// Logo
+$logo-color:                #fff;
+$logo-color-dark:           #373735;
+$logo-size-mobile:          120px;
+$logo-size-tablet:          90px;
+$logo-size-desktop:         130px;
+$logo-size-widescreen:      150px;

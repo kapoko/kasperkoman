@@ -1,8 +1,10 @@
 import getConfig from 'next/config'
+import Background from './Background';
+
 const { API_URL } = getConfig().publicRuntimeConfig
 
 export default ({ release }) => {
     return (
-        <img src={ API_URL + release.cover.square } alt=""/>
+        <Background src={ API_URL + release.cover.square } />
     )
 }

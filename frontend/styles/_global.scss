@@ -1,13 +1,16 @@
 html, body {
-    background-color: $background;
+    background-color: $background-light;
     color: $text;
     line-height: 1.7;
     font-size: 15px;
-    transition: background-color .3s $easeInOutQuad;
 
     @include tablet-only() {
         font-size: 13px;
     }
+}
+
+.dark {
+    background-color: $background-dark;
 }
 
 .content ul {

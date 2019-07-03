@@ -1,0 +1,13 @@
+.wrap {
+    background-color: lightgrey !important;
+}
+
+.example {
+    background-color: pink;
+}
+
+:global(.navbar-item a) {
+    color: black;
+}
+
+$background: #fff !important;
