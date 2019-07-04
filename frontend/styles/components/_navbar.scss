@@ -32,18 +32,15 @@
                 transform: translate3d(0, 1.25em, 0);
                 transition: opacity $animationSpeed $easeInSine, transform $animationSpeed $easeInCubic;
             }
-        }
 
-        &.is-active {
-            a {
+            &.is-active {
                 &::before {
                     opacity: 1;
                     transform: translate3d(0, 0, 0);
                     transition: opacity $animationSpeed ($animationSpeed / 2) $easeOutSine, transform $animationSpeed ($animationSpeed / 2) $easeOutCubic;
                 }
-            } 
+            }
         }
-
     }
 }
 

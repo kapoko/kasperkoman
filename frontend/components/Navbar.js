@@ -1,4 +1,4 @@
-import NavbarItem from './NavbarItem'
+import ActiveLink from './ActiveLink'
 // import { withTheme } from 'styled-components';
 
 export default class Navbar extends React.Component {
@@ -14,17 +14,15 @@ export default class Navbar extends React.Component {
                         </a>
                     </div>
                     <div className="navbar-end">
-                        <NavbarItem href="/">
-                            <a>Home</a>
-                        </NavbarItem>
-                        <div className="separator">/</div>
-                        <NavbarItem href="/releases">
-                            <a>Releases</a>
-                        </NavbarItem>
-                        <div className="separator">/</div>
-                        <NavbarItem href="/bookings">
-                            <a>Bookings</a>
-                        </NavbarItem>
+                        <div className="navbar-item">
+                            <ActiveLink href="/">Home</ActiveLink>
+                        </div>
+                        <div className="navbar-item">
+                            <ActiveLink href="/releases">Releases</ActiveLink>
+                        </div>
+                        <div className="navbar-item">
+                            <ActiveLink href="/bookings">Bookings</ActiveLink>
+                        </div>
                     </div>
                 </nav>
             </header>
