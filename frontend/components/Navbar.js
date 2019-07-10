@@ -1,5 +1,4 @@
 import ActiveLink from './ActiveLink'
-// import { withTheme } from 'styled-components';
 
 export default class Navbar extends React.Component {
     render() {
@@ -31,4 +30,3 @@ export default class Navbar extends React.Component {
         )
     }
 }
-// export default withTheme(Navbar);
