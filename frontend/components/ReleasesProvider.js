@@ -22,15 +22,27 @@ const ReleasesContext = React.createContext();
 
 class ReleasesProvider extends Component {
 
-    setActiveRelease(release) {
-        console.log('jajaja');
+    state = {
+        activeRelease: null
+    }
+
+    setActiveRelease = index => {
+        this.setState({
+            activeRelease: index
+        })
     }
 
     render() {
         const { data: { loading, error, releases }, req } = this.props;
         
         return (
-            <ReleasesContext.Provider value={{ releases: releases }}>
+            <ReleasesContext.Provider 
+                value={{ 
+                    releases: releases, 
+                    activeRelease: this.state.activeRelease,
+                    setActiveRelease: this.setActiveRelease 
+                }}
+            >
                 {this.props.children}
             </ReleasesContext.Provider>
         )

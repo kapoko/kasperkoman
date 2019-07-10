@@ -13,7 +13,6 @@ export default () => {
         </Center>
     );
 
-
     return (
         <TwoColumns left={left} right={right} />
     )

@@ -6,22 +6,15 @@ class ReleaseCovers extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = {
-            activeCoverIndex: null,
-        };
-
         this._onCoverEnter = this._onCoverEnter.bind(this);
     }
 
     _onCoverEnter(coverIndex) {
-        this.setState({
-            activeCoverIndex: coverIndex
-        })
+        this.props.setActiveRelease(coverIndex);
     }
 
     render() {
-        const {className, scrollPosition, releases, viewportHeight} = this.props;
+        const {className, releases, activeRelease} = this.props;
 
         return (
             <ul className={className}>
@@ -29,9 +22,8 @@ class ReleaseCovers extends Component {
                 {releases && releases.map((release, index) => (
                     <ReleaseCover key={release._id} release={release} 
                         index={index}
-                        scrollPosition={scrollPosition}
                         onEnter={this._onCoverEnter}
-                        isActive={this.state.activeCoverIndex == index} />
+                        isActive={activeRelease == index} />
                 ))}
             </ul>
         )

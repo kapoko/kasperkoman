@@ -2,6 +2,8 @@
     background: $background-dark;
     width: 100%;
     position: relative;
+    opacity: .5;
+    transition: opacity .3s $easeInOutQuad;
 
     &:after {
         content: "";
@@ -21,7 +23,7 @@
     }
 
     &.is-active {
-        border: 5px red dotted;
+        opacity: 1;
     }
 
     p {
