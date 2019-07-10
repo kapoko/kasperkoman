@@ -1,8 +1,10 @@
-import React from 'react'
-import TwoColumns from '../components/TwoColumns';
-import Center from '../components/Center';
+import TwoColumns from '../components/TwoColumns'
+import Center from '../components/Center'
 import ReleasesProvider, { ReleasesConsumer } from '../components/ReleasesProvider'
 import ReleaseCoverList from '../components/ReleaseCoverList'
+import ReleaseDate from '../components/ReleaseDate'
+import Title from '../components/Title'
+import ReleaseLinks from '../components/ReleaseLinks'
 
 const left = (
     <div className="columns is-marginless">
@@ -22,27 +24,31 @@ const left = (
 )
 
 const right = (
-    <Center className="has-text-centered">
+    <Center fixed className="has-text-centered content">
         <ReleasesConsumer>
-            {({ releases }) => (
-                <div className="content">
-                    { JSON.stringify(releases, null, 2) }
-                </div>
-            )}
+            {({ releases, activeRelease }) => {
+                return releases && releases.map((release, index) => (
+                    <div key={release._id} className={`release-info ${(activeRelease == index) ? 'is-active' : ''}`}>
+                        <ReleaseDate isoDate={release.releaseDate} />
+                        <Title className="title" title={release.title} />
+                        <h2 className="subtitle">{release.subtitle}</h2>
+                        <p className="label">{release.label}</p>
+                        <ReleaseLinks links={release.links} />
+                    </div>
+                ));
+            }}
         </ReleasesConsumer>
     </Center>
 )
 
-export default class Releases extends React.Component {
-    static async getInitialProps() {
-        return { theme: 'dark' }
-    }
+const Releases = props => (
+    <ReleasesProvider>
+        <TwoColumns left={left} right={right} />
+    </ReleasesProvider>
+)
 
-    render() {
-        return (
-            <ReleasesProvider>
-                <TwoColumns left={left} right={right} />
-            </ReleasesProvider>
-        )
-    }
+Releases.getInitialProps = async ({ req }) => {
+    return { theme: 'dark' }
 }
+
+export default Releases

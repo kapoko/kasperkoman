@@ -1,6 +1,14 @@
 @import "variables";
 
-@import "~bulma/bulma";
+@import "~bulma/sass/utilities/all";
+@import "~bulma/sass/base/all";
+@import "~bulma/sass/elements/container";
+@import "~bulma/sass/elements/content";
+@import "~bulma/sass/elements/title";
+@import "~bulma/sass/elements/other";
+@import "~bulma/sass/components/navbar";
+@import "~bulma/sass/grid/all";
+@import "~bulma/sass/layout/section";
 @import "~sass-easing/_easings.scss";
 
 @import "utilities";   
@@ -15,3 +23,4 @@
 @import "components/center";
 @import "components/gig-list";
 @import "components/release-cover";
+@import "components/release-info";

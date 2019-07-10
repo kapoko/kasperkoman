@@ -1,5 +1,5 @@
-export default ({ children, className, ...rest }) => (
-    <div className={`center-content ${className}`} {...rest}>
+export default ({ children, className, fixed, ...rest }) => (
+    <div className={`center-content ${className} ${fixed ? 'is-fixed' : ''}`} {...rest}>
         { children }
     </div>
 )

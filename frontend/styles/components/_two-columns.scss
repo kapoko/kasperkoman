@@ -1,5 +1,6 @@
 main.main {
     > .columns {
+        margin: 0;
 
         > .column {
             position: relative;
@@ -11,10 +12,16 @@ main.main {
 
             &:nth-child(1) {
                 background: $background-light-shade;
+                margin: 0;
+                padding: 0;
 
                 .dark & {
                     background: $background-dark-shade;
                 }
+            }
+
+            &:nth-child(2) {
+                margin: 0;
             }
         }
     }

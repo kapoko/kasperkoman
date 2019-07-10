@@ -2,6 +2,54 @@
     color: $text-light;
 }
 
+@mixin title-styles() {
+    font-size: 4em;
+
+    @include tablet() {
+        font-size: 4em;
+    }
+
+    @include desktop() {
+        font-size: 4.5em;
+    }
+
+    @include widescreen() {
+        font-size: 5em;
+    }
+
+    text-transform: uppercase;
+    line-height: .8;
+    letter-spacing: -.02em;
+}
+
+h1 {
+    &.title {
+        @include title-styles();
+
+        .dark & {
+            color: $title-strong-color-light;
+
+            span {
+                margin: 0 .2em;
+                font-size: .7em;
+                position: relative;
+                top: -.15em;
+                color: $title-color-light;
+            }
+        }
+    }
+}
+
+h2 {
+    &.subtitle {
+        @include title-styles();
+
+        .dark & {
+            color: $title-color-light;
+        }
+    }
+}
+
 h6, .content h6 {
     text-transform: uppercase;
     font-weight: bold;
@@ -36,7 +84,7 @@ a {
     }
 }
 
-.content a {
+.content a:not(.button) {
     $animation-speed: .3s;
 
     display: inline-block;
@@ -69,8 +117,7 @@ a {
             transform: translate3d(calc(102%), 0, 0);
             transition-timing-function: $easeOutCubic;
             transition-delay: 0s;
-        }
-            
+        }   
 
         &::after {
             transform: translate3d(0, 0, 0);

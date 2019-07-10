@@ -16,11 +16,11 @@ export default class Navbar extends React.Component {
                         <div className="navbar-item">
                             <ActiveLink href="/">Home</ActiveLink>
                         </div>
-                        <div className='separator'>|</div>
+                        <div className='separator'>/</div>
                         <div className="navbar-item">
                             <ActiveLink href="/releases">Releases</ActiveLink>
                         </div>
-                        <div className='separator'>|</div>
+                        <div className='separator'>/</div>
                         <div className="navbar-item">
                             <ActiveLink href="/bookings">Bookings</ActiveLink>
                         </div>

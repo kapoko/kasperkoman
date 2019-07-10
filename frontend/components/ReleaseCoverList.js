@@ -18,7 +18,6 @@ class ReleaseCovers extends Component {
 
         return (
             <ul className={className}>
-                
                 {releases && releases.map((release, index) => (
                     <ReleaseCover key={release._id} release={release} 
                         index={index}

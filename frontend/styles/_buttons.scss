@@ -1,9 +1,9 @@
 $button-animation-speed: .2s !default;
 
-.button-kk {
+button.button, a.button {
     cursor: pointer;
     display: inline-flex;
-    font-size: .65em;
+    font-size: .8em;
     border: none;
     color: $text;
     background: transparent;
@@ -14,10 +14,13 @@ $button-animation-speed: .2s !default;
     text-decoration: none;
     text-transform: uppercase;
     box-shadow: inset 0 0 0 1px $text;
-    line-height: 1;
-    padding: .4em .5em;
-    top: -.2em;
+    padding: .3em .5em;
     outline: 0;
+    border-radius: 0;
+    white-space: nowrap;
+    font-weight: bold;
+    letter-spacing: .05em;
+    vertical-align: bottom;
 
     &::before {
         content: "";
@@ -50,13 +53,37 @@ $button-animation-speed: .2s !default;
         }
     }
 
-    &:hover, a:hover & {
-        color: $background;
+    &:hover, a:hover &, &:focus {
+        color: $background-dark;
         transition-timing-function: $easeOutQuad;
+
+        .dark & {
+            color: $background-dark;
+        }
 
         &::before {
             transform: translate3d(0, 0, 0);
             transition-timing-function: $easeOutCubic;
+        }
+    }
+
+    &:active, &:focus {
+        outline: 0;
+    }
+
+    &:active {
+        box-shadow: inset 0 0 0 1px darken($text, 5%);
+        transform: translate3d(0, 1px, 0);
+        color: $background-dark-shade;
+
+        &::before {
+            background: darken($text, 5%);
+        }
+    }
+
+    .content & {
+        &:not(:first-child) {
+            margin-left: .75em;
         }
     }
 }

@@ -18,4 +18,17 @@
     @include widescreen() {
         padding: 4em ($logo-size-widescreen / 2);
     }
+
+    &.is-fixed {
+        position: fixed;
+        width: calc(50% - #{$column-gap * 2});
+        
+        @include tablet() {
+            padding-right: $column-gap;
+        }
+
+        @include desktop() {
+            padding-right: $navbar-padding-horizontal;
+        }
+    }
 }

@@ -4,7 +4,7 @@ import { graphql } from "react-apollo"
 
 const query = gql`{
     releases (
-        sort: "releaseDate:asc"
+        sort: "releaseDate:desc"
     ) {
         _id,
         title,
@@ -34,7 +34,7 @@ class ReleasesProvider extends Component {
 
     render() {
         const { data: { loading, error, releases }, req } = this.props;
-        
+
         return (
             <ReleasesContext.Provider 
                 value={{ 

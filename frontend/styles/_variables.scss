@@ -8,9 +8,14 @@ $text:                      #767470;
 $text-light:                transparentize($text, .6);
 
 $family-primary:            'Roboto Mono', monospace;
-
 $body-font-size:            .9em;
 $gap:                       0;
+$title-color:               $text;
+$title-strong-color:        $text;
+$content-heading-color:     $text;
+
+$title-color-light:         $text;
+$title-strong-color-light:  #fff;
 
 // Logo
 $logo-color:                #fff;
