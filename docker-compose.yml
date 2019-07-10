@@ -24,6 +24,11 @@ services:
     depends_on:
       - db
     restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:1337"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   db:
     image: mongo

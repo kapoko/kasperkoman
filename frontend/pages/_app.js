@@ -51,7 +51,7 @@ class MyApp extends App {
                 </Head>
 
                 {/* <ThemeProvider theme={themes.light}>  */}
-                    <div className={pageProps.theme}>
+                    <div className={`theme ${pageProps.theme}`}>
                         <Navbar />
 
                         <ApolloProvider client={apolloClient}>

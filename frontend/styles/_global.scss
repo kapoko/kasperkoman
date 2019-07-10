@@ -9,8 +9,14 @@ html, body {
     }
 }
 
-.dark {
-    background-color: $background-dark;
+.theme {
+    &.light {
+        background-color: $background-light;
+    }
+
+    &.dark {
+        background-color: $background-dark;
+    }
 }
 
 .content ul {

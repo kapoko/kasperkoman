@@ -21,6 +21,11 @@ const query = gql`{
 const ReleasesContext = React.createContext();
 
 class ReleasesProvider extends Component {
+
+    setActiveRelease(release) {
+        console.log('jajaja');
+    }
+
     render() {
         const { data: { loading, error, releases }, req } = this.props;
         

@@ -1,6 +1,7 @@
 node_modules
 .next
 out
+.yarn-error.log
 
 # macOS
 .DS_Store

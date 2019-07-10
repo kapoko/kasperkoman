@@ -19,4 +19,14 @@
     &:not(:last-child) {
         margin-bottom: 50%;
     }
+
+    &.is-active {
+        border: 5px red dotted;
+    }
+
+    p {
+        z-index: 1000;
+        color: red;
+        position: relative;
+    }
 }

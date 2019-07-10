@@ -7,9 +7,6 @@ export default ({ gig, hasInfoButton = false }) => {
             <FormattedDate isoDate={ gig.date } /> { gig.title }{ gig.venue ? '@ ' + gig.venue : null }
             <span className="separator"> | </span> 
             { gig.city }, { gig.countryCode }
-            {/* { hasInfoButton && gig.url && (
-                <button class="button-kk from-bottom">Info</button>
-            )} */}
         </>
     );
 
