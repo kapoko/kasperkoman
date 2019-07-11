@@ -23,13 +23,15 @@ const ReleasesContext = React.createContext();
 class ReleasesProvider extends Component {
 
     state = {
-        activeRelease: null
+        activeRelease: 0
     }
 
     setActiveRelease = index => {
         this.setState({
             activeRelease: index
-        })
+        });
+
+        setTimeout
     }
 
     render() {

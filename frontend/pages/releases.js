@@ -1,10 +1,10 @@
+import { CSSTransitionGroup } from 'react-transition-group'
+
 import TwoColumns from '../components/TwoColumns'
 import Center from '../components/Center'
 import ReleasesProvider, { ReleasesConsumer } from '../components/ReleasesProvider'
 import ReleaseCoverList from '../components/ReleaseCoverList'
-import ReleaseDate from '../components/ReleaseDate'
-import Title from '../components/Title'
-import ReleaseLinks from '../components/ReleaseLinks'
+import ReleaseInfo from '../components/ReleaseInfo'
 
 const left = (
     <div className="columns is-marginless">
@@ -27,15 +27,23 @@ const right = (
     <Center fixed className="has-text-centered content">
         <ReleasesConsumer>
             {({ releases, activeRelease }) => {
-                return releases && releases.map((release, index) => (
-                    <div key={release._id} className={`release-info ${(activeRelease == index) ? 'is-active' : ''}`}>
-                        <ReleaseDate isoDate={release.releaseDate} />
-                        <Title className="title" title={release.title} />
-                        <h2 className="subtitle">{release.subtitle}</h2>
-                        <p className="label">{release.label}</p>
-                        <ReleaseLinks links={release.links} />
-                    </div>
-                ));
+                const releaseList = releases && releases
+                    .filter((v, index) => index == activeRelease)
+                    .map((release, index) => 
+                {
+                    return (
+                        <ReleaseInfo key={release._id} release={release}/>
+                    )
+                });
+
+                return (
+                    <CSSTransitionGroup
+                    transitionName="release-info"
+                    transitionEnterTimeout={500}
+                    transitionLeaveTimeout={500}>
+                        {releaseList}
+                    </CSSTransitionGroup>
+                )
             }}
         </ReleasesConsumer>
     </Center>

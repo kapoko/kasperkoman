@@ -1,29 +1,23 @@
 import React from "react"
-import { orderBy } from "lodash"
 
 const ReleaseLinks = React.memo(({ links, ...rest }) => {
 
     const linkArr = links
         .split(/\n/)
         .filter(v => (v))
+        .sort()
         .map(string => 
-    {
+    {   
+        // Split at :
         string = string.split(/:(.+)/);
+        const url = string[1] ? string[1] : '#'
 
-        return {
-            title: string[0],
-            url: string[1] ? string[1] : '#'
-        }
+        return <a key={url} href={url} className="button" target="_blank">{string[0]}</a>;
     });
-
-    // Sort alphabetically
-    const sortedArr = orderBy(linkArr, ['title'], ['asc']);
 
     return (
         <div className="links" {...rest}>
-            { sortedArr && sortedArr.map(link => (
-                <a href={link.url} className="button" target="_blank">{link.title}</a>
-            ))}
+            {linkArr}
         </div>
     )
 });

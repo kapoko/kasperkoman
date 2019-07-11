@@ -3,6 +3,8 @@ import fetch from 'isomorphic-unfetch'
 import getConfig from 'next/config'
 const { API_URL, API_URL_SERVER } = getConfig().publicRuntimeConfig
 
+const prod = process.env.NODE_ENV === 'production'
+
 let apolloClient = null
 
 function create (initialState) {
@@ -12,7 +14,7 @@ function create (initialState) {
         connectToDevTools: isBrowser,
         ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
         link: new HttpLink({
-            uri: (isBrowser ? API_URL : API_URL_SERVER) + '/graphql', // Server URL (must be absolute)
+            uri: ((isBrowser || !prod) ? API_URL : API_URL_SERVER) + '/graphql', // Server URL (must be absolute)
             credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
             // Use fetch() polyfill on the server
             fetch: !isBrowser && fetch

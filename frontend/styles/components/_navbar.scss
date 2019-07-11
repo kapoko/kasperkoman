@@ -21,6 +21,10 @@
 
             &:hover {
                 color: darken($text, 15%);
+
+                .dark & {
+                    color: darken($text, 5%);
+                }
             }
 
             &::before {

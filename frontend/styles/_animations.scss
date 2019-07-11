@@ -1,0 +1,20 @@
+$animation-speed: .5s;
+
+.release-info-enter {
+    opacity: 0.01;
+    
+    &.release-info-enter-active {
+        opacity: 1;
+        transition: opacity $animation-speed $easeInOutQuad;
+        // transition-delay: $animation-speed;
+    }
+}
+
+.release-info-leave {
+    opacity: 1;
+    
+    &.release-info-leave-active {
+        opacity: 0.01;
+        transition: opacity $animation-speed $easeInOutQuad;
+    }
+}

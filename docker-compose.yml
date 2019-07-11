@@ -41,16 +41,16 @@ services:
       - ./backend/db:/data/db
     restart: always
   
-  app:
-    image: node:12
-    container_name: kk_app
-    ports:
-      - 3000:3000
-    volumes:
-      - ./frontend:/usr/local/app
-    depends_on:
-      - api
-    restart: always
-    working_dir: /usr/local/app
-    entrypoint: /bin/bash
-    command: "-c \"if [ ! -d \"node_modules\" ]; then yarn install; fi; yarn run dev\""
+  # app:
+  #   image: node:12
+  #   container_name: kk_app
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./frontend:/usr/local/app
+  #   depends_on:
+  #     - api
+  #   restart: always
+  #   working_dir: /usr/local/app
+  #   entrypoint: /bin/bash
+  #   command: "-c \"if [ ! -d \"node_modules\" ]; then npm install; fi; npm run dev\""

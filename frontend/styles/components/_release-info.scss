@@ -1,5 +1,4 @@
 .release-info {
-    display: none;
     text-align: right;
     width: 100%;
     
@@ -12,11 +11,14 @@
         margin-top: 0 !important;
     }
 
-    &.is-active {
-        display: block;
-    }
-
     .label {
         margin-bottom: 1.5rem !important;
+    }
+
+    .is-fixed & {
+        // position: absolute;
+        // right: 2rem;
+        // left: 5rem;
+        // width: auto;
     }
 }

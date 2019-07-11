@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import nanoid from 'nanoid';
 
 const Title = React.memo(({ title, ...rest }) => {
     const converted = title.replace('/', '<span>/</span>')
@@ -13,7 +14,7 @@ const Title = React.memo(({ title, ...rest }) => {
                     return part;
                 }
             
-                return ([part, <span>/</span>]);
+                return ([part, <span key={nanoid()}>/</span>]);
             })}
         </h1>
     )
