@@ -1,4 +1,4 @@
-$animation-speed: .5s;
+$animation-speed: .2s;
 
 .release-info-enter {
     opacity: 0.01;
@@ -10,10 +10,10 @@ $animation-speed: .5s;
     }
 }
 
-.release-info-leave {
+.release-info-exit {
     opacity: 1;
     
-    &.release-info-leave-active {
+    &.release-info-exit-active {
         opacity: 0.01;
         transition: opacity $animation-speed $easeInOutQuad;
     }

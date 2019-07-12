@@ -1,4 +1,5 @@
-import { CSSTransitionGroup } from 'react-transition-group'
+import { useState } from 'react';
+import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import TwoColumns from '../components/TwoColumns'
 import Center from '../components/Center'
@@ -23,26 +24,18 @@ const left = (
     </div>
 )
 
-const right = (
+const right = props => (
     <Center fixed className="has-text-centered content">
         <ReleasesConsumer>
             {({ releases, activeRelease }) => {
-                const releaseList = releases && releases
-                    .filter((v, index) => index == activeRelease)
-                    .map((release, index) => 
-                {
-                    return (
-                        <ReleaseInfo key={release._id} release={release}/>
-                    )
-                });
+                const currentRelease = releases[activeRelease];
 
                 return (
-                    <CSSTransitionGroup
-                    transitionName="release-info"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={500}>
-                        {releaseList}
-                    </CSSTransitionGroup>
+                    <SwitchTransition>
+                        <CSSTransition key={currentRelease._id} timeout={200} classNames="release-info">
+                            <ReleaseInfo release={currentRelease}/>
+                        </CSSTransition>
+                    </SwitchTransition>
                 )
             }}
         </ReleasesConsumer>
@@ -51,7 +44,7 @@ const right = (
 
 const Releases = props => (
     <ReleasesProvider>
-        <TwoColumns left={left} right={right} />
+        <TwoColumns left={left} right={right()} />
     </ReleasesProvider>
 )
 
