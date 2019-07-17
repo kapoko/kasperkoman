@@ -29,13 +29,19 @@ h1 {
         .dark & {
             color: $title-strong-color-light;
 
-            span {
-                margin: 0 .2em;
+            span.separator {
+                margin: 0 -.05em;
                 font-size: .7em;
                 position: relative;
                 top: -.15em;
                 color: $title-color-light;
             }
+        }
+    }
+
+    .sub {
+        .dark & {
+            color: $title-color-light;
         }
     }
 }

@@ -23,7 +23,7 @@
     "insert-backgrounds": "^0.2.1",
     "install": "^0.13.0",
     "isomorphic-unfetch": "^3.0.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.14",
     "nanoid": "^2.0.3",
     "next": "^9.0.0",
     "next-apollo": "^2.1.3",

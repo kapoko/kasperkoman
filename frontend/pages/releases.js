@@ -27,17 +27,17 @@ const left = (
 const right = props => (
     <Center fixed className="has-text-centered content">
         <ReleasesConsumer>
-            {({ releases, activeRelease }) => {
-                const currentRelease = releases[activeRelease];
-
-                return (
-                    <SwitchTransition>
-                        <CSSTransition key={currentRelease._id} timeout={200} classNames="release-info">
-                            <ReleaseInfo release={currentRelease}/>
-                        </CSSTransition>
-                    </SwitchTransition>
-                )
-            }}
+            {({ releases, activeRelease }) => (                
+                <>
+                    { activeRelease !== null && 
+                        <SwitchTransition>
+                            <CSSTransition key={releases[activeRelease]._id} timeout={300} classNames="release-info">
+                                <ReleaseInfo release={releases[activeRelease]}/>
+                            </CSSTransition>
+                        </SwitchTransition>
+                    }
+                </>
+            )}
         </ReleasesConsumer>
     </Center>
 )

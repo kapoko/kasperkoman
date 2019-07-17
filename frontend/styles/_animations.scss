@@ -1,12 +1,11 @@
-$animation-speed: .2s;
+$animation-speed: .3s;
 
 .release-info-enter {
-    opacity: 0.01;
+    opacity: 0;
     
     &.release-info-enter-active {
         opacity: 1;
         transition: opacity $animation-speed $easeInOutQuad;
-        // transition-delay: $animation-speed;
     }
 }
 
@@ -14,7 +13,35 @@ $animation-speed: .2s;
     opacity: 1;
     
     &.release-info-exit-active {
-        opacity: 0.01;
+        opacity: 0;
         transition: opacity $animation-speed $easeInOutQuad;
+    }
+}
+
+.word {
+    padding-left: .3em;
+    overflow-y: hidden;
+    display: inline-flex;
+}
+
+.char {
+    display: block;
+    transform: translate3d(0, 110%, 0);
+    transition: transform .4s $easeOutCubic;
+
+    .is-active & {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.char-container {
+    display: inline-flex;
+    padding: .05em 0;
+    margin: -.05em 0;
+}
+
+@for $i from 1 through 50 {
+    .d-#{$i} {
+        transition-delay: ($i * .03s);
     }
 }

@@ -1,3 +1,6 @@
+import { useState, useEffect } from 'react';
+import { defer } from 'lodash';
+
 import ReleaseDate from './ReleaseDate'
 import Title from './Title'
 import ReleaseLinks from './ReleaseLinks'
@@ -5,14 +8,28 @@ import ReleaseLinks from './ReleaseLinks'
 const ReleaseInfo = ({ release }) => {
     const { releaseDate, title, subtitle, label, links } = release;
 
+    const [isActive, setIsActive] = useState(false);
+
+    useEffect(() => {
+        let timeout = setTimeout(() => {
+            setIsActive(true);
+        }, 250);
+
+        return function cleanup() {
+            clearTimeout(timeout);
+        }
+    }, []);
+
     return (
-        <div className='release-info'>
-            <ReleaseDate isoDate={releaseDate} />
-            <Title className="title" title={title} />
-            <h2 className="subtitle">{subtitle}</h2>
-            <p className="label">{label}</p>
-            <ReleaseLinks links={links} />
+        <div>
+            <div className={`release-info ${isActive ? 'is-active' : ''}`}>
+                <ReleaseDate isoDate={releaseDate} />
+                <Title className="title" title={title} subtitle={subtitle} />
+                <p className="label">{label}</p>
+                <ReleaseLinks links={links} />
+            </div>
         </div>
     )
+
 };
 export default ReleaseInfo
