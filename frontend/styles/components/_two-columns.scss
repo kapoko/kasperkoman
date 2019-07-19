@@ -6,6 +6,17 @@ main.main {
             position: relative;
             min-height: 400px;
 
+            > * {
+                .transition-dark-enter &, .transition-light-enter & {
+                    opacity: 0;
+                }
+
+                .transition-dark-enter-active &, .transition-light-enter-active & {
+                    opacity: 1;
+                    transition: opacity $transition-speed;
+                }
+            }
+
             @include tablet() {
                 min-height: 100vh;
             }
@@ -18,57 +29,32 @@ main.main {
                 .dark & {
                     background: $background-dark-shade;
                 }
+
+                // .transition-exit & {
+                //     background: $background-dark-shade;
+
+                //     .dark & {
+                //         background: $background-light-shade;
+                //     }
+                // }
             }
 
             &:nth-child(2) {
                 margin: 0;
+                // background: $background-light;
+                
+                // .dark & {
+                //     background: $background-dark;
+                // }            
+
+                // .transition-exit & {
+                //     background: $background-dark;
+
+                //     .dark & {
+                //         background: $background-light;
+                //     }
+                // }
             }
         }
-    }
-}
-
-$logo-ratio:    276.34 / 228.07;
-
-@mixin logo-positions($width, $position: 'right') {
-    $height: $width / $logo-ratio;
-
-    width: $width;
-    height: $height;
-
-    @if($position == 'right') {
-        position: fixed;
-        top: 50%;
-        margin-top: -$height / 2;
-        right: calc(50% - #{$width / 2});
-    } @else if($position == 'bottom') {
-        position: absolute;
-        left: 50%;
-        bottom: -$height / 2;
-        margin-left: -$width / 2;
-    }
-}
-
-.logo {
-    fill: $logo-color;
-    z-index: 10;
-
-    .dark & {
-        fill: $logo-color-dark;
-    }
-
-    @include mobile() {
-        @include logo-positions($logo-size-mobile, 'bottom');
-    }
-
-    @include tablet() {
-        @include logo-positions($logo-size-tablet, 'right');
-    }
-
-    @include desktop() {
-        @include logo-positions($logo-size-desktop, 'right');
-    }
-    
-    @include widescreen() {
-        @include logo-positions($logo-size-widescreen, 'right');
     }
 }

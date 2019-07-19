@@ -6,6 +6,7 @@
     flex-direction: column;
     min-height: 300px;
     padding: 4em 0;
+    text-align: center;
 
     @include tablet() {
         padding: 4em ($logo-size-tablet / 2);
@@ -29,6 +30,10 @@
 
         @include desktop() {
             padding-right: $navbar-padding-horizontal;
+        }
+
+        > div {
+            width: 100%;
         }
     }
 }

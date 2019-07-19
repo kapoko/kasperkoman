@@ -3,6 +3,42 @@
         background-color: transparent;
     }
 
+    // .transition-dark-exit &, .transition-light-exit & {
+    //     opacity: 1;
+    // }
+
+    // .transition-dark-exit-active &, .transition-light-exit-active & {
+    //     opacity: 0;
+    //     transition: opacity $transition-speed;
+    // }
+
+    // .transition-dark-enter &, .transition-light-enter & {
+    //     opacity: 0;
+    // }
+
+    // .transition-dark-enter-active &, .transition-light-enter-active & {
+    //     opacity: 1;
+    //     transition: opacity $transition-speed;
+    // }
+
+    // .transition-dark-exit &, .transition-light-exit & {
+    //     transform: translate3d(0, 0, 0);
+    // }
+
+    // .transition-dark-exit-active &, .transition-light-exit-active & {
+    //     transform: translate3d(0, -110%, 0);
+    //     transition: transform $transition-speed / 2 $easeInCubic;
+    // }
+
+    // .transition-dark-enter &, .transition-light-enter & {
+    //     transform: translate3d(0, -110%, 0);
+    // }
+
+    // .transition-dark-enter-active &, .transition-light-enter-active & {
+    //     transform: translate3d(0, 0, 0);
+    //     transition: transform $transition-speed / 2 $easeOutCubic;
+    // }
+
     .separator {
         display: flex;
         align-items: center;
@@ -28,20 +64,20 @@
             }
 
             &::before {
-                @include linkLine();
-                margin-top: 0;
-                height: .6em;
-                z-index: -1;
-                opacity: 0;
-                transform: translate3d(0, 1.25em, 0);
-                transition: opacity $animationSpeed $easeInSine, transform $animationSpeed $easeInCubic;
+                // @include linkLine();
+                // margin-top: 0;
+                // height: .6em;
+                // z-index: -1;
+                // opacity: 0;
+                // transform: translate3d(0, 1.25em, 0);
+                // transition: opacity $animationSpeed $easeInSine, transform $animationSpeed $easeInCubic;
             }
 
             &.is-active {
                 &::before {
-                    opacity: 1;
-                    transform: translate3d(0, 0, 0);
-                    transition: opacity $animationSpeed ($animationSpeed / 2) $easeOutSine, transform $animationSpeed ($animationSpeed / 2) $easeOutCubic;
+                    // opacity: 1;
+                    // transform: translate3d(0, 0, 0);
+                    // transition: opacity $animationSpeed $transition-speed * 3 $easeOutSine, transform $animationSpeed $transition-speed * 3 $easeOutCubic;
                 }
             }
         }

@@ -1,16 +1,24 @@
 import TwoColumns from '../components/TwoColumns';
 import Center from '../components/Center';
 
-export default () => {
-    const left = (<p>Bookings left</p>)
-    const right = (
-        <Center className="has-text-centered">
-            <p>Bookings right</p>
-        </Center>
-    );
+const left = (
+    <Center className="has-text-centered">
+        <p>Bookings</p>
+    </Center>
+)
 
+const right = (
+    <Center className="has-text-centered">
+        <p>Bookings</p>
+    </Center>
+)
 
-    return (
-        <TwoColumns left={left} right={right} />
-    )
+const Bookings = props => (
+    <TwoColumns left={left} right={right} />
+)
+
+Bookings.getInitialProps = async function () {
+    return { theme: 'light' }
 }
+
+export default Bookings

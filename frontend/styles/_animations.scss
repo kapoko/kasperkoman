@@ -20,17 +20,17 @@ $animation-speed: .3s;
 
 .word {
     padding-left: .3em;
-    overflow-y: hidden;
+    overflow: hidden;
     display: inline-flex;
 }
 
 .char {
     display: block;
-    transform: translate3d(0, 110%, 0);
+    transform: translate3d(0, 110%, 0) rotate(-15deg);
     transition: transform .4s $easeOutCubic;
 
     .is-active & {
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0) rotate(0);
     }
 }
 
@@ -40,7 +40,7 @@ $animation-speed: .3s;
     margin: -.05em 0;
 }
 
-@for $i from 1 through 50 {
+@for $i from 1 through 70 {
     .d-#{$i} {
         transition-delay: ($i * .03s);
     }

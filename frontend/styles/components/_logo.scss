@@ -1,0 +1,98 @@
+$logo-ratio:    276.34 / 228.07;
+
+@mixin logo-positions($width, $position: 'right') {
+    $height: $width / $logo-ratio;
+
+    width: $width;
+    height: $height;
+
+    @if($position == 'right') {
+        position: fixed;
+        top: 50%;
+        margin-top: -$height / 2;
+        right: calc(50% - #{$width / 2});
+    } @else if($position == 'bottom') {
+        position: absolute;
+        left: 50%;
+        bottom: -$height / 2;
+        margin-left: -$width / 2;
+    }
+}
+
+.logo {
+    z-index: 10;
+
+    svg {
+        fill: $logo-color;
+        transition: fill $transition-speed $easeInOutQuad, opacity $transition-speed $easeInOutQuad, transform $transition-speed $easeInOutCubic;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+
+        .dark &, .to-dark & {
+            fill: $logo-color-dark;
+        }
+
+        .to-light & {
+            fill: $logo-color; 
+        }
+
+        .done & {
+            // transform: translate3d(0, 0, 0) rotate(180deg);
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            // animation-name: logoSpin;
+            // animation-duration: $transition-speed;
+        }
+
+        &:nth-child(1) {
+            .to-light &, .to-dark & {
+                transition: fill $transition-speed $easeInOutQuad, transform $transition-speed $easeOutCubic;
+                transform: translate3d(-10%, 0, 0) rotate(0) scale(1.3);
+            }
+
+            .done & {
+                animation: logoSpinLeft $transition-speed $easeInOutCubic;
+            }
+        }
+
+        &:nth-child(2) {
+            .to-light &, .to-dark & {
+                transition: fill $transition-speed $easeInOutQuad, opacity $transition-speed $easeInOutQuad, transform $transition-speed $easeOutCubic;
+                transform: translate3d(10%, 0, 0) rotate(0) scale(1.1);
+                opacity: .5;
+            }
+
+            .done & {
+                animation: logoSpinRight $transition-speed $easeInOutCubic;
+            }
+        }
+    }
+
+    @include mobile() {
+        @include logo-positions($logo-size-mobile, 'bottom');
+    }
+
+    @include tablet() {
+        @include logo-positions($logo-size-tablet, 'right');
+    }
+
+    @include desktop() {
+        @include logo-positions($logo-size-desktop, 'right');
+    }
+    
+    @include widescreen() {
+        @include logo-positions($logo-size-widescreen, 'right');
+    }
+}
+
+@keyframes logoSpinLeft {
+    from { transform: translate3d(-10%, 0, 0) rotate(0) scale(1.3) }
+    to { transform: translate3d(0, 0, 0) rotate(180deg) scale(1) }
+}
+
+@keyframes logoSpinRight {
+    from { transform: translate3d(10%, 0, 0) rotate(0) scale(1.1) }
+    to { transform: translate3d(0, 0, 0) rotate(180deg) scale(1) }
+}

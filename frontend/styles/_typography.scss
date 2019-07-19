@@ -79,18 +79,17 @@ a {
     content: "";
     width: 100%;
     height: 4px;
-    margin-top: -1px;
     top: 50%;
     left: 0;
     background-color: #fff;
     position: absolute;
 
     .dark & {
-        background-color: $logo-color-dark;
+        background-color: lighten($background-dark, 10%);
     }
 }
 
-.content a:not(.button) {
+.content a:not(.button), .navbar-item a {
     $animation-speed: .3s;
 
     display: inline-block;
@@ -118,7 +117,7 @@ a {
         transition-delay: 0s;
     }
 
-    &:hover {
+    &:hover, &.is-active {
         &::before {
             transform: translate3d(calc(102%), 0, 0);
             transition-timing-function: $easeOutCubic;

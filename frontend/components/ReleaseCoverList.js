@@ -10,19 +10,19 @@ class ReleaseCovers extends Component {
     }
 
     _onCoverEnter(coverIndex) {
-        this.props.setActiveRelease(coverIndex);
+        this.props.setActiveRelease(this.props.releases[coverIndex]);
     }
 
     render() {
-        const {className, releases, activeRelease} = this.props;
+        const {className, releases, activeRelease } = this.props;
 
         return (
             <ul className={className}>
-                {releases && releases.map((release, index) => (
+                { releases && releases.map((release, index) => (
                     <ReleaseCover key={release._id} release={release} 
                         index={index}
                         onEnter={this._onCoverEnter}
-                        isActive={activeRelease == index} />
+                        isActive={activeRelease == release} />
                 ))}
             </ul>
         )

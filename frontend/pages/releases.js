@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group'
+import { isEmpty } from 'lodash'
 
 import TwoColumns from '../components/TwoColumns'
 import Center from '../components/Center'
@@ -24,23 +25,26 @@ const left = (
     </div>
 )
 
-const right = props => (
-    <Center fixed className="has-text-centered content">
-        <ReleasesConsumer>
-            {({ releases, activeRelease }) => (                
-                <>
-                    { activeRelease !== null && 
-                        <SwitchTransition>
-                            <CSSTransition key={releases[activeRelease]._id} timeout={300} classNames="release-info">
-                                <ReleaseInfo release={releases[activeRelease]}/>
-                            </CSSTransition>
-                        </SwitchTransition>
-                    }
-                </>
-            )}
-        </ReleasesConsumer>
-    </Center>
-)
+const right = () => {
+
+    return (
+        <Center fixed className="content">
+            <ReleasesConsumer>
+                {({ activeRelease }) => (                
+                    <>
+                        { !isEmpty(activeRelease) &&
+                            <SwitchTransition>
+                                <CSSTransition key={activeRelease._id} timeout={300} classNames="release-info">
+                                    <ReleaseInfo release={activeRelease}/>
+                                </CSSTransition>
+                            </SwitchTransition>
+                        }
+                    </>
+                )}
+            </ReleasesConsumer>
+        </Center>
+    )
+}
 
 const Releases = props => (
     <ReleasesProvider>

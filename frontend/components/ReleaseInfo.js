@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { defer } from 'lodash';
+import React, { useState, useEffect } from 'react';
 
 import ReleaseDate from './ReleaseDate'
 import Title from './Title'
 import ReleaseLinks from './ReleaseLinks'
 
-const ReleaseInfo = ({ release }) => {
+const ReleaseInfo = React.memo(({ release }) => {
     const { releaseDate, title, subtitle, label, links } = release;
 
     const [isActive, setIsActive] = useState(false);
@@ -31,5 +30,5 @@ const ReleaseInfo = ({ release }) => {
         </div>
     )
 
-};
+});
 export default ReleaseInfo
