@@ -9,8 +9,15 @@
     }
 
     &.right {
-        left: 50%;
         top: 100vh;
+
+        @include mobile() {
+            width: 100%;
+        }
+
+        @include tablet() {
+            left: 50%;
+        }
 
         .transition-dark-exit &, .transition-light-exit & {
             transform: translate3d(0, -100%, 0);
@@ -21,13 +28,22 @@
         }
     
         .transition-dark-exit & {
-            background-color: $background-dark;
+            background-color: $background-dark-shade;
+
+            @include tablet() {
+                background-color: $background-dark;
+            }
         }
     }
 
     &.left {
         left: 0;
         top: -100vh;
+        display: none;
+
+        @include tablet() {
+            display: block;
+        }
 
         .transition-dark-exit &, .transition-light-exit & {
             transform: translate3d(0, 100%, 0);
@@ -42,12 +58,3 @@
         }
     }
 }
-
-// .transition-dark-enter, .transition-light-enter {
-//     opacity: 0;
-// }
-
-// .transition-dark-enter-active, .transition-light-enter-active {
-//     opacity: 1;
-//     transition: opacity $transition-speed;
-// }

@@ -4,7 +4,7 @@ import ReleaseDate from './ReleaseDate'
 import Title from './Title'
 import ReleaseLinks from './ReleaseLinks'
 
-const ReleaseInfo = React.memo(({ release }) => {
+const ReleaseInfo = React.memo(({ release, className, animate }) => {
     const { releaseDate, title, subtitle, label, links } = release;
 
     const [isActive, setIsActive] = useState(false);
@@ -20,10 +20,10 @@ const ReleaseInfo = React.memo(({ release }) => {
     }, []);
 
     return (
-        <div>
+        <div className={className}>
             <div className={`release-info ${isActive ? 'is-active' : ''}`}>
                 <ReleaseDate isoDate={releaseDate} />
-                <Title className="title" title={title} subtitle={subtitle} />
+                <Title className="title" title={title} subtitle={subtitle} animate={animate}/>
                 <p className="label">{label}</p>
                 <ReleaseLinks links={links} />
             </div>

@@ -4,7 +4,6 @@ main.main {
 
         > .column {
             position: relative;
-            min-height: 400px;
 
             > * {
                 .transition-dark-enter &, .transition-light-enter & {
@@ -22,38 +21,21 @@ main.main {
             }
 
             &:nth-child(1) {
-                background: $background-light-shade;
                 margin: 0;
                 padding: 0;
+                min-height: 350px;
+
+                @include tablet() {
+                    background: $background-light-shade;
+                }
 
                 .dark & {
                     background: $background-dark-shade;
                 }
-
-                // .transition-exit & {
-                //     background: $background-dark-shade;
-
-                //     .dark & {
-                //         background: $background-light-shade;
-                //     }
-                // }
             }
 
             &:nth-child(2) {
                 margin: 0;
-                // background: $background-light;
-                
-                // .dark & {
-                //     background: $background-dark;
-                // }            
-
-                // .transition-exit & {
-                //     background: $background-dark;
-
-                //     .dark & {
-                //         background: $background-light;
-                //     }
-                // }
             }
         }
     }

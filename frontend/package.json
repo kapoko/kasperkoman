@@ -16,6 +16,8 @@
     "acorn": "^6.2.0",
     "apollo-boost": "^0.4.3",
     "bulma": "^0.7.5",
+    "delicious-hamburgers": "^0.4.1",
+    "disable-scroll": "^0.5.0",
     "fontfaceobserver": "^2.1.0",
     "global": "^4.4.0",
     "gql": "^1.1.2",
@@ -44,5 +46,9 @@
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.4.0",
     "sass-extract-loader": "^1.1.0"
-  }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%"
+  ]
 }

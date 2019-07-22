@@ -10,14 +10,14 @@ import ReleaseInfo from '../components/ReleaseInfo'
 
 const left = (
     <div className="columns is-marginless">
-        <div className="column is-8-mobile is-offset-2-mobile is-8-tablet is-offset-2-tablet is-6-desktop is-offset-3-desktop has-no-vertical-padding">
+        <div className="column is-full-mobile is-8-tablet is-offset-2-tablet is-6-desktop is-offset-3-desktop has-no-vertical-padding">
             <ReleasesConsumer>
                 {({ releases, activeRelease, setActiveRelease }) => (
                     <ReleaseCoverList 
                         releases={releases} 
                         activeRelease={activeRelease}
                         setActiveRelease={setActiveRelease} 
-                        className="center-first-item" 
+                        className="release-cover-list center-first-item" 
                     />
                 )}
             </ReleasesConsumer>
@@ -25,35 +25,32 @@ const left = (
     </div>
 )
 
-const right = () => {
-
-    return (
-        <Center fixed className="content">
-            <ReleasesConsumer>
-                {({ activeRelease }) => (                
-                    <>
-                        { !isEmpty(activeRelease) &&
-                            <SwitchTransition>
-                                <CSSTransition key={activeRelease._id} timeout={300} classNames="release-info">
-                                    <ReleaseInfo release={activeRelease}/>
-                                </CSSTransition>
-                            </SwitchTransition>
-                        }
-                    </>
-                )}
-            </ReleasesConsumer>
-        </Center>
-    )
-}
+const right = (
+    <Center fixed className="content">
+        <ReleasesConsumer>
+            {({ activeRelease }) => (                
+                <>
+                    { !isEmpty(activeRelease) &&
+                        <SwitchTransition>
+                            <CSSTransition key={activeRelease._id} timeout={300} classNames="release-info">
+                                <ReleaseInfo release={activeRelease} animate/>
+                            </CSSTransition>
+                        </SwitchTransition>
+                    }
+                </>
+            )}
+        </ReleasesConsumer>
+    </Center>
+)
 
 const Releases = props => (
     <ReleasesProvider>
-        <TwoColumns left={left} right={right()} />
+        <TwoColumns left={left} right={right} reduceColumnsMobile/>
     </ReleasesProvider>
 )
 
 Releases.getInitialProps = async ({ req }) => {
-    return { theme: 'dark' }
+    return { theme: 'dark', title: 'Releases' }
 }
 
 export default Releases

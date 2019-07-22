@@ -1,0 +1,38 @@
+.hamburger {
+    position: relative;
+    margin-left: auto;
+    z-index: 100;
+    transition: none;
+
+    @include desktop() {
+        display: none;
+    }
+
+    &:focus {
+        background: rgba(0, 0, 0, .05);
+    }
+
+    &:active {
+        background: rgba(0, 0, 0, .09);
+    }
+
+    .light &, .to-light {
+        span, &.active span {
+            background: $hamburger-color;
+        }
+    }
+
+    .dark &, .to-dark & {
+        &:focus {
+            background: rgba(255, 255, 255, .03);
+        }
+    
+        &:active {
+            background: rgba(255, 255, 255, .07);
+        }
+
+        span, &.active span {
+            background: $background-light;
+        }
+    }
+}

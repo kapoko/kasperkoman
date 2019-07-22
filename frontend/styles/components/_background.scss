@@ -6,13 +6,13 @@
     overflow: hidden;
     
     > .inner {
-        $animation-speed: .8s;
+        $animation-speed: 1s;
 
         @include stretch-div();
         @include stretch-background();
 
         opacity: 0;
-        transform: scale(1.05);
+        transform: scale(1.07);
         transition: opacity $animation-speed / 2 $easeInOutQuad, transform $animation-speed $easeOutCubic;
         backface-visibility: hidden;
 

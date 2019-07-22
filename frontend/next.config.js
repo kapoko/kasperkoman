@@ -12,6 +12,10 @@ module.exports = withSass({
 
         return config;
     },
+    postcssLoaderOptions: { 
+        parser: true, 
+        autoprefixer: true 
+    },
     publicRuntimeConfig: { // Will be available on both server and client
         API_URL: 'http://localhost:1337',
         API_URL_SERVER: 'http://localhost:1337'

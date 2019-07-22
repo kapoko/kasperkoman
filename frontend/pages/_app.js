@@ -39,7 +39,7 @@ class MyApp extends App {
         return (
             <Container>
                 <Head>
-                    <title>Kasper Koman</title>
+                    <title>{`Kasper Koman${pageProps.title ? ' | ' + pageProps.title : ''}`}</title>
                 </Head>
 
                 <Themer timeout={transitionSpeed} className={pageProps.theme} skipInitialTransition>

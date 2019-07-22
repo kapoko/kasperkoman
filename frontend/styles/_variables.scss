@@ -1,4 +1,4 @@
-$primary:                   #c0392b;     
+$primary:                   #f896af;     
 
 $background-light:          #EDE9E1;
 $background-light-shade:    darken(#EDE9E1, 4%);
@@ -6,6 +6,8 @@ $background-dark:           #262624;
 $background-dark-shade:     #191919;
 $text:                      #767470;
 $text-light:                transparentize($text, .6);
+$link-line-color:           #fff;
+$link-line-color-dark:      lighten($background-dark, 10%);
 
 $family-primary:            'Roboto Mono', monospace;
 $body-font-size:            .9em;
@@ -26,3 +28,12 @@ $logo-size-desktop:         130px;
 $logo-size-widescreen:      150px;
 
 $transition-speed:          .8s;
+
+// Hamburger 
+$hamburger-animations:          (collapse);
+$hamburger-size:                60px;
+$hamburger-padding:	            16px;
+$hamburger-bar-spacing:         7px;
+$hamburger-color:               $link-line-color-dark;
+$hamburger-thickness:           2px;
+$hamburger-animation-speed:     1.2;

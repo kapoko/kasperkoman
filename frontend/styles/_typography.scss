@@ -3,7 +3,7 @@
 }
 
 @mixin title-styles() {
-    font-size: 4em;
+    font-size: 3em;
 
     @include tablet() {
         font-size: 4em;
@@ -30,11 +30,14 @@ h1 {
             color: $title-strong-color-light;
 
             span.separator {
-                margin: 0 -.05em;
                 font-size: .7em;
                 position: relative;
                 top: -.15em;
                 color: $title-color-light;
+                
+                @include tablet() {
+                    margin: 0 -.05em;
+                }
             }
         }
     }
@@ -81,11 +84,11 @@ a {
     height: 4px;
     top: 50%;
     left: 0;
-    background-color: #fff;
+    background-color: $link-line-color;
     position: absolute;
 
     .dark & {
-        background-color: lighten($background-dark, 10%);
+        background-color: $link-line-color-dark;
     }
 }
 
@@ -98,36 +101,31 @@ a {
     vertical-align: bottom;
     overflow: hidden;
 
-    &::before {
+    &::before, &::after {
         @include linkLine();
+        transition: transform $animation-speed 0s $easeInCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+    }
 
+    &::before {
         z-index: -1;
         transform: translate3d(0, 0, 0);
-        transition: transform $animation-speed $easeInCubic;
-        transition-delay: 0s;
         opacity: .75;
     }
 
     &::after {
-        @include linkLine();
-
         z-index: 1;
         transform: translate3d(calc(-102%), 0, 0);
-        transition: transform $animation-speed $easeInCubic;
-        transition-delay: 0s;
     }
 
     &:hover, &.is-active {
         &::before {
             transform: translate3d(calc(102%), 0, 0);
-            transition-timing-function: $easeOutCubic;
-            transition-delay: 0s;
+            transition: transform $animation-speed 0s $easeOutCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
         }   
 
         &::after {
             transform: translate3d(0, 0, 0);
-            transition-timing-function: $easeOutCubic;
-            transition-delay: $animation-speed;
+            transition: transform $animation-speed $animation-speed $easeOutCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
         }
     }
 }

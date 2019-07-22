@@ -17,7 +17,7 @@ const ReleaseLinks = React.memo(({ links, ...rest }) => {
 
     return (
         <div className="links" {...rest}>
-            {linkArr}
+            <p>{linkArr}</p>
         </div>
     )
 });

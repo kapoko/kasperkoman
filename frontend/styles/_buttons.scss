@@ -13,7 +13,6 @@ button.button, a.button {
     z-index: 0;
     text-decoration: none;
     text-transform: uppercase;
-    // box-shadow: inset 0 0 0 1px $text;
     border: 1px solid $text;
     padding: .3em .5em;
     outline: 0;
@@ -68,23 +67,9 @@ button.button, a.button {
         }
     }
 
-    &:focus {
-        // box-shadow: inset 0 0 0 1px #fff;
-        // color: #fff;
-    }
-
     &:active, &:focus {
+        border: 1px dotted $text;   
         outline: 0;
-    }
-
-    &:active, &:focus {
-        border: 1px dotted $text;
-        box-shadow: none;
-        // color: $background-dark-shade;
-
-        // &::before {
-        //     background: darken($text, 5%);
-        // }
     }
 
     .content & {

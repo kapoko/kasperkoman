@@ -1,5 +1,15 @@
 .release-info {
-    text-align: right;
+    text-align: center;
+    
+    @include mobile() {
+        margin-top: 1.5rem;
+        margin-bottom: 7rem;
+    }
+
+    @include tablet() {
+        text-align: right;
+    }
+
     width: 100%;
     
     h1 {

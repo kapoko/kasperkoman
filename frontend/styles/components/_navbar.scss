@@ -3,42 +3,6 @@
         background-color: transparent;
     }
 
-    // .transition-dark-exit &, .transition-light-exit & {
-    //     opacity: 1;
-    // }
-
-    // .transition-dark-exit-active &, .transition-light-exit-active & {
-    //     opacity: 0;
-    //     transition: opacity $transition-speed;
-    // }
-
-    // .transition-dark-enter &, .transition-light-enter & {
-    //     opacity: 0;
-    // }
-
-    // .transition-dark-enter-active &, .transition-light-enter-active & {
-    //     opacity: 1;
-    //     transition: opacity $transition-speed;
-    // }
-
-    // .transition-dark-exit &, .transition-light-exit & {
-    //     transform: translate3d(0, 0, 0);
-    // }
-
-    // .transition-dark-exit-active &, .transition-light-exit-active & {
-    //     transform: translate3d(0, -110%, 0);
-    //     transition: transform $transition-speed / 2 $easeInCubic;
-    // }
-
-    // .transition-dark-enter &, .transition-light-enter & {
-    //     transform: translate3d(0, -110%, 0);
-    // }
-
-    // .transition-dark-enter-active &, .transition-light-enter-active & {
-    //     transform: translate3d(0, 0, 0);
-    //     transition: transform $transition-speed / 2 $easeOutCubic;
-    // }
-
     .separator {
         display: flex;
         align-items: center;
@@ -49,36 +13,108 @@
         }
     }
 
-    .navbar-item {
-        $animationSpeed: .2s;
-        
+    .navbar-item {        
         a {
             position: relative;
+            transition: color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
 
             &:hover {
-                color: darken($text, 15%);
+                .light &, .to-light & {
+                    color: darken($text, 15%);
+                }
 
-                .dark & {
+                .dark &, .to-dark & {
                     color: darken($text, 5%);
                 }
             }
 
-            &::before {
-                // @include linkLine();
-                // margin-top: 0;
-                // height: .6em;
-                // z-index: -1;
-                // opacity: 0;
-                // transform: translate3d(0, 1.25em, 0);
-                // transition: opacity $animationSpeed $easeInSine, transform $animationSpeed $easeInCubic;
+            &::before, &::after {
+                .to-light & {
+                    background-color: $link-line-color;
+                }
+
+                .to-dark & {
+                    background-color: $link-line-color-dark;
+                }
+            }
+        }
+    }
+
+    .navbar-end {
+        $menu-animation-speed: .4s;
+
+        @include touch() {
+            display: none;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            .navbar-item {
+                opacity: 0;
+                font-size: 1.7em;
+                padding: 1rem 1.5rem;
+                transform: translate3d(0, 50%, 0);
+                transition: transform $menu-animation-speed $easeOutCubic, opacity $menu-animation-speed $easeInOutQuad;
+
+                @for $i from 1 through 8 {
+                    &:nth-child(#{$i}) {
+                        transition-delay: (.1s + $i * .05s);
+                    }
+                }
             }
 
-            &.is-active {
-                &::before {
-                    // opacity: 1;
-                    // transform: translate3d(0, 0, 0);
-                    // transition: opacity $animationSpeed $transition-speed * 3 $easeOutSine, transform $animationSpeed $transition-speed * 3 $easeOutCubic;
+            transition: opacity $menu-animation-speed $easeInOutQuad; 
+
+            &.menu-enter, &.menu-enter-active, &.menu-enter-done, &.menu-exit, &.menu-exit-active {
+                display: flex;
+                background: $background-light;
+
+                .dark & {
+                    background: $background-dark;
                 }
+            }
+
+            &.menu-enter-active, &.menu-enter-done {
+                .navbar-item {
+                    opacity: 1;
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            &.menu-enter {
+                opacity: 0;
+            }
+
+            &.menu-enter-active, &.menu-enter-done {
+                opacity: 1;
+            }
+
+            &.menu-exit, &.menu-exit-active {
+                transition: transform $menu-animation-speed $easeInCubic, opacity $menu-animation-speed $easeInOutQuad; 
+                
+                .navbar-item {
+                    opacity: 0;
+                    transform: translate3d(0, 20%, 0);
+                    transition: transform $menu-animation-speed $easeInCubic, opacity $menu-animation-speed $easeInOutQuad;
+                }
+            }
+
+            &.menu-exit {
+                opacity: 1;
+            }
+
+            &.menu-exit-active {
+                opacity: 0;
+            }
+
+            &.menu-exit-done {
+                display: none;
             }
         }
     }

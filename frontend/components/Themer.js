@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react';
-
+import { defer } from 'lodash';
+ 
 const Themer = ({className, children, timeout, skipInitialTransition}) => {
     const [delayedClassName, setDelayedClassName] = useState(className);
     const [skipped, setSkipped] = useState(false);
 
     useEffect(() => {
         // Skip first
-        if (!skipped && skipInitialTransition) {
+        if (skipInitialTransition && !skipped) {
             setSkipped(true);
             return;
         }
 
-        setDelayedClassName(`${delayedClassName.replace(' done','')} to-${className}`)
+        setDelayedClassName(`${delayedClassName.replace(' done','')}`)
+        defer(() => {
+            setDelayedClassName(`${delayedClassName.replace(' done','')} to-${className}`)
+        });
 
         let timer = setTimeout(() => {
             setDelayedClassName(`${className} done`);
@@ -20,7 +24,7 @@ const Themer = ({className, children, timeout, skipInitialTransition}) => {
         return function cleanup() {
             clearTimeout(timer);
         }
-    }, [className]); // Only re-run the effect if count changes
+    }, [children]);
 
     return (
         <div className={`theme ${delayedClassName}`}>

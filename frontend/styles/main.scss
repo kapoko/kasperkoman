@@ -10,6 +10,7 @@
 @import "~bulma/sass/grid/all";
 @import "~bulma/sass/layout/section";
 @import "~sass-easing/_easings.scss";
+@import "~delicious-hamburgers/scss/hamburgers";
 
 @import "utilities";   
 @import "global";   
@@ -18,6 +19,7 @@
 @import "buttons";
 @import "layout";
 @import "animations";
+@import "hamburger";
 @import "components/two-columns";
 @import "components/navbar";
 @import "components/background";

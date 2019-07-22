@@ -2,8 +2,16 @@
     background: $background-dark;
     width: 100%;
     position: relative;
-    opacity: .3;
     transition: opacity .3s $easeInOutQuad;
+
+    @include mobile() {
+        width: 40%;
+        margin: 0 auto;
+    }
+
+    @include tablet() {
+        opacity: .3;
+    }
 
     &:after {
         content: "";
@@ -18,11 +26,7 @@
         height: auto;
     }
 
-    &:not(:last-child) {
-        margin-bottom: 50%;
-    }
-
-    &.is-active {
+    .is-active & {
         opacity: 1;
     }
 
@@ -30,5 +34,17 @@
         z-index: 1000;
         color: red;
         position: relative;
+    }
+}
+
+.release-cover-list {
+    li {
+        &:not(:last-child) {
+            margin-bottom: 50%;
+
+            @include mobile() {
+                margin-bottom: 0;
+            }
+        }
     }
 }
