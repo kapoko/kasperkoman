@@ -1,0 +1,45 @@
+{
+  "connection": "default",
+  "collectionName": "release",
+  "info": {
+    "name": "release",
+    "description": ""
+  },
+  "options": {
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string"
+    },
+    "subtitle": {
+      "default": "",
+      "type": "string"
+    },
+    "releaseDate": {
+      "default": "",
+      "type": "date"
+    },
+    "label": {
+      "default": "",
+      "type": "string"
+    },
+    "links": {
+      "default": "",
+      "type": "text"
+    },
+    "cover": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "originalArtist": {
+      "default": "",
+      "type": "string"
+    }
+  }
+}

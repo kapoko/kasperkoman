@@ -17,8 +17,8 @@ module.exports = withSass({
         autoprefixer: true 
     },
     publicRuntimeConfig: { // Will be available on both server and client
-        API_URL: 'http://localhost:1337',
-        API_URL_SERVER: 'http://localhost:1337'
+        API_URL: process.env.API_URL || 'http://localhost:1337',
+        API_URL_SERVER: process.env.API_URL_SERVER || 'http://localhost:1337'
     },
     exportPathMap: function() {
         return {

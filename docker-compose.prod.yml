@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  api:
+    image: kapoko/kasperkoman:strapi
+    volumes:
+      - .env:/usr/src/api/.env
+      - ./volumes/uploads:/usr/src/api/strapi/public/uploads
+    ports:
+      - 1337:1337
+    env_file: .env
+    depends_on:
+      - db
+    restart: always
+
+  app:
+    image: kapoko/kasperkoman:frontend
+    ports:
+      - 3000:3000
+    env_file: .env
+    restart: always
+
+  db: 
+    image: kapoko/kasperkoman:db
+    ports:
+      - 27017:27017
+    env_file: .env
+    volumes: 
+      - ./volumes/db:/data/db
+    restart: always

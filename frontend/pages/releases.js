@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { TransitionGroup, CSSTransition, SwitchTransition } from 'react-transition-group'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import { isEmpty } from 'lodash'
 
 import TwoColumns from '../components/TwoColumns'

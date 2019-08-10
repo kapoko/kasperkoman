@@ -1,6 +1,6 @@
 const Logo = ({className}) => (
     <div className={`logo ${className}`}>
-        <svg role="img" onTransitionEnd={() => console.log('logo animation done')}>
+        <svg role="img">
             <use xlinkHref="static/logo.svg#left"/>
         </svg>
         <svg role="img">

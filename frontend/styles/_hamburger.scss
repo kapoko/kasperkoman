@@ -2,7 +2,9 @@
     position: relative;
     margin-left: auto;
     z-index: 100;
+    float: right;
     transition: none;
+    opacity: 1;
 
     @include desktop() {
         display: none;
@@ -16,9 +18,14 @@
         background: rgba(0, 0, 0, .09);
     }
 
-    .light &, .to-light {
-        span, &.active span {
-            background: $hamburger-color;
+    span.bar {
+        background-color: $hamburger-color;
+        transition: background-color $transition-speed $easeInOutQuad, transform 0.33333s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1) 0.20833s, opacity 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1) 0.20833s;
+    }
+
+    &.active {
+        span.bar {
+            transition: background-color $transition-speed $easeInOutQuad, transform 0.33333s cubic-bezier(0.645, 0.045, 0.355, 1) 0.08333s, top 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1);
         }
     }
 
@@ -32,7 +39,13 @@
         }
 
         span, &.active span {
-            background: $background-light;
+            background-color: $background-light;
+        }
+    }
+
+    .to-light & {
+        span, &.active span {
+            background-color: $hamburger-color;
         }
     }
 }

@@ -8,7 +8,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "serve": "serve -p 5000 out"
   },
   "dependencies": {
     "@svgr/webpack": "^4.3.0",
@@ -39,7 +40,7 @@
     "react-waypoint": "^9.0.2",
     "recompose": "^0.30.0",
     "sass-easing": "^1.0.3",
-    "styled-components": "^4.3.2",
+    "serve": "^11.1.0",
     "svg4everybody": "^2.1.9"
   },
   "devDependencies": {

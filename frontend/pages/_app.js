@@ -17,16 +17,6 @@ import '../styles/main.scss'
 
 class MyApp extends App {
     
-    static async getInitialProps({ Component, router, ctx }) {
-        let pageProps = {};
-        
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
-        }
-        
-        return { pageProps };
-    }
-
     componentDidMount() {
         Fonts();
         svg4everybody();
@@ -57,6 +47,7 @@ class MyApp extends App {
                     </PageTransition>
 
                 </Themer>
+
             </Container>
         )
     }

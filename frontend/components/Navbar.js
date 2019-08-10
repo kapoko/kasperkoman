@@ -27,15 +27,13 @@ const Navbar = ({ router }) => {
     return (
         <header className={menuOpen ? 'menu-open' : ''}>
             <nav className="navbar is-fixed-top is-transparent is-spaced" role="navigation" aria-label="main navigation">
-                <div className="navbar-brand">
-                    <button onClick={toggleMenu} className={`hamburger hamburger--collapse ${menuOpen ? 'active' : ''}`} type="button">
-                        <div className="inner">
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                            <span className="bar"></span>
-                        </div>
-                    </button>
-                </div>
+                <button onClick={toggleMenu} className={`hamburger hamburger--collapse ${menuOpen ? 'active' : ''}`} type="button">
+                    <div className="inner">
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </div>
+                </button>
                 <CSSTransition in={menuOpen} timeout={400} classNames="menu">
                     <div className="navbar-end">
                         <div className="navbar-item">

@@ -69,6 +69,10 @@ h6, .content h6 {
 a {
     color: $text;
 
+    &:visited {
+        color: $text;
+    }
+
     &:hover {
         color: $text;
     }
