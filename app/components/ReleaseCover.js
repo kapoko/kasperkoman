@@ -26,7 +26,7 @@ export default class ReleaseCover extends React.Component {
                     <div className="release-cover">
                         <Background src={ API_URL + release.cover.square } />
                     </div>
-                    <ReleaseInfo className="is-hidden-tablet content" release={release}/>
+                    <ReleaseInfo className="is-hidden-tablet content" release={release} animate/>
                 </li>
             </Waypoint>
         )

@@ -8,29 +8,38 @@
         transition: transform $easeInOutQuart $transition-speed;
     }
 
+    @include mobile() {
+        .transition-dark-exit &, .transition-light-exit & {
+            transition: transform $easeInOutQuart ($transition-speed - .1s);
+        }
+    }
+
+    .transition-light-exit & {
+        background-color: $background-light;
+    }
+
+    .transition-dark-exit & {
+        background-color: $background-dark-shade;
+    }
+
     &.right {
         top: 100vh;
-
-        @include mobile() {
-            width: 100%;
-        }
-
-        @include tablet() {
-            left: 50%;
-        }
+        left: 50%;
 
         .transition-dark-exit &, .transition-light-exit & {
             transform: translate3d(0, -100%, 0);
         }
 
-        .transition-light-exit & {
-            background-color: $background-light;
+        @include mobile() {
+            transition-delay: .1s;
         }
-    
-        .transition-dark-exit & {
-            background-color: $background-dark-shade;
 
-            @include tablet() {
+        @include tablet() { 
+            .transition-light-exit & {
+                background-color: $background-light;
+            }
+        
+            .transition-dark-exit & {
                 background-color: $background-dark;
             }
         }
@@ -38,23 +47,24 @@
 
     &.left {
         left: 0;
-        top: -100vh;
-        display: none;
-
-        @include tablet() {
-            display: block;
-        }
+        top: 100vh;
 
         .transition-dark-exit &, .transition-light-exit & {
-            transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, -100%, 0);
         }
 
-        .transition-light-exit & {
-            background-color: $background-light-shade;
+        @include tablet() {
+            top: -100vh;
+
+            .transition-dark-exit &, .transition-light-exit & {
+                transform: translate3d(0, 100%, 0);
+            }
         }
-    
-        .transition-dark-exit & {
-            background-color: $background-dark-shade;
+
+        @include tablet() { 
+            .transition-light-exit & {
+                background-color: $background-light-shade;
+            }
         }
     }
 }
