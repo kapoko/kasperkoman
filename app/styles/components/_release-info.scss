@@ -3,7 +3,7 @@
     
     @include mobile() {
         margin-top: 1.5rem;
-        margin-bottom: 7rem;
+        margin-bottom: 0;
     }
 
     @include tablet() {

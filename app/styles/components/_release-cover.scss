@@ -3,14 +3,11 @@
     width: 100%;
     position: relative;
     transition: opacity .3s $easeInOutQuad;
+    opacity: .3;
 
     @include mobile() {
-        width: 40%;
+        width: 50%;
         margin: 0 auto;
-    }
-
-    @include tablet() {
-        opacity: .3;
     }
 
     &:after {
@@ -37,13 +34,24 @@
     }
 }
 
-.release-cover-list {
+ul.release-cover-list {
+    margin-left: -$column-gap;
+    margin-right: -$column-gap;
+
     li {
         &:not(:last-child) {
             margin-bottom: 50%;
 
             @include mobile() {
                 margin-bottom: 0;
+            }
+        }
+
+        @include mobile() {
+            padding: 6rem $column-gap;
+
+            &:nth-child(even) {
+                background-color: $background-dark;
             }
         }
     }
