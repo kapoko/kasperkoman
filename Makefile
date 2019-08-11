@@ -24,7 +24,7 @@ build-db:
 	docker build --no-cache --tag=kapoko/kasperkoman:db ./db && \
 	docker push kapoko/kasperkoman:db
 
-run-app: 
+deploy-app: 
 	@echo "Starting app on server"
 	ssh $(SSH_USER)@$(SSH_HOST) 'cd ${REMOTE_DIR} && \
 		docker-compose pull app && docker-compose stop app && docker-compose up -d app'

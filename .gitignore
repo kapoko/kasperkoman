@@ -2,3 +2,5 @@
 .env
 temp
 volumes
+db/backups/*
+!db/backups/.gitkeep
