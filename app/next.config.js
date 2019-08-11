@@ -1,6 +1,7 @@
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
 const sass = require('@zeit/next-sass')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const nextConfig = {
     webpack(config) {
@@ -12,11 +13,17 @@ const nextConfig = {
             loader: 'sass-extract-loader'
         });
 
+        if (config.mode === 'production') {
+            if (Array.isArray(config.optimization.minimizer)) {
+                config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({
+                    cssProcessorPluginOptions: {
+                        preset: ['default', { discardComments: { removeAll: true } }],
+                    }
+                }));
+            }
+        }
+
         return config;
-    },
-    postcssLoaderOptions: { 
-        parser: true, 
-        autoprefixer: true 
     },
     publicRuntimeConfig: { // Will be available on both server and client
         API_URL: process.env.API_URL || 'http://localhost:1337',
@@ -26,7 +33,7 @@ const nextConfig = {
         return {
             '/': { page: '/' },
             '/releases': { page: '/releases' },
-            '/bookings': { page: '/bookings' },
+            '/contact': { page: '/contact' },
         };
     }
 };
@@ -40,10 +47,13 @@ module.exports = withPlugins([
     }],
     [optimizedImages, {
         imagesFolder: 'images',
-        optimizeImagesInDev: true,
+        optimizeImagesInDev: false,
         webp: {
             preset: 'default',
-            quality: 75,
+            quality: 70,
+        },
+        mozjpeg: {
+            quality: 80,
         },
     }]
 ], nextConfig);

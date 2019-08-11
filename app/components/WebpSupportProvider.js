@@ -17,11 +17,7 @@ class WebpSupportProvider extends Component {
 
     componentDidMount() {
         supportsWebP.then(supported => {
-            if (supported) {
-                this.setWebpSupport(true);
-            } else {
-                this.setWebpSupport(false);
-            }
+            this.setWebpSupport(supported);
         });
     }
 

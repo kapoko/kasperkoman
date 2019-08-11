@@ -45,7 +45,7 @@ const Navbar = ({ router }) => {
                         </div>
                         <div className='separator'>/</div>
                         <div className="navbar-item">
-                            <ActiveLink href="/bookings">Bookings</ActiveLink>
+                            <ActiveLink href="/contact">Contact</ActiveLink>
                         </div>
                     </div>
                 </CSSTransition>

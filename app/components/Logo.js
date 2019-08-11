@@ -1,10 +1,10 @@
 const Logo = ({className}) => (
     <div className={`logo ${className}`}>
         <svg role="img">
-            <use xlinkHref="static/logo.svg#left"/>
+            <use xlinkHref="static/images/logo.svg#left"/>
         </svg>
         <svg role="img">
-            <use xlinkHref="static/logo.svg#right"/>
+            <use xlinkHref="static/images/logo.svg#right"/>
         </svg>
     </div>
 )

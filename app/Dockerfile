@@ -1,15 +1,26 @@
 FROM node:alpine
 
-RUN mkdir -p /opt/app
-RUN apk add --no-cache libc6-compat
+WORKDIR /opt/app
+RUN apk --update --no-cache add \
+    libc6-compat \
+    build-base \
+    autoconf \
+    make \
+    automake \
+    libtool \
+    pkgconf \
+    nasm \
+    tar \
+    libjpeg-turbo-dev \
+    g++
+
 ENV NODE_ENV production
 ENV PORT 3000
 EXPOSE 3000
 EXPOSE 5000
 
-WORKDIR /opt/app
-COPY . /opt/app
+COPY . .
 
-RUN npm install --no-optional && npm run build
+RUN npm install --no-optional --production=false && npm run build
 
-CMD [ "npm", "start" ]
+CMD ["sh", "-c", "npm run export && npm run serve"]

@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "serve": "serve -p 5000 out"
+    "serve": "npm run build && npm run export && serve -p 5000 out"
   },
   "dependencies": {
     "@svgr/webpack": "^4.3.0",
@@ -42,15 +42,17 @@
     "react-waypoint": "^9.0.2",
     "recompose": "^0.30.0",
     "sass-easing": "^1.0.3",
-    "serve": "^11.1.0",
     "supports-webp": "^2.0.1",
-    "svg4everybody": "^2.1.9",
-    "webp-loader": "^0.5.0"
+    "svg4everybody": "^2.1.9"
   },
   "devDependencies": {
+    "imagemin-mozjpeg": "^8.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass-extract": "^2.1.0",
     "sass-extract-js": "^0.4.0",
-    "sass-extract-loader": "^1.1.0"
+    "sass-extract-loader": "^1.1.0",
+    "serve": "^11.1.0",
+    "webp-loader": "^0.5.0"
   },
   "browserslist": [
     "last 2 versions",

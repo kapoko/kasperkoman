@@ -4,8 +4,8 @@ import WebpBackground from '../components/Background';
 
 const left = (
     <WebpBackground 
-        src={require('../static/images/background_3.jpg?webp')} 
-        fallback={require('../static/images/background_3.jpg')} />
+        src={require('../static/images/background_contact.jpg?webp')} 
+        fallback={require('../static/images/background_contact.jpg')} />
 )
 
 const right = (
@@ -22,12 +22,12 @@ const right = (
     </Center>
 )
 
-const Bookings = () => (
+const Contact = () => (
     <TwoColumns left={left} right={right} />
 )
 
-Bookings.getInitialProps = async function () {
-    return { theme: 'light', title: 'Bookings' }
+Contact.getInitialProps = async function () {
+    return { theme: 'light', title: 'Contact' }
 }
 
-export default Bookings
+export default Contact

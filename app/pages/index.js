@@ -7,8 +7,8 @@ import GigList from '../components/GigList';
 
 const left = (
     <WebpBackground 
-        src={require('../static/images/background.jpg?webp')} 
-        fallback={require('../static/images/background.jpg')} />
+        src={require('../static/images/background_home.jpg?webp')} 
+        fallback={require('../static/images/background_home.jpg')} />
 )
 
 const right = (

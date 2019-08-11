@@ -11,10 +11,10 @@ const Themer = ({className, children, timeout, skipInitialTransition}) => {
             setSkipped(true);
             return;
         }
-
-        setDelayedClassName(`${delayedClassName.replace(' done','')}`)
+        
+        setDelayedClassName(`${delayedClassName ? delayedClassName.replace(' done','') : ''}`)
         defer(() => {
-            setDelayedClassName(`${delayedClassName.replace(' done','')} to-${className}`)
+            setDelayedClassName(`${delayedClassName ? delayedClassName.replace(' done','') : ''} to-${className}`)
         });
 
         let timer = setTimeout(() => {
