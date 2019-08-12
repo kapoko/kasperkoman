@@ -1,10 +1,39 @@
 'use strict';
 
+const axios = require('axios');
+
 /**
  * Lifecycle callbacks for the `Release` model.
  */
 
 module.exports = {
+  afterCreate: async (entry) => {
+    axios.post(strapi.config.frontendBuildUrl, entry)
+      .catch(() => {
+          // Ignore
+        }
+    );
+  },
+
+  // For now these hooks are set in extensions/content-manager/services/ContentManager.js
+  // because these hooks don't work 
+  //
+  // afterUpdate: async (entry) => {
+  //   axios.post(strapi.config.frontendBuildUrl, entry)
+  //     .catch(() => {
+  //         // Ignore
+  //       }
+  //   );
+  // },
+
+  // afterDestroy: async (entry) => {
+  //   axios.post(strapi.config.frontendBuildUrl, entry)
+  //     .catch(() => {
+  //         // Ignore
+  //       }
+  //   );
+  // }
+
   // Before saving a value.
   // Fired before an `insert` or `update` query.
   // beforeSave: async (model) => {},

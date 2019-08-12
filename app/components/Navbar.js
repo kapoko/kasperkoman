@@ -27,7 +27,7 @@ const Navbar = ({ router }) => {
     return (
         <header className={menuOpen ? 'menu-open' : ''}>
             <nav className="navbar is-fixed-top is-transparent is-spaced" role="navigation" aria-label="main navigation">
-                <button onClick={toggleMenu} className={`hamburger hamburger--collapse ${menuOpen ? 'active' : ''}`} type="button">
+                <button onClick={toggleMenu} className={`hamburger hamburger--collapse ${menuOpen ? 'active' : ''}`} type="button" aria-label="Open menu">
                     <div className="inner">
                         <span className="bar"></span>
                         <span className="bar"></span>

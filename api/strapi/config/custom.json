@@ -22,5 +22,6 @@
       "quality": 70,
       "attributes": "thumb"
     }
-  ]
+  ],
+  "frontendBuildUrl": "${process.env.FRONTEND_BUILD_URL || 'localhost:2601'}"
 }

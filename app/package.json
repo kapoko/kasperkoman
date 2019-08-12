@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "serve": "npm run build && npm run export && serve -p 5000 out"
+    "serve": "npm run build && npm run export && serve -p 5000 out",
+    "prod": "node ./build-server.js >> ./logs/build-server.log & npm run export && serve -p 5000 out"
   },
   "dependencies": {
     "@svgr/webpack": "^4.3.0",
@@ -27,6 +28,7 @@
     "install": "^0.13.0",
     "isomorphic-unfetch": "^3.0.0",
     "lodash": "^4.17.14",
+    "log-timestamp": "^0.3.0",
     "nanoid": "^2.0.3",
     "next": "^9.0.0",
     "next-apollo": "^2.1.3",

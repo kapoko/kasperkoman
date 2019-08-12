@@ -12,7 +12,7 @@ const ReleaseLinks = React.memo(({ links, ...rest }) => {
         string = string.split(/:(.+)/);
         const url = string[1] ? string[1] : '#'
 
-        return <a key={url} href={url} className="button" target="_blank">{string[0]}</a>;
+        return <a key={url} href={url} className="button" target="_blank" rel="noreferrer noopener">{string[0]}</a>;
     });
 
     return (

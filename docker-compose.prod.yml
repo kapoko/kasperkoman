@@ -16,9 +16,10 @@ services:
   app:
     image: kapoko/kasperkoman:app
     ports:
-      - 3000:3000
       - 5000:5000
     env_file: .env
+    volumes: 
+      - ./volumes/logs:/opt/app/logs
     restart: always
 
   db: 

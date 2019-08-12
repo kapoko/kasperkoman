@@ -15,12 +15,12 @@ RUN apk --update --no-cache add \
     g++
 
 ENV NODE_ENV production
-ENV PORT 3000
-EXPOSE 3000
+
 EXPOSE 5000
+EXPOSE 2601
 
 COPY . .
 
 RUN npm install --no-optional --production=false && npm run build
 
-CMD ["sh", "-c", "npm run export && npm run serve"]
+CMD ["sh", "-c", "npm run prod"]
