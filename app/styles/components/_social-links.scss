@@ -1,0 +1,42 @@
+.social-links {
+    display: flex;
+    align-items: center;
+
+    span {
+        @include small-title-styles();
+        margin-right: 1.25em;
+        opacity: 0;
+        transition: opacity $easeInOutQuad .5s;
+
+        &.is-active {
+            opacity: 1;
+        }
+    }
+
+    .navbar & {
+        margin-top: 1em;
+    }
+
+    a {
+        font-size: 1.4em;
+        opacity: .3;
+        display: inline-block;
+        transition: opacity .2s $easeInOutQuad; 
+        padding-right: .5em;
+        padding-left: .5em;
+
+        .navbar & {
+            font-size: .9em;
+        }
+
+        @include tablet() {}
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &:before, &:after {
+            content: normal;
+        }
+    }
+}

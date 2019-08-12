@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { WebpSupportConsumer } from './WebpSupportProvider';
 
 const Background = props => {
-    const { src, load } = props;
+    const { src } = props;
+    const load = (props.load === undefined) ? true : props.load;
 
     const [lazySrc, setLazySrc] = useState(null);
     const [showLoader, setShowLoader] = useState(false);
@@ -39,14 +40,14 @@ const Background = props => {
 }
 
 const WebpBackground = () => {
-    const { src, fallback } = this.props;
+    const { src, fallback, ...rest } = this.props;
 
     return (
         <WebpSupportConsumer>
             {({ webpSupport }) => {
                 // Wait for webpSupport to become true or false
                 if (webpSupport === null) return; 
-                return ( <Background src={(webpSupport) ? src : fallback }/> );
+                return ( <Background src={(webpSupport) ? src : fallback } {...rest}/> );
             }}
         </WebpSupportConsumer>
     )

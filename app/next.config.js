@@ -25,9 +25,12 @@ const nextConfig = {
 
         return config;
     },
+    serverRuntimeConfig: {
+        API_URL_SERVER: process.env.API_URL_SERVER || 'http://localhost:1337',
+    },
     publicRuntimeConfig: { // Will be available on both server and client
         API_URL: process.env.API_URL || 'http://localhost:1337',
-        API_URL_SERVER: process.env.API_URL_SERVER || 'http://localhost:1337'
+        APP_URL: process.env.APP_URL || 'http://localhost:3000'
     },
     exportPathMap: function() {
         return {

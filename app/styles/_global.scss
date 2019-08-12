@@ -4,11 +4,11 @@ html, body {
     line-height: 1.7;
 
     @include mobile() {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     @include tablet() {
-        font-size: 13px;
+        font-size: 12px;
     }
 
     @include desktop() {

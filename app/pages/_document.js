@@ -32,6 +32,7 @@ export default class MyDocument extends Document {
                     <meta charSet="utf-8" />
                     <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
                         
+                    <meta name="description" content="Official home of Kasper Koman."/>
                     <link rel="apple-touch-icon" sizes="180x180" href="/static/favicons/apple-touch-icon.png"/>
                     <link rel="icon" type="image/png" sizes="32x32" href="/static/favicons/favicon-32x32.png"/>
                     <link rel="icon" type="image/png" sizes="16x16" href="/static/favicons/favicon-16x16.png"/>
@@ -41,7 +42,6 @@ export default class MyDocument extends Document {
                     <meta name="msapplication-config" content="/static/favicons/browserconfig.xml"/>
                     <meta name="theme-color" content="#ffffff"/>
 
-                    <meta name="description" content="Official home of Kasper Koman."/>
                 </InlineStylesHead>
                 <body>
                     <Main />

@@ -4,6 +4,7 @@ import TwoColumns from '../components/TwoColumns';
 import Center from '../components/Center';
 import WebpBackground from '../components/Background';
 import GigList from '../components/GigList';
+import SocialLinks from '../components/SocialLinks';
 
 const left = (
     <WebpBackground 
@@ -12,9 +13,12 @@ const left = (
 )
 
 const right = (
-    <Center>
-        <GigList />
-    </Center>
+    <>
+        <Center>
+            <GigList />
+        </Center>
+        <SocialLinks className="nav-bottom is-hidden-mobile" />
+    </>
 )
 
 const Index = props => (

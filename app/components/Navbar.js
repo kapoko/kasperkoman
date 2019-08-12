@@ -4,7 +4,7 @@ import disableScroll from 'disable-scroll';
 import Router, { withRouter } from 'next/router';
 
 import ActiveLink from './ActiveLink';
-
+import SocialLinks from './SocialLinks'
 
 const Navbar = ({ router }) => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -46,6 +46,9 @@ const Navbar = ({ router }) => {
                         <div className='separator'>/</div>
                         <div className="navbar-item">
                             <ActiveLink href="/contact">Contact</ActiveLink>
+                        </div>
+                        <div class="navbar-item is-hidden-desktop">
+                            <SocialLinks hasLinkTarget={false}/>
                         </div>
                     </div>
                 </CSSTransition>

@@ -1,7 +1,8 @@
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost'
 import fetch from 'isomorphic-unfetch'
 import getConfig from 'next/config'
-const { API_URL, API_URL_SERVER } = getConfig().publicRuntimeConfig
+const { API_URL } = getConfig().publicRuntimeConfig;
+const { API_URL_SERVER } = getConfig().serverRuntimeConfig;
 
 const prod = process.env.NODE_ENV === 'production'
 
