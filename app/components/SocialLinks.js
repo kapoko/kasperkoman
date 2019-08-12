@@ -30,7 +30,7 @@ const SocialLinks = props => {
     const [linkTargetActive, setLinkTargetActive] = useState(false);
 
     return (
-        <p className={`social-links ${className ? className : ''}`} {...rest}>
+        <p className={`social-links ${className ? className : ''}`}>
             { hasLinkTarget && (
                 <span className={(linkTargetActive) ? 'is-active' : ''}>{linkTarget}</span>
             )}

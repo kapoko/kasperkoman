@@ -47,7 +47,7 @@ const Navbar = ({ router }) => {
                         <div className="navbar-item">
                             <ActiveLink href="/contact">Contact</ActiveLink>
                         </div>
-                        <div class="navbar-item is-hidden-desktop">
+                        <div className="navbar-item is-hidden-desktop">
                             <SocialLinks hasLinkTarget={false}/>
                         </div>
                     </div>
