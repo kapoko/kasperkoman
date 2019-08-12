@@ -18,12 +18,21 @@ class ReleaseCovers extends Component {
 
         return (
             <ul className={className}>
-                { releases && releases.map((release, index) => (
-                    <ReleaseCover key={release._id} release={release} 
-                        index={index}
-                        onEnter={this._onCoverEnter}
-                        isActive={activeRelease == release} />
-                ))}
+                { releases && releases.map((release, index) => {
+
+                    // Find distance of this release to the active release. If less than 1, preload image.
+                    const distance = Math.abs(releases.findIndex(release => activeRelease && release._id == activeRelease._id) - index);
+                    const preLoadImage = (distance <= 1);
+
+                    return (
+                        <ReleaseCover key={release._id} 
+                            load={preLoadImage} 
+                            release={release}
+                            index={index}
+                            onEnter={this._onCoverEnter}
+                            isActive={activeRelease == release} />
+                    )
+                })}
             </ul>
         )
     }

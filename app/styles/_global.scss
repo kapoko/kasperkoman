@@ -12,6 +12,10 @@ html, body {
     }
 
     @include desktop() {
+        font-size: 13px;
+    }
+
+    @include widescreen() {
         font-size: 15px;
     }
 }

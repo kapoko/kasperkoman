@@ -7,7 +7,6 @@
 
     ul.past {
         position: relative;
-        font-size: 1em;
         color: $text-light;
 
         &::after {
@@ -19,6 +18,10 @@
             right: 0;
             background-image: linear-gradient(to bottom, rgba($background-light, 0.001), $background-light);        
         }
+    }
+
+    a {
+        white-space: nowrap;
     }
 
     .button-kk {

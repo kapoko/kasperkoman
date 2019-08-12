@@ -18,13 +18,13 @@ export default class ReleaseCover extends React.Component {
     }
 
     render() {
-        const { release, isActive } = this.props;
+        const { release, load, isActive } = this.props;
 
         return (
             <Waypoint onEnter={this._handleWaypointEnter} topOffset="49%" bottomOffset="49%">
                 <li className={isActive ? 'is-active' : ''}>
                     <div className="release-cover">
-                        <Background src={ API_URL + release.cover.square } />
+                        <Background load={load} src={ API_URL + release.cover.square } />
                     </div>
                     <ReleaseInfo className="is-hidden-tablet content" release={release} animate={false}/>
                 </li>

@@ -108,6 +108,37 @@ a {
     z-index: 0;
     vertical-align: bottom;
     overflow: hidden;
+    text-decoration: none;
+
+    // display: inline;
+    // background: 
+    //     100% 60%/100% 4px no-repeat, 
+    //     #fff 0 60%/0 4px no-repeat;
+    // background-position: 100% 60%;
+    // background-repeat: no-repeat;
+    // background-size: 100% 4px;
+    // background-origin: 100% 0;
+    // transition: background $animation-speed $easeInCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+
+    // &:hover {
+        // background: 
+        //     linear-gradient(#fff, #fff) 100% 60%/0 4px no-repeat, 
+        //     linear-gradient($text, $text) 0 60%/100% 4px no-repeat;
+
+        // transition: background $animation-speed $easeOutCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+    // }
+
+    // .dark &, .to-dark & {
+    //     background: 
+    //     linear-gradient($link-line-color-dark, $link-line-color-dark) 100% 60%/100% 4px no-repeat, 
+    //     linear-gradient($text, $text) 0 60%/0 4px no-repeat; 
+
+    //     &:hover {
+    //         background: 
+    //             linear-gradient($link-line-color-dark, $link-line-color-dark) 100% 60%/0 4px no-repeat, 
+    //             linear-gradient($text, $text) 0 60%/100% 4px no-repeat;
+    //     }
+    // }
 
     &::before, &::after {
         @include linkLine();

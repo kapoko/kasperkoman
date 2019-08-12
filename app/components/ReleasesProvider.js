@@ -33,7 +33,7 @@ class ReleasesProvider extends Component {
     }
 
     render() {
-        const { data: { releases }, req } = this.props;
+        const { data: { releases } } = this.props;
 
         return (
             <ReleasesContext.Provider 

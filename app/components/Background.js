@@ -1,41 +1,45 @@
-import supportsWebP from 'supports-webp';
+import { useState, useEffect } from 'react';
 import { WebpSupportConsumer } from './WebpSupportProvider';
 
-class Background extends React.Component {
-    state = { src: null };
+const Background = props => {
+    const { src, load } = props;
 
-    componentDidMount() {
-        const { src } = this.props;
+    const [lazySrc, setLazySrc] = useState(null);
+    const [showLoader, setShowLoader] = useState(false);
+
+    useEffect(() => {
+        if (!load || lazySrc) {
+            return;
+        }
+        
         const imgLoader = new Image();
-        imgLoader.src = this.props.src;
+        imgLoader.src = src;
 
         let timer = setTimeout(() => {
             // If not loaded after 500ms, show loader
-            if (!this.state.src) {
-                this.setState({ showLoader: true });
+            if (!src) {
+                setShowLoader(true);
             }
         }, 500);
 
         imgLoader.onload = () => {
             clearTimeout(timer);
-            this.setState({ src });
+            setLazySrc(src);
         }
-    }
+    }, [load]);
 
-    render() {
-        return (
-            <div 
-                key={this.props.src}
-                className={'background' + ((this.state.src) ? ' is-loaded' : '')} >
-                    <div className={`loader ${(this.state.showLoader) ? 'is-active' : ''}`}></div>
-                    <div className="inner" style={{ backgroundImage: `url(${this.state.src || ''})` }}></div>
-            </div>
-        )
-    }
+    return (
+        <div 
+            key={src}
+            className={'background' + ((lazySrc) ? ' is-loaded' : '')} >
+                <div className={`loader ${(showLoader) ? 'is-active' : ''}`}></div>
+                <div className="inner" style={{ backgroundImage: `url(${lazySrc || ''})` }}></div>
+        </div>
+    )
 }
 
 const WebpBackground = () => {
-    const { src, fallback } = this.props.src;
+    const { src, fallback } = this.props;
 
     return (
         <WebpSupportConsumer>
