@@ -7,6 +7,7 @@
     min-height: 300px;
     padding: 5.5em 0;
     text-align: center;
+    margin-bottom: 0 !important;
 
     @include tablet() {
         padding: 4em ($logo-size-tablet / 2);
