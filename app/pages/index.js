@@ -2,12 +2,12 @@ import React from 'react';
 
 import TwoColumns from '../components/TwoColumns';
 import Center from '../components/Center';
-import WebpBackground from '../components/Background';
+import BackgroundWebp from '../components/BackgroundWebp';
 import GigList from '../components/GigList';
 import SocialLinks from '../components/SocialLinks';
 
 const left = (
-    <WebpBackground 
+    <BackgroundWebp 
         src={require('../static/images/background_home.jpg?webp')} 
         fallback={require('../static/images/background_home.jpg')} />
 )

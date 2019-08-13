@@ -53,15 +53,11 @@ const GigList = ({ data: { loading, error, gigs } }, req) => {
     
     return (
         <div className="gig-list content">
-            {gigs.upcoming && (
-                <ul>
-                    { gigs.upcoming.map(gig => {
-                        return (
-                            <Gig key={ gig._id } gig={ gig } hasInfoButton />
-                        )
-                    })}
-                </ul>
-            )}
+            <ul>
+                {gigs.upcoming && gigs.upcoming.map(gig => (
+                    <Gig key={ gig._id } gig={ gig } hasInfoButton />
+                ))}
+            </ul>
             {gigs.past && (
                 <>
                     <h6>Past</h6>

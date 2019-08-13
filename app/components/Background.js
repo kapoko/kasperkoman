@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { WebpSupportConsumer } from './WebpSupportProvider';
 
 const Background = props => {
     const { src } = props;
@@ -23,10 +22,10 @@ const Background = props => {
             }
         }, 500);
 
-        imgLoader.onload = () => {
+        imgLoader.addEventListener('load', () => {
             clearTimeout(timer);
             setLazySrc(src);
-        }
+        });
     }, [load]);
 
     return (
@@ -39,19 +38,4 @@ const Background = props => {
     )
 }
 
-const WebpBackground = () => {
-    const { src, fallback, ...rest } = this.props;
-
-    return (
-        <WebpSupportConsumer>
-            {({ webpSupport }) => {
-                // Wait for webpSupport to become true or false
-                if (webpSupport === null) return; 
-                return ( <Background src={(webpSupport) ? src : fallback } {...rest}/> );
-            }}
-        </WebpSupportConsumer>
-    )
-}
-
-export { WebpBackground }; 
 export default Background;

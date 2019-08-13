@@ -1,10 +1,10 @@
 import TwoColumns from '../components/TwoColumns';
 import Center from '../components/Center';
-import WebpBackground from '../components/Background';
+import BackgroundWebp from '../components/BackgroundWebp';
 import SocialLinks from '../components/SocialLinks';
 
 const left = (
-    <WebpBackground 
+    <BackgroundWebp 
         src={require('../static/images/background_contact.jpg?webp')} 
         fallback={require('../static/images/background_contact.jpg')} />
 )
