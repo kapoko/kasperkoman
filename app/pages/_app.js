@@ -39,12 +39,14 @@ class MyApp extends App {
         const { Component, pageProps, apolloClient } = this.props;
         const transitionSpeed = 800;
 
+        const pageTitle = `Kasper Koman${pageProps.title ? ' | ' + pageProps.title : ''}`;
+
         return (
             <Container>
                 <Head>
-                    <title>{`Kasper Koman${pageProps.title ? ' | ' + pageProps.title : ''}`}</title>
+                    <title>{pageTitle}</title>
 
-                    <meta property="og:title" content="Kasper Koman" />
+                    <meta property="og:title" content={pageTitle} />
                     <meta property="og:type" content="website" />
                     <meta property="og:url" content="https://kasperkoman.com" />
                     <meta property="og:description" content="Official home of Kasper Koman." />
