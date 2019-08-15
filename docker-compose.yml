@@ -1,34 +1,15 @@
 version: '3'
 
 services:
-  # api:
-  #   build: ./backend
-  #   image: strapi/strapi
-  #   env_file:
-  #     - ./environments/.env
-  #   ports:
-  #     - 1337:1337
-  #   # volumes:
-  #     # - ./backend/strapi:/usr/src/api/strapi
-  #     # - /usr/src/api/strapi/node_modules
-  #   depends_on:
-  #     - db
-  #   restart: always
-  #   healthcheck:
-  #     test: ["CMD", "curl", "-f", "http://localhost:1337"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-
-  # api:
-  #   image: kapoko/strapi:latest
-  #   env_file: .env
-  #   ports:
-  #     - 1337:1337
-  #   volumes:
-  #     - ./backend/strapi:/usr/src/api/strapi
-  #   depends_on:
-  #     - db
+  api:
+    image: kapoko/strapi:latest
+    env_file: .env
+    ports:
+      - 1337:1337
+    volumes:
+      - ./api/strapi:/usr/src/api/strapi
+    depends_on:
+      - db
 
   db:
     image: mongo
@@ -38,17 +19,3 @@ services:
     volumes:
       - ./volumes/db:/data/db
       - ./db/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
-  
-  # app:
-  #   image: node:12
-  #   container_name: kk_app
-  #   ports:
-  #     - 3000:3000
-  #   volumes:
-  #     - ./frontend:/usr/local/app
-  #   depends_on:
-  #     - api
-  #   restart: always
-  #   working_dir: /usr/local/app
-  #   entrypoint: /bin/bash
-  #   command: "-c \"if [ ! -d \"node_modules\" ]; then npm install; fi; npm run dev\""
