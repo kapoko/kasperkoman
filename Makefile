@@ -11,7 +11,7 @@ deploy:
 
 build-app:
 	@echo "Building app"
-	docker build --no-cache --tag=kapoko/kasperkoman:app ./app && \
+	docker build --tag=kapoko/kasperkoman:app ./app && \
 	docker push kapoko/kasperkoman:app
 
 build-api:
