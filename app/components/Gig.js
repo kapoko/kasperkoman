@@ -13,7 +13,7 @@ export default ({ gig, hasInfoButton = false }) => {
     if (hasInfoButton && gig.url) {
         return (
             <li>
-                <a href={ gig.url } target="_blank" >
+                <a href={ gig.url } target="_blank" rel="noreferrer noopener">
                     { gigComponent }
                 </a>
             </li>
