@@ -30,7 +30,7 @@ const Privacy = props => (
 )
 
 Privacy.getInitialProps = async function () {
-    return { theme: 'light' }
+    return { theme: 'light', title: 'Privacy' }
 }
 
 export default Privacy
