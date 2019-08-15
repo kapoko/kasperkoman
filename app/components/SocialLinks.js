@@ -6,6 +6,16 @@ import { useState } from 'react';
 
 let timer = null;
 
+const SocialLink = ({href, linkTargetName, icon, functions, ...props}) => (
+    <a href={href}
+        title={`Kasper Koman on ${linkTargetName}`} 
+        onMouseEnter={() => functions.change(linkTargetName)} 
+        onMouseLeave={() => functions.reset()}
+        target="_blank" rel="noreferrer noopener">
+        <FontAwesomeIcon icon={icon} />
+    </a>
+)
+
 const SocialLinks = props => {
 
     const { className, ...rest } = props; 
@@ -32,43 +42,13 @@ const SocialLinks = props => {
     return (
         <p className={`social-links ${className ? className : ''}`}>
             { hasLinkTarget && (
-                <span className={(linkTargetActive) ? 'is-active' : ''}>{linkTarget}</span>
+                <span className={`link-target ${(linkTargetActive) ? 'is-active' : ''}`}>{linkTarget}</span>
             )}
-            <a href="https://soundcloud.com/kasperkoman" 
-                title="Kasper Koman on Soundcloud" 
-                onMouseEnter={() => change('Soundcloud')} 
-                onMouseLeave={() => reset()}
-                target="_blank" rel="noreferrer noopener">
-                <FontAwesomeIcon icon={faSoundcloud} />
-            </a>
-            <a href="https://instagram.com/kasperkoman" 
-                title="Kasper Koman on Instagram" 
-                onMouseEnter={() => change('Instagram')} 
-                onMouseLeave={() => reset()}
-                target="_blank" rel="noreferrer noopener">
-                <FontAwesomeIcon icon={faInstagram} />
-            </a>
-            <a href="https://facebook.com/kasperkomanofficial" 
-                title="Kasper Koman on Facebook" 
-                onMouseEnter={() => change('Facebook')} 
-                onMouseLeave={() => reset()}
-                target="_blank" rel="noreferrer noopener">
-                <FontAwesomeIcon icon={faFacebook} />
-            </a>
-            <a href="https://open.spotify.com/artist/2fjKKBOOCTqkDTRC7wH6dO?si=c014lpJtTuSJr-zikifyYQ" 
-                title="Kasper Koman on Spotify" 
-                onMouseEnter={() => change('Spotify')} 
-                onMouseLeave={() => reset()}
-                target="_blank" rel="noreferrer noopener">
-                <FontAwesomeIcon icon={faSpotify} />
-            </a>
-            <a href="https://www.beatport.com/artist/kasper-koman/69322" 
-                title="Kasper Koman on Beatport" 
-                onMouseEnter={() => change('Beatport')} 
-                onMouseLeave={() => reset()}
-                target="_blank" rel="noreferrer noopener">
-                <FontAwesomeIcon icon={faHeadphones} />
-            </a>
+            <SocialLink href="https://soundcloud.com/kasperkoman" linkTargetName="Soundcloud" icon={faSoundcloud} functions={{change, reset}} />
+            <SocialLink href="https://instagram.com/kasperkoman" linkTargetName="Instagram" icon={faInstagram} functions={{change, reset}} />
+            <SocialLink href="https://facebook.com/kasperkomanofficial" linkTargetName="Facebook" icon={faFacebook} functions={{change, reset}} />
+            <SocialLink href="https://open.spotify.com/artist/2fjKKBOOCTqkDTRC7wH6dO?si=c014lpJtTuSJr-zikifyYQ" linkTargetName="Spotify" icon={faSpotify} functions={{change, reset}} />
+            <SocialLink href="https://www.beatport.com/artist/kasper-koman/69322" linkTargetName="Beatport" icon={faHeadphones} functions={{change, reset}} />
         </p>
     )
 }
