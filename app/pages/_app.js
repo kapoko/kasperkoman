@@ -1,13 +1,15 @@
 import App, { Container } from 'next/app';
 import Head from "next/head";
+import Router from 'next/router';
 import { PageTransition } from 'next-page-transitions';
 import svg4everybody from 'svg4everybody';
 import nanoid from 'nanoid';
+import { config } from '@fortawesome/fontawesome-svg-core';
 
 import withApolloClient from '../lib/with-apollo-client';
 import { ApolloProvider } from 'react-apollo';
 import WebpSupportProvider from '../components/WebpSupportProvider';
-
+import trackPageView from '../lib/track-page-view';
 import Fonts from '../components/Fonts';
 import Navbar from '../components/Navbar';
 import TransitionBlocks from '../components/TransitionBlocks';
@@ -24,9 +26,16 @@ class MyApp extends App {
     componentDidMount() {
         Fonts();
         svg4everybody();
+
+        Router.onRouteChangeComplete = url => {
+            trackPageView(url);
+        };
     }
 
     render() {
+        // Prevent FontAwesome icons from flashing big on load
+        config.autoAddCss = false;
+
         const { Component, pageProps, apolloClient } = this.props;
         const transitionSpeed = 800;
 
@@ -46,7 +55,6 @@ class MyApp extends App {
                     <meta property="og:image:height" content="630" />
                     <meta property="og:image:height" content="630" />
                     <meta property="fb:app_id" content="2461469057244161" />
-
                 </Head>
 
                 <Themer timeout={transitionSpeed} className={pageProps.theme} skipInitialTransition>

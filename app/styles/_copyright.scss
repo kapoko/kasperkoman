@@ -1,0 +1,14 @@
+.copyright {
+    color: $text-light;
+    font-size: .7em;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    a {
+        color: $text-light;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

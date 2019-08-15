@@ -1,5 +1,5 @@
 .separator {
-    color: $text-light;
+    opacity: .4;
 }
 
 @mixin title-styles() {
@@ -104,7 +104,7 @@ a {
     }
 }
 
-.content a:not(.button), .navbar-item a {
+.content a:not(.button):not(.no-line), .navbar-item a {
     $animation-speed: .3s;
 
     display: inline-block;
@@ -114,15 +114,22 @@ a {
     overflow: hidden;
     text-decoration: none;
 
-    // display: inline;
-    // background: 
-    //     100% 60%/100% 4px no-repeat, 
-    //     #fff 0 60%/0 4px no-repeat;
-    // background-position: 100% 60%;
-    // background-repeat: no-repeat;
-    // background-size: 100% 4px;
-    // background-origin: 100% 0;
-    // transition: background $animation-speed $easeInCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+    @include touch() {
+        display: inline;
+        background: 
+            linear-gradient($link-line-color, $link-line-color) 100% 60%/100% 4px no-repeat, 
+            linear-gradient($link-line-color, $link-line-color) 0 60%/0 4px no-repeat;
+        background-position: 100% 60%;
+        background-repeat: no-repeat;
+        background-size: 100% 4px;
+        background-origin: 100% 0;
+
+        .dark & {
+            background: 
+                linear-gradient($link-line-color-dark, $link-line-color-dark) 100% 60%/100% 4px no-repeat, 
+                linear-gradient($link-line-color-dark, $link-line-color-dark) 0 60%/0 4px no-repeat;
+        }
+    }
 
     // &:hover {
         // background: 
@@ -144,9 +151,11 @@ a {
     //     }
     // }
 
-    &::before, &::after {
-        @include linkLine();
-        transition: transform $animation-speed 0s $easeInCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+    @include desktop() {
+        &::before, &::after {
+            @include linkLine();
+            transition: transform $animation-speed 0s $easeInCubic, background-color $transition-speed * .1 $transition-speed * .66 $easeInOutQuad;
+        }
     }
 
     &::before {

@@ -5,7 +5,13 @@
 }
 
 .nav-bottom {
-    position: fixed;
-    right: 2.25rem;
-    bottom: 1.25rem;
+    @include mobile() {
+        margin-top: 3em;
+    }
+
+    @include tablet() {
+        position: fixed;
+        right: 2.25rem;
+        bottom: 1.25rem;
+    }
 }

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import getConfig from 'next/config';
+import React from 'react';
 import { Waypoint } from 'react-waypoint';
+import getConfig from 'next/config';
 const { API_URL } = getConfig().publicRuntimeConfig;
 
 import Background from './Background';

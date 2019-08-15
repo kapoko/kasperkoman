@@ -25,7 +25,28 @@ class InlineStylesHead extends Head {
 }
 
 export default class MyDocument extends Document {
+    static async getInitialProps(ctx) {
+        const isProduction = process.env.NODE_ENV === 'production';
+        const initialProps = await Document.getInitialProps(ctx);
+
+        return { ...initialProps, isProduction };
+    }
+
+    setGoogleTags() {
+        return {
+            __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-37689068-1');          
+            `
+        };
+    }
+    
+    
     render () {
+        const { isProduction } = this.props;
+
         return (
             <Html lang="en">
                 <InlineStylesHead>
@@ -46,6 +67,12 @@ export default class MyDocument extends Document {
                 <body>
                     <Main />
                     <NextScript />
+                    {isProduction && (
+                        <>
+                            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37689068-1"/>
+                            <script dangerouslySetInnerHTML={this.setGoogleTags()} />
+                        </>
+                    )}
                     {/* Empty script tag as chrome bug fix, see https://stackoverflow.com/a/42969608/943337 */}
                     <script> </script>
                 </body>

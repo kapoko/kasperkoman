@@ -3,7 +3,7 @@ import Logo from './Logo'
 export default ({ left, right, reduceColumnsMobile }) => {
     return (
         <div className="columns">
-            <div className="column is-half">
+            <div className={`column is-half ${reduceColumnsMobile ? 'has-height-auto' : ''}`}>
                 { left }
                 <Logo className={`is-hidden-tablet ${reduceColumnsMobile ? 'is-hidden-mobile' : ''}`} />
             </div>

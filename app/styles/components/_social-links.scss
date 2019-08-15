@@ -2,7 +2,13 @@
     display: flex;
     align-items: center;
 
-    span {
+    span.link-target {
+        display: none;
+
+        @include tablet() {
+            display: inline;
+        }
+
         @include small-title-styles();
         margin-right: 1.25em;
         opacity: 0;
@@ -10,6 +16,7 @@
 
         &.is-active {
             opacity: 1;
+            transition: opacity $easeInOutQuad .3s;
         }
     }
 
@@ -20,14 +27,11 @@
     a {
         font-size: 1.4em;
         display: inline-block;
-        transition: opacity .2s $easeInOutQuad; 
+        transition: color .2s $easeInOutQuad; 
         padding-right: .5em;
         padding-left: .5em;
-        opacity: .3;
-
-        .dark &, .to-dark & {
-            opacity: .5;
-        }
+        color: $text-light;
+        background: none !important;
 
         .navbar & {
             font-size: .9em;
@@ -36,7 +40,7 @@
         @include tablet() {}
 
         &:hover {
-            opacity: 1;
+            color: $text;
         }
 
         &:before, &:after {

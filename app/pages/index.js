@@ -16,8 +16,8 @@ const right = (
     <>
         <Center>
             <GigList />
+            <SocialLinks className="nav-bottom"/>
         </Center>
-        <SocialLinks className="nav-bottom is-hidden-mobile" />
     </>
 )
 
