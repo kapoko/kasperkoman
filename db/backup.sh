@@ -20,14 +20,27 @@ case $1 in
 dump)
     echo "Backing up database from server"
     FOLDERNAME=strapi-$(date +"%y%m%d-%H%M")
+
+    # Backup database
     mongodump "${params[@]}" \
         --db strapi \
         --quiet \
         --out ./backups/$FOLDERNAME
     if [ $? -eq 0 ]; then
-        echo "All OK. Succesfully created $FOLDERNAME"
+        echo "Succesfully backup up database in $FOLDERNAME"
     else
         echo $?
+        exit
+    fi
+
+    # Backup uploads folder
+    echo "Backing up files from upload folder"
+    rsync -chavzPq --stats $SSH_USER@$SSH_HOST:$REMOTE_DIR/volumes/uploads/ ./backups/uploads
+    if [ $? -eq 0 ]; then
+        echo "All OK."
+    else
+        echo $?
+        exit
     fi
     ;;
 restore)    
@@ -38,6 +51,22 @@ restore)
             --authenticationDatabase strapi \
             --nsInclude 'strapi.*' \
             --drop ./backups/$2/
+        if [ $? -eq 0 ]; then
+            echo "Succesfully restored database on remote"
+        else
+            echo $?
+            exit
+        fi
+
+        # Restore uploads folder
+        echo "Restoring uploads folder"
+        rsync -chavzPq -e ssh ./backups/uploads/ $SSH_USER@$SSH_HOST:$REMOTE_DIR/volumes/uploads
+        if [ $? -eq 0 ]; then
+            echo "All OK."
+        else
+            echo $?
+            exit
+        fi
     else 
         echo "Backup does not exist. Available backups are:"
         ls -d ./backups/*/ | xargs -n 1 basename | awk '{print "- "$1}'
