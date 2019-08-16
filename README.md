@@ -1,4 +1,4 @@
-# [kasperkoman](https://kasperkoman.com)
+# [kasperkoman.com](https://kasperkoman.com)
 
 Public repository of my website, in case anyone wants to have a look around. Frontend uses [Next.js](https://nextjs.org) and backend is build upon [Strapi](https://strapi.io/) and [MongoDB](https://www.mongodb.com/).
 
@@ -6,13 +6,13 @@ Public repository of my website, in case anyone wants to have a look around. Fro
 
 Copy `.env.example` to `env` and fill in variables.
 
-### db 
+### Database 
 
 Run `docker-compose up db`.
 
-### api
+### Api
 
-Run `docker-compose up api`. It's also possible to use strapi's development server which is a little faster. 
+Run `docker-compose up api`. It's also possible to use strapi's development server which is a little faster. Make sure you change `DATABASE_HOST` in `.env` accordingly (`db` or `localhost`).
 
 ```bash
 cd api/strapi
@@ -21,7 +21,7 @@ npm run build
 npm run start
 ```
 
-### frontend
+### App / Frontend
 
 ```bash
 cd app
@@ -31,4 +31,9 @@ npm run dev
 
 ### Production
 
-Run `make` to copy docker-compose.prod.yml to server. Fill in the `.env` file on the server. Run `docker-compose up`. 
+Note that without configuration most of these steps won't work because you need access to my docker account.
+
+- Build the images by running `make build-all`. 
+- Run `make deploy` to copy `docker-compose.prod.yml` and `.env-example` to server. 
+- Copy `.env-example to `.env` on server and fill it in. 
+- Run `docker-compose up` on the server.
