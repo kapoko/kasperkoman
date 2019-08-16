@@ -9,6 +9,8 @@ deploy:
 	rsync -av -e ssh .env.example docker-compose.prod.yml $(SSH_USER)@$(SSH_HOST):${REMOTE_DIR}
 	ssh $(SSH_USER)@$(SSH_HOST) 'cd ${REMOTE_DIR} && mv docker-compose.prod.yml docker-compose.yml'
 
+build-all: build-app build-api build-db
+
 build-app:
 	@echo "Building app"
 	docker build --tag=kapoko/kasperkoman:app ./app && \
