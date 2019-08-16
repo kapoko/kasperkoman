@@ -15,7 +15,7 @@ class ReleaseCovers extends Component {
 
     render() {
         const {className, releases, activeRelease } = this.props;
-        const activeReleaseIndex = releases.findIndex(release => activeRelease && release._id == activeRelease._id);
+        const activeReleaseIndex = releases ? releases.findIndex(release => activeRelease && release._id == activeRelease._id) : 0;
 
         return (
             <ul className={className}>
