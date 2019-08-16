@@ -35,5 +35,5 @@ Note that without configuration most of these steps won't work because you need 
 
 - Build the images by running `make build-all`. 
 - Run `make deploy` to copy `docker-compose.prod.yml` and `.env-example` to server. 
-- Copy `.env-example to `.env` on server and fill it in. 
+- Copy `.env-example` to `.env` on server and fill it in. 
 - Run `docker-compose up` on the server.
