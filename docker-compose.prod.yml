@@ -3,7 +3,6 @@ version: '3'
 services:
   api:
     image: kapoko/kasperkoman:api
-    container_name: kasperkoman_api
     volumes:
       - .env:/usr/src/api/.env
       - ./volumes/uploads:/usr/src/api/strapi/public/uploads
@@ -16,7 +15,6 @@ services:
 
   app:
     image: kapoko/kasperkoman:app
-    container_name: kasperkoman_app
     ports:
       - 5000:5000
     env_file: .env
