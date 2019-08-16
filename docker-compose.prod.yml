@@ -22,7 +22,7 @@ services:
     env_file: .env
     volumes: 
       - ./volumes/logs:/opt/app/logs
-      depends_on:
+    depends_on:
       - api
     restart: always
 
