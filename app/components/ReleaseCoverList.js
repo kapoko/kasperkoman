@@ -15,14 +15,15 @@ class ReleaseCovers extends Component {
 
     render() {
         const {className, releases, activeRelease } = this.props;
+        const activeReleaseIndex = releases.findIndex(release => activeRelease && release._id == activeRelease._id);
 
         return (
             <ul className={className}>
                 { releases && releases.map((release, index) => {
 
-                    // Find distance of this release to the active release. If less than 1, preload image.
-                    const distance = Math.abs(releases.findIndex(release => activeRelease && release._id == activeRelease._id) - index);
-                    const preLoadImage = (distance <= 1);
+                    // Find distance of this release to the active release. If less than 2, preload image.
+                    const distance = Math.abs(activeReleaseIndex - index);
+                    const preLoadImage = (distance <= 2);
 
                     return (
                         <ReleaseCover key={release._id} 
