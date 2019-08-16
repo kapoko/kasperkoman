@@ -1,6 +1,9 @@
+import getConfig from 'next/config';
+const { GTAG } = getConfig().publicRuntimeConfig;
+
 const trackPageView = (url) => {
     try {
-        window.gtag('config', 'UA-37689068-1', {
+        window.gtag('config', GTAG, {
             page_location: url
         });
     } catch (error) {

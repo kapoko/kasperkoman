@@ -31,6 +31,7 @@ const nextConfig = {
     publicRuntimeConfig: {
         API_URL: process.env.API_URL || 'http://localhost:1337',
         APP_URL: process.env.APP_URL || 'http://localhost:3000',
+        GTAG: 'UA-37689068-1',
     },
     exportPathMap: function() {
         return {

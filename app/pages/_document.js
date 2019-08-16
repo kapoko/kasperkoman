@@ -3,6 +3,9 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
+import getConfig from 'next/config';
+const { GTAG } = getConfig().publicRuntimeConfig;
+
 class InlineStylesHead extends Head {
     getCssLinks() {
         return this.__getInlineStyles();
@@ -38,7 +41,7 @@ export default class MyDocument extends Document {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'UA-37689068-1');          
+                gtag('config', ${GTAG});          
             `
         };
     }
@@ -69,7 +72,7 @@ export default class MyDocument extends Document {
                     <NextScript />
                     {isProduction && (
                         <>
-                            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37689068-1"/>
+                            <script async src={`https://www.googletagmanager.com/gtag/js?id=${GTAG}`}/>
                             <script dangerouslySetInnerHTML={this.setGoogleTags()} />
                         </>
                     )}
