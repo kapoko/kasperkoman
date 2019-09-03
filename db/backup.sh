@@ -31,7 +31,7 @@ dump)
         exit
 EOF
     if [ $? -eq 0 ]; then
-        echo "Succesfully created database on host"
+        echo "Succesfully created database dump on host"
     else
         echo "Error"
         exit 1
