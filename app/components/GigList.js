@@ -11,10 +11,10 @@ import Gig from './Gig';
  */
 const sortGigs = (gigs) => {
     // Split gigs in past & upcoming
-    let now = new Date().toISOString();
+    let yesterday = new Date(new Date().setDate(new Date().getDate()-1)).toISOString();
 
     let grouped = groupBy(gigs, (gig) => {
-        return (gig.date > now);
+        return (gig.date > yesterday);
     });
 
     // Reverse upcoming gigs if any to show closest first
