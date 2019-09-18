@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const left = (
     <Center className="has-text-centered content is-marginless">
-        <h1>Privacy &amp; 🍪s</h1>
+        <h1>Privacy &amp; 🍪🍪</h1>
     </Center>
 );
 const right = (
