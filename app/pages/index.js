@@ -26,7 +26,7 @@ const Index = props => (
 )
 
 Index.getInitialProps = async function () {
-    return { theme: 'light' }
+    return { theme: 'light', title: 'Official Home' }
 }
 
 export default Index
