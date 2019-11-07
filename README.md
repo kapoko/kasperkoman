@@ -4,7 +4,7 @@ Public repository of my website, in case anyone wants to have a look around. Fro
 
 ## Development
 
-Copy `.env.example` to `env` and fill in variables.
+Copy `.env.example` to `.env` and fill in variables.
 
 ### Database 
 
