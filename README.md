@@ -12,7 +12,7 @@ Run `docker-compose up db`.
 
 ### Api
 
-Run `docker-compose up api`. It's also possible to use strapi's development server which is a little faster. Make sure you change `DATABASE_HOST` in `.env` accordingly (`db` or `localhost`).
+Run `docker-compose up api`. It's also possible to use strapi's development server which is a little faster. Make sure you change `DATABASE_HOST` in `.env` accordingly (`db` if you use docker or `localhost` if you use strapi's server).
 
 ```bash
 cd api/strapi
