@@ -16,10 +16,6 @@ const right = (
             Worldwide <span className="separator">|</span> Levi Botes<br/>
             <a href="mailto:levi@manual-bookings.com">levi@manual-bookings.com</a>
         </p>
-        <p>
-            Netherlands <span className="separator">|</span> Noah van Putten<br/>
-            <a href="mailto:noah@manual-bookings.com">noah@manual-bookings.com</a>
-        </p>
         <h6>Promos</h6>
         <p>
             <a href="mailto:promos@kasperkoman.com">promos@kasperkoman.com</a>
