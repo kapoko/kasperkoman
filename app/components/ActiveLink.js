@@ -6,11 +6,10 @@ const ActiveLink = ({ children, router, href }) => {
         router.push(href)
     }
 
-    return (
+    return router && 
         <a href={href} className={router.pathname === href ? 'is-active' : ''} onClick={handleClick}>
             {children}
         </a>
-    )
 }
 
 export default withRouter(ActiveLink)
