@@ -36,7 +36,7 @@
     "lodash": "^4.17.15",
     "log-timestamp": "^0.3.0",
     "nanoid": "^2.1.7",
-    "next": "^9.1.4",
+    "next": "^9.3.2",
     "next-apollo": "^2.1.3",
     "next-compose-plugins": "^2.2.0",
     "next-optimized-images": "^2.5.4",
