@@ -22,7 +22,7 @@
     },
     "releaseDate": {
       "default": "",
-      "type": "date"
+      "type": "datetime"
     },
     "label": {
       "default": "",
