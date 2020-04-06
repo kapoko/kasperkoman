@@ -1,19 +1,19 @@
 'use strict';
 
-const axios = require('axios');
+// const axios = require('axios');
 
 /**
  * Lifecycle callbacks for the `Gig` model.
  */
 
 module.exports = {
-  afterCreate: async (entry) => {
-    axios.post(strapi.config.frontendBuildUrl, entry)
-      .catch(() => {
-          // Ignore
-        }
-    );
-  },
+  // afterCreate: async (entry) => {
+  //   axios.post(strapi.config.frontendBuildUrl, entry)
+  //     .catch(() => {
+  //         // Ignore
+  //       }
+  //   );
+  // },
 
   // For now this hook is set in extensions/content-manager/services/ContentManager.js
   // because the afterUpdate hook doesn't work 
@@ -25,13 +25,13 @@ module.exports = {
   //   );
   // },
 
-  afterDestroy: async (entry) => {
-    axios.post(strapi.config.frontendBuildUrl, entry)
-      .catch(() => {
-          // Ignore
-        }
-    );
-  }
+  // afterDestroy: async (entry) => {
+  //   axios.post(strapi.config.frontendBuildUrl, entry)
+  //     .catch(() => {
+  //         // Ignore
+  //       }
+  //   );
+  // }
 
 
   // Before saving a value.

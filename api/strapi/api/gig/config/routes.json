@@ -3,7 +3,7 @@
     {
       "method": "GET",
       "path": "/gigs",
-      "handler": "Gig.find",
+      "handler": "gig.find",
       "config": {
         "policies": []
       }
@@ -11,7 +11,7 @@
     {
       "method": "GET",
       "path": "/gigs/count",
-      "handler": "Gig.count",
+      "handler": "gig.count",
       "config": {
         "policies": []
       }
@@ -19,7 +19,7 @@
     {
       "method": "GET",
       "path": "/gigs/:_id",
-      "handler": "Gig.findOne",
+      "handler": "gig.findOne",
       "config": {
         "policies": []
       }
@@ -27,7 +27,7 @@
     {
       "method": "POST",
       "path": "/gigs",
-      "handler": "Gig.create",
+      "handler": "gig.create",
       "config": {
         "policies": []
       }
@@ -35,7 +35,7 @@
     {
       "method": "PUT",
       "path": "/gigs/:_id",
-      "handler": "Gig.update",
+      "handler": "gig.update",
       "config": {
         "policies": []
       }
@@ -43,7 +43,7 @@
     {
       "method": "DELETE",
       "path": "/gigs/:_id",
-      "handler": "Gig.destroy",
+      "handler": "gig.delete",
       "config": {
         "policies": []
       }
