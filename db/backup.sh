@@ -2,7 +2,7 @@
 
 # Setup cronjob for this script to run everyday at 15:00
 # crontab -e
-# 0 15 * * *  cd ~/path/to/kasperkoman/db && ./backup.sh dump >> ./backups/backup.log 2>&1
+# 0 15 * * *  cd ~/Development/web/docker/kasperkoman/db && ./backup.sh dump >> ./backups/backup.log 2>&1
 # or use launchd and setup using http://launched.zerowidth.com
 
 export PATH=/bin:/usr/bin/:/usr/local/bin
