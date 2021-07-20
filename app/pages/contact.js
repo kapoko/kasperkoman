@@ -13,8 +13,8 @@ const right = (
     <Center className="has-text-centered content">
         <h6>Bookings / Other</h6>
         <p>
-            Worldwide <span className="separator">|</span> Levi Botes<br/>
-            <a href="mailto:levi@manual-bookings.com">levi@manual-bookings.com</a>
+            Worldwide <span className="separator">|</span> Jonan Kouwenhoven<br/>
+            <a href="mailto:jonan@manual-bookings.com">jonan@manual-bookings.com</a>
         </p>
         <h6>Promos</h6>
         <p>
