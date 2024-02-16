@@ -6,7 +6,7 @@
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
-    "build": "strapi build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && strapi build",
     "strapi": "strapi",
     "lint": "eslint ."
   },

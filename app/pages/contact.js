@@ -14,7 +14,7 @@ const right = (
         <h6>Bookings / Other</h6>
         <p>
             Worldwide <span className="separator">|</span> Jonan Kouwenhoven<br/>
-            <a href="mailto:jonan@manual-bookings.com">jonan@manual-bookings.com</a>
+            <a href="mailto:jonan@unifybookings.com">jonan@unifybookings.com</a>
         </p>
         <h6>Promos</h6>
         <p>

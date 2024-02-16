@@ -12,7 +12,7 @@ services:
       - db
 
   db:
-    image: mongo
+    image: mongo:7
     env_file: .env
     ports:
       - 27017:27017
