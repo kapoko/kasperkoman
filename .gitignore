@@ -1,6 +1,7 @@
 .DS_Store
 .env
 temp
-volumes
+/data
+/node_modules
 db/backups/*
 !db/backups/.gitkeep

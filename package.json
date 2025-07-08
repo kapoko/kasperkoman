@@ -1,0 +1,8 @@
+{
+  "name": "kasperkoman",
+  "version": "0.1.0",
+  "workspaces": ["app", "api/strapi"],
+  "scripts": {
+    "start": "npm run start --ws"
+  }
+}
