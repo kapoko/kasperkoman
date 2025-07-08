@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:16-alpine
 
 RUN apk add --update --no-cache --virtual .build-deps \
     build-base \
@@ -17,7 +17,7 @@ RUN apk add --no-cache \
 
 WORKDIR /usr/src/app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 EXPOSE 5000
 EXPOSE 2601
@@ -25,7 +25,7 @@ EXPOSE 2601
 COPY package.json .
 COPY package-lock.json .
 
-RUN npm install --no-optional
+RUN npm install --no-optional --legacy-peer-deps
 
 RUN apk del .build-deps
 

@@ -1,29 +1,27 @@
-
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { readFileSync } from 'fs';
-import { join } from 'path';
+import fs from 'fs';
+import path from 'path';
 
 import getConfig from 'next/config';
 const { GTAG } = getConfig().publicRuntimeConfig;
 
 class InlineStylesHead extends Head {
-    getCssLinks() {
-        return this.__getInlineStyles();
-    }
+    getCssLinks = ({ allFiles }) => {
+        const { assetPrefix } = this.context
+        if (!allFiles || allFiles.length === 0) return null
 
-    __getInlineStyles() {
-        const { assetPrefix, files } = this.context;
-        if (!files || files.length === 0) return null;
-
-        return files.filter(file => /\.css$/.test(file)).map(file => (
-            <style
-                key={file}
-                data-href={`${assetPrefix}/_next/${file}`}
-                dangerouslySetInnerHTML={{
-                    __html: readFileSync(join(process.cwd(), '.next', file), 'utf-8'),
-                }}
-            />
-        ));
+        return allFiles
+            .filter((file) => /\.css$/.test(file))
+            .map((file) => (
+                <style
+                    key={file}
+                    nonce={this.props.nonce}
+                    data-href={`${assetPrefix}/_next/${file}`}
+                    dangerouslySetInnerHTML={{
+                        __html: fs.readFileSync(path.join(process.cwd(), '.next', file), 'utf-8'),
+                    }}
+                />
+            ))
     }
 }
 
