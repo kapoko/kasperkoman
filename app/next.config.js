@@ -1,6 +1,6 @@
 const withPlugins = require('next-compose-plugins');
 const optimizedImages = require('next-optimized-images');
-const sass = require('@zeit/next-sass')
+const sass = require('sass')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const nextConfig = {
@@ -44,10 +44,10 @@ const nextConfig = {
 };
 
 module.exports = withPlugins([
-    [sass, { 
-        postcssLoaderOptions: { 
-            parser: true, 
-            autoprefixer: true 
+    [sass, {
+        postcssLoaderOptions: {
+            parser: true,
+            autoprefixer: true
         },
     }],
     [optimizedImages, {
