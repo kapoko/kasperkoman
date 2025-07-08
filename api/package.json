@@ -1,5 +1,5 @@
 {
-  "name": "strapi",
+  "name": "@kasperkoman/api",
   "private": true,
   "version": "0.1.0",
   "description": "Strapi backend for the kasperkoman.com website",
@@ -12,26 +12,28 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-react": "^7.19.0"
+    "eslint": "^9.30.1",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-react": "^7.37.5"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "dotenv": "^8.0.0",
+    "axios": "^1.10.0",
+    "dotenv": "^17.1.0",
     "find-config": "^1.0.0",
-    "lodash": "^4.17.5",
-    "strapi": "3.0.0",
-    "strapi-admin": "3.0.0",
-    "strapi-connector-bookshelf": "3.0.0",
-    "strapi-plugin-content-manager": "3.0.0",
-    "strapi-plugin-content-type-builder": "3.0.0",
-    "strapi-plugin-email": "3.0.0",
-    "strapi-plugin-graphql": "3.0.0",
-    "strapi-plugin-upload": "3.0.0",
-    "strapi-plugin-users-permissions": "3.0.0",
-    "strapi-utils": "3.0.0",
-    "strapi-provider-upload-local-resize": "https://github.com/kapoko/strapi-provider-upload-local-resize/tarball/81d9393c4cfaa19aaa883420a0047d3e360ce226"
+    "graphql": "^15.5.3",
+    "knex": "^0.21.18",
+    "lodash": "^4.17.21",
+    "pg": "^8.16.3",
+    "strapi": "3.6.11",
+    "strapi-admin": "3.6.11",
+    "strapi-connector-bookshelf": "3.6.11",
+    "strapi-plugin-content-manager": "3.6.11",
+    "strapi-plugin-content-type-builder": "3.6.11",
+    "strapi-plugin-email": "3.6.11",
+    "strapi-plugin-upload": "3.6.11",
+    "strapi-plugin-users-permissions": "3.6.11",
+    "strapi-provider-upload-local-resize": "https://github.com/kapoko/strapi-provider-upload-local-resize/tarball/81d9393c4cfaa19aaa883420a0047d3e360ce226",
+    "strapi-utils": "3.6.11"
   },
   "author": {
     "name": "Kasper Koman"

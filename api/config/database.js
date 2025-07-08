@@ -2,20 +2,16 @@ module.exports = ({ env }) => ({
   defaultConnection: "default",
   connections: {
     default: {
-      connector: "mongoose",
+      connector: "bookshelf",
       settings: {
-        client: "mongo",
-        host: env("DATABASE_HOST" || "localhost"),
-        port: env("DATABASE_PORT" || 27017),
-        srv: env("DATABASE_SRV" || false),
-        database: env("DATABASE_NAME" || "strapi"),
-        username: env("DATABASE_USERNAME" || ""),
-        password: env("DATABASE_PASSWORD" || ""),
+        client: "postgres",
+        database: "strapi",
+        username: "strapi",
+        password: "strapi",
+        port: 5432,
+        host: "localhost",
       },
-      options: {
-        authenticationDatabase: "strapi",
-        ssl: false,
-      },
+      options: {},
     },
   },
 });

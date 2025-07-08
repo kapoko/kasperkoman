@@ -1,7 +1,7 @@
 {
   "name": "kasperkoman",
   "version": "0.1.0",
-  "workspaces": ["app", "api"],
+  "workspaces": ["app"],
   "scripts": {
     "start": "npm run start --ws"
   }
