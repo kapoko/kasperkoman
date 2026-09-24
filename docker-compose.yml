@@ -20,7 +20,7 @@ services:
       db:
         condition: service_healthy
     ports:
-      - "8080:80"
+      - "127.0.0.1:8080:80"
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
@@ -45,14 +45,12 @@ services:
     depends_on:
       - wordpress
     ports:
-      - "4321:4321"
+      - "127.0.0.1:4321:4321"
     environment:
-      WORDPRESS_API_URL: http://host.docker.internal:8080
+      WORDPRESS_API_URL: http://wordpress
       PUBLIC_WORDPRESS_URL: ${WORDPRESS_URL}
       PUBLIC_SITE_URL: ${ASTRO_URL}
       BUILD_WEBHOOK_SECRET: ${BUILD_WEBHOOK_SECRET}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     volumes:
       - ./data/site:/app/dist
     command: node server.mjs
