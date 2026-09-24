@@ -319,7 +319,7 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   list-style: none;
   width: 50%;
   margin: 0 auto;
-  padding: calc(50vh - 50%) 0;
+  padding: calc(50vh - 12.5vw) 0;
 }
 .release-cover-list li {
   margin-bottom: 50%;
@@ -735,5 +735,6 @@ html.is-entering:not(.is-revealing) .contact-image::before {
   }
   .release-cover-list {
     width: 66.666%;
+    padding: calc(50vh - 16.6665vw) 0;
   }
 }
