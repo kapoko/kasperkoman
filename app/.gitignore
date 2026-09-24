@@ -1,9 +1,0 @@
-node_modules
-.next
-out
-.yarn-error.log
-logs/*
-!logs/.gitkeep
-
-# macOS
-.DS_Store

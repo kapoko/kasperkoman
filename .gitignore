@@ -1,7 +1,5 @@
 .DS_Store
 .env
-temp
-/data
-/node_modules
-db/backups/*
-!db/backups/.gitkeep
+data/
+astro/node_modules/
+astro/dist/

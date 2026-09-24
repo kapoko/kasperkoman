@@ -1,0 +1,20 @@
+---
+const { release, reveal = false } = Astro.props;
+const releaseDate = release.meta.release_date ? new Date(`${release.meta.release_date}T12:00:00`) : null;
+const ordinal = (day) => `${day}${day % 10 === 1 && day !== 11 ? 'st' : day % 10 === 2 && day !== 12 ? 'nd' : day % 10 === 3 && day !== 13 ? 'rd' : 'th'}`;
+const links = (release.meta.release_links || '').split('\n').filter(Boolean).map((line) => {
+  const [label, ...url] = line.split(':');
+  return { label, url: url.join(':').trim() };
+});
+let character = 0;
+const titleParts = release.title.rendered.split('/').map((part) => part.split(' ').map((word) => word.split('').map((letter) => ({ letter, delay: character++ * 0.03 }))));
+---
+<div class="release-info">
+  <p class="release-date">{releaseDate && `${releaseDate < new Date() ? 'Released' : 'Releasing'} ${releaseDate.toLocaleDateString('en-US', { month: 'long' })} ${ordinal(releaseDate.getDate())} ${releaseDate.getFullYear()}`}</p>
+  <h1 class:list={['title', reveal && 'reveal-title']}>
+    {reveal ? titleParts.map((part, partIndex) => <>{part.map((word) => <span class="word">{word.map((char) => <span class="char-container"><span class="char" style={`--char-delay:${char.delay}s`}>{char.letter}</span></span>)}</span>)}{partIndex < titleParts.length - 1 && <span class="title-separator">/</span>}</>) : release.title.rendered}
+  </h1>
+  {release.meta.release_subtitle && <h2 class="subtitle">{release.meta.release_subtitle}</h2>}
+  <p class="label">{release.meta.release_label}</p>
+  {links.length > 0 && <p class="release-links">{links.sort((a, b) => a.label.localeCompare(b.label)).map((link) => <a class="button" href={link.url} target="_blank">{link.label}</a>)}</p>}
+</div>

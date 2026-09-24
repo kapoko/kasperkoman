@@ -1,0 +1,85 @@
+---
+import '../styles/site.css';
+import Logo from '../components/Logo.astro';
+import SocialLinks from '../components/SocialLinks.astro';
+const { title = 'Kasper Koman', theme = 'light' } = Astro.props;
+const page = Astro.url.pathname === '/' ? 'home' : Astro.url.pathname.split('/')[1];
+---
+<!doctype html>
+<html lang="en" class={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/favicons/site.webmanifest" />
+    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#262624" />
+    <meta name="msapplication-TileColor" content="#ede9e1" />
+    <meta name="theme-color" content="#ede9e1" />
+    <title>{title} | Kasper Koman</title>
+    <script is:inline>
+      try {
+        const transitionTheme = sessionStorage.getItem('kk-transition-theme');
+        if (transitionTheme) {
+          document.documentElement.classList.add('is-entering', 'suppress-nav-hover', `transition-${transitionTheme}`);
+          sessionStorage.removeItem('kk-transition-theme');
+        }
+      } catch {}
+    </script>
+  </head>
+  <body class={`theme ${theme}`} data-page={page}>
+    <header class="site-header">
+      <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Main navigation"><a href="/">Home</a><i>/</i><a href="/releases/">Releases</a><i>/</i><a href="/contact/">Contact</a><SocialLinks /></nav>
+    </header>
+    <a class="split-logo" href="/" aria-label="Kasper Koman"><Logo /></a>
+    <main><slot /></main>
+    <div class="transition-block left"></div><div class="transition-block right"></div>
+    <script>
+      const button = document.querySelector('.hamburger');
+      const nav = document.querySelector('.site-nav');
+      const closeMenu = () => {
+        document.body.classList.remove('menu-open');
+        button?.setAttribute('aria-expanded', 'false');
+      };
+      button?.addEventListener('click', () => {
+        const open = document.body.classList.toggle('menu-open');
+        button.setAttribute('aria-expanded', String(open));
+      });
+      const root = document.documentElement;
+      document.querySelectorAll('.site-nav a').forEach((link) => link.addEventListener('pointerleave', () => root.classList.remove('suppress-nav-hover'), { once: true }));
+      if (root.classList.contains('is-entering')) {
+        let elapsed = 0;
+        try {
+          elapsed = Date.now() - Number(sessionStorage.getItem('kk-transition-start') || Date.now());
+          sessionStorage.removeItem('kk-transition-start');
+        } catch {}
+        const settleDelay = Math.max(0, 800 - elapsed);
+        requestAnimationFrame(() => root.classList.add('is-revealing'));
+        window.setTimeout(() => {
+          root.classList.remove('is-entering', 'is-revealing', 'transition-light', 'transition-dark');
+          root.classList.add('is-settled');
+        }, settleDelay);
+        window.setTimeout(() => {
+          root.classList.remove('is-settled');
+          root.classList.add('is-reset');
+        }, settleDelay + 800);
+      }
+      document.querySelectorAll('a[href^="/"]').forEach((link) => link.addEventListener('click', (event) => {
+        if (event.metaKey || event.ctrlKey || link.getAttribute('href') === window.location.pathname) return;
+        event.preventDefault();
+        closeMenu();
+        const href = link.getAttribute('href');
+        const destinationTheme = href.startsWith('/releases') ? 'dark' : 'light';
+        try {
+          sessionStorage.setItem('kk-transition-theme', destinationTheme);
+          sessionStorage.setItem('kk-transition-start', String(Date.now()));
+        } catch {}
+        root.classList.remove('is-settled', 'is-reset', 'transition-light', 'transition-dark');
+        requestAnimationFrame(() => root.classList.add('is-leaving', `transition-${destinationTheme}`));
+        window.setTimeout(() => { window.location.href = href; }, 800);
+      }));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+import ReleaseInfo from '../components/ReleaseInfo.astro';
+import { getReleases, squareCoverUrl } from '../lib/content.js';
+const releases = (await getReleases()).sort((a, b) => new Date(b.meta.release_date) - new Date(a.meta.release_date));
+---
+<Base title="Releases" theme="dark">
+  <section class="two-columns releases-page">
+    <div class="column release-column"><ul class="release-cover-list">
+      {releases.map((release, index) => <li class={index === 0 ? 'is-active' : ''} data-release={release.id}><div class="release-cover">{squareCoverUrl(release) && <img src={squareCoverUrl(release)} alt={`Cover art for ${release.title.rendered}`} loading={index < 3 ? 'eager' : 'lazy'} />}</div><div class="mobile-release-info"><ReleaseInfo release={release} /></div></li>)}
+    </ul></div>
+    <div class="column release-detail-column"><div class="release-detail"><ReleaseInfo release={releases[0]} reveal /></div></div>
+  </section>
+  <script define:vars={{ releases }}>
+    const cards = [...document.querySelectorAll('.release-cover-list > li')];
+    const detail = document.querySelector('.release-detail');
+    const html = (release) => {
+      const links = (release.meta.release_links || '').split('\n').filter(Boolean).sort().map((line) => { const [label, ...url] = line.split(':'); return `<a class="button" href="${url.join(':').trim()}" target="_blank">${label}</a>`; }).join('');
+      const date = release.meta.release_date ? new Date(`${release.meta.release_date}T12:00:00`) : null;
+      const suffix = (day) => `${day}${day % 10 === 1 && day !== 11 ? 'st' : day % 10 === 2 && day !== 12 ? 'nd' : day % 10 === 3 && day !== 13 ? 'rd' : 'th'}`;
+      const dateText = date ? `${date < new Date() ? 'Released' : 'Releasing'} ${date.toLocaleDateString('en-US', { month: 'long' })} ${suffix(date.getDate())} ${date.getFullYear()}` : '';
+      const escapeHtml = (value) => value.replace(/[&<>"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[character]);
+      let delay = 0;
+      const title = release.title.rendered.split('/').map((part, partIndex, parts) => {
+        const words = part.split(' ').map((word) => `<span class="word">${[...word].map((character) => `<span class="char-container"><span class="char" style="--char-delay:${delay++ * 0.03}s">${escapeHtml(character)}</span></span>`).join('')}</span>`).join('');
+        return `${words}${partIndex < parts.length - 1 ? '<span class="title-separator">/</span>' : ''}`;
+      }).join('');
+      return `<div class="release-info"><p class="release-date">${dateText}</p><h1 class="title reveal-title">${title}</h1>${release.meta.release_subtitle ? `<h2 class="subtitle">${release.meta.release_subtitle}</h2>` : ''}<p class="label">${release.meta.release_label || ''}</p><p class="release-links">${links}</p></div>`;
+    };
+    const reveal = (container) => {
+      const title = container?.querySelector('.reveal-title');
+      if (!title) return;
+      title.classList.remove('is-active');
+      void title.offsetWidth;
+      title.classList.add('is-active');
+    };
+    reveal(detail);
+    let activeId = String(releases[0]?.id || '');
+    let changeTimer;
+    const showRelease = (release) => {
+      if (!detail || String(release.id) === activeId) return;
+      activeId = String(release.id);
+      detail.classList.add('is-exiting');
+      window.clearTimeout(changeTimer);
+      changeTimer = window.setTimeout(() => {
+        detail.innerHTML = html(release);
+        const info = detail.querySelector('.release-info');
+        info?.classList.add('is-entering');
+        requestAnimationFrame(() => requestAnimationFrame(() => { info?.classList.remove('is-entering'); reveal(detail); }));
+        detail.classList.remove('is-exiting');
+      }, 300);
+    };
+    const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (!entry.isIntersecting) return; cards.forEach((card) => card.classList.toggle('is-active', card === entry.target)); const release = releases.find((item) => String(item.id) === entry.target.dataset.release); if (release) showRelease(release); }), { rootMargin: '-49% 0px -49% 0px' });
+    cards.forEach((card) => observer.observe(card));
+  </script>
+</Base>

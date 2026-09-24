@@ -1,39 +1,40 @@
-# [kasperkoman.com](https://kasperkoman.com)
+# Kasper Koman: WordPress + Astro
 
-Public repository of my website, in case anyone wants to have a look around. Frontend uses [Next.js](https://nextjs.org) and backend is build upon [Strapi](https://strapi.io/) and [MongoDB](https://www.mongodb.com/).
+This is an isolated replacement for the Strapi and Next.js stack. Persistent Docker data lives exclusively in `data/`:
 
-## Development
+- `data/mariadb`: WordPress database
+- `data/wordpress`: WordPress files and imported media
+- `data/import`: source migration data and original Strapi upload variants
+- `data/site`: generated Astro site
 
-Copy `.env.example` to `.env` and fill in variables.
+## Local URLs
 
-### Database 
+- Astro static site: <http://localhost:4321>
+- WordPress editor: <http://localhost:8080/wp-admin>
 
-Run `docker-compose up db`.
+All settings, including credentials and the build-webhook secret, are in `.env`. Replace its initial development values before exposing this stack publicly.
 
-### Api
+## Content model
 
-Run `docker-compose up api`. It's also possible to use strapi's development server which is a little faster. Make sure you change `DATABASE_HOST` in `.env` accordingly (`db` if you use docker or `localhost` if you use strapi's server).
+The `Kasper Koman Content` plugin defines:
 
-```bash
-cd api/strapi
-npm install
-npm run build
-npm run start
+- **Releases**: title, subtitle, date, label, original artist, links, and featured cover art.
+- **Gigs**: title, date, city, country code, venue, and ticket/event URL.
+
+WordPress creates its standard image sizes, plus a `release-cover` 1200px square crop, whenever cover art is imported or uploaded.
+
+## Build hook
+
+Saving or publishing a release or gig sends an authenticated request from WordPress to Astro's internal `/build` endpoint. Astro fetches the WordPress REST API and regenerates the fully static site in `data/site`.
+
+## Commands
+
+```sh
+docker compose up -d --build
+docker compose logs -f astro
+docker compose run --rm wpcli kasper import --source=/import
 ```
 
-### App / Frontend
+The import command is idempotent: it identifies migrated records by their original Strapi ID. It imports the exported release/gig data and assigns cover art using the original Strapi media relationships.
 
-```bash
-cd app
-npm install
-npm run dev
-```
-
-### Production
-
-Note that without configuration most of these steps won't work because you need access to my docker account.
-
-- Build the images by running `make build-all`. 
-- Run `make deploy` to copy `docker-compose.prod.yml` and `.env-example` to server. 
-- Copy `.env-example` to `.env` on server and fill it in. 
-- Run `docker-compose up` on the server.
+The WordPress image includes the content plugin, so a fresh `data/wordpress` volume receives it during WordPress initialization.
