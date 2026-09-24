@@ -13,6 +13,16 @@ function build() {
   child.on('exit', () => { building = false; });
 }
 
+function scheduleDailyBuild() {
+  const now = new Date();
+  const next = new Date(now);
+  next.setUTCHours(24, 0, 0, 0);
+  setTimeout(() => {
+    build();
+    scheduleDailyBuild();
+  }, next - now);
+}
+
 createServer((request, response) => {
   if (request.method === 'POST' && request.url === '/build') {
     if (request.headers['x-build-secret'] !== process.env.BUILD_WEBHOOK_SECRET) {
@@ -38,4 +48,7 @@ createServer((request, response) => {
   }
   response.writeHead(200);
   createReadStream(file).pipe(response);
-}).listen(4321, () => build());
+}).listen(4321, () => {
+  build();
+  scheduleDailyBuild();
+});

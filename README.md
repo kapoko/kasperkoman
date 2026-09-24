@@ -27,6 +27,8 @@ WordPress creates its standard image sizes, plus a `release-cover` 1200px square
 
 Saving or publishing a release or gig sends an authenticated request from WordPress to Astro's internal `/build` endpoint. Astro fetches the WordPress REST API and regenerates the fully static site in `data/site`.
 
+Astro also schedules one rebuild at the next UTC midnight after startup, then repeats daily. This keeps the upcoming/past gig split current when no WordPress edit occurs.
+
 ## Commands
 
 ```sh

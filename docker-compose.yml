@@ -49,6 +49,7 @@ services:
     environment:
       WORDPRESS_API_URL: http://host.docker.internal:8080
       PUBLIC_WORDPRESS_URL: ${WORDPRESS_URL}
+      PUBLIC_SITE_URL: ${ASTRO_URL}
       BUILD_WEBHOOK_SECRET: ${BUILD_WEBHOOK_SECRET}
     extra_hosts:
       - "host.docker.internal:host-gateway"

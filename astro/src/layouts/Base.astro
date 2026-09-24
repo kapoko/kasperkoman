@@ -2,8 +2,12 @@
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-const { title = 'Kasper Koman', theme = 'light' } = Astro.props;
+const { title = 'Kasper Koman', theme = 'light', description = 'Official website of Kasper Koman.' } = Astro.props;
 const page = Astro.url.pathname === '/' ? 'home' : Astro.url.pathname.split('/')[1];
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.url.origin;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL('/images/facebook_og.jpg', siteUrl).toString();
+const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kasper Koman`;
 ---
 <!doctype html>
 <html lang="en" class={theme}>
@@ -17,7 +21,19 @@ const page = Astro.url.pathname === '/' ? 'home' : Astro.url.pathname.split('/')
     <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#262624" />
     <meta name="msapplication-TileColor" content="#ede9e1" />
     <meta name="theme-color" content="#ede9e1" />
-    <title>{title} | Kasper Koman</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kasper Koman" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <title>{pageTitle}</title>
     <script is:inline>
       try {
         const transitionTheme = sessionStorage.getItem('kk-transition-theme');
