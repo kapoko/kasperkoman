@@ -2,4 +2,5 @@
 .env
 data/
 astro/node_modules/
+astro/.astro/
 astro/dist/
