@@ -7,7 +7,7 @@ const gigs = await getGigs();
 const today = new Date().toISOString().slice(0, 10);
 const upcoming = gigs.filter((gig) => gig.meta.gig_date >= today).reverse();
 const past = gigs.filter((gig) => gig.meta.gig_date < today);
-const formatDate = (date) => new Intl.DateTimeFormat('en', { day: 'numeric', month: 'short', year: 'numeric' }).format(new Date(`${date}T12:00:00`));
+const formatDate = (date) => new Intl.DateTimeFormat('en', { day: 'numeric', month: 'short' }).format(new Date(`${date}T12:00:00`)).toUpperCase();
 ---
 <Base title="Official Home" theme="light">
   <section class="two-columns home-page">
