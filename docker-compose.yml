@@ -58,7 +58,7 @@ services:
     command: node server.mjs
 
   wpcli:
-    image: wordpress:cli-php8.3
+    image: wordpress:cli
     profiles: ["tools"]
     depends_on:
       db:

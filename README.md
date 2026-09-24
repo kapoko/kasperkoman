@@ -35,8 +35,12 @@ Astro also schedules one rebuild at the next UTC midnight after startup, then re
 docker compose up -d --build
 docker compose logs -f astro
 docker compose run --rm wpcli kasper import --source=/import
+docker compose run --rm wpcli core update
+docker compose run --rm wpcli core update-db
 ```
 
 The import command is idempotent: it identifies migrated records by their original Strapi ID. It imports the exported release/gig data and assigns cover art using the original Strapi media relationships.
 
 The WordPress image includes the content plugin, so a fresh `data/wordpress` volume receives it during WordPress initialization.
+
+Use the `wpcli` service for WordPress CLI commands; the `wordpress` service does not include WP-CLI. Before updating WordPress core, back up `data/wordpress` and `data/mariadb`. The `kasper-content` plugin is managed by this repository and should not be updated through WP-CLI.
