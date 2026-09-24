@@ -452,6 +452,10 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   transform: translateX(-100%);
   transition: transform 0.3s cubic-bezier(0.55, 0.06, 0.68, 0.19);
 }
+.dark .button::before,
+html.transition-dark .button::before {
+  background: var(--text);
+}
 .button::after {
   content: none;
 }
