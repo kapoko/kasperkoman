@@ -24,6 +24,45 @@ final class Kasper_Koman_Content
         add_action('updated_post_meta', [self::class, 'request_build_for_meta'], 10, 4);
         add_action('added_post_meta', [self::class, 'request_build_for_meta'], 10, 4);
         add_action('shutdown', [self::class, 'trigger_build']);
+        add_filter('manage_gig_posts_columns', [self::class, 'gig_columns']);
+        add_action('manage_gig_posts_custom_column', [self::class, 'gig_column_value'], 10, 2);
+        add_filter('manage_edit-gig_sortable_columns', [self::class, 'gig_sortable_columns']);
+        add_action('pre_get_posts', [self::class, 'sort_gigs']);
+    }
+
+    public static function gig_columns($columns)
+    {
+        $updated = [];
+        foreach ($columns as $key => $label) {
+            $updated[$key] = $label;
+            if ($key === 'title') {
+                $updated['gig_date'] = 'Gig date';
+            }
+        }
+        return $updated;
+    }
+
+    public static function gig_column_value($column, $post_id)
+    {
+        if ($column === 'gig_date') {
+            echo esc_html(get_post_meta($post_id, 'gig_date', true));
+        }
+    }
+
+    public static function gig_sortable_columns($columns)
+    {
+        $columns['gig_date'] = 'gig_date';
+        return $columns;
+    }
+
+    public static function sort_gigs($query)
+    {
+        if (!is_admin() || !$query->is_main_query() || $query->get('post_type') !== 'gig' || $query->get('orderby') !== 'gig_date') {
+            return;
+        }
+        $query->set('meta_key', 'gig_date');
+        $query->set('meta_type', 'DATE');
+        $query->set('orderby', 'meta_value');
     }
 
     public static function register_content()
