@@ -1,0 +1,53 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Configure SSH
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          umask 077
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh-keygen -F "$DEPLOY_HOST" -f ~/.ssh/known_hosts >/dev/null
+
+      - name: Deploy application
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes "$DEPLOY_USER@$DEPLOY_HOST" <<'REMOTE'
+            set -euo pipefail
+
+            cd /srv/kasperkoman
+            git fetch --prune origin main
+            git merge --ff-only origin/main
+
+            # The WordPress bind mount masks the plugin bundled in the image.
+            sudo rsync -a --delete wordpress/plugins/kasper-content/ data/wordpress/wp-content/plugins/kasper-content/
+            sudo chown -R 33:33 data/wordpress/wp-content/plugins/kasper-content
+
+            docker compose pull db
+            docker compose build --pull
+            docker compose up -d
+            docker compose run --rm wpcli core update
+            docker compose run --rm wpcli core update-db
+            docker compose exec -T astro npm run build
+            docker compose ps
+          REMOTE
