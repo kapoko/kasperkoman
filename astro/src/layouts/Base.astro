@@ -88,6 +88,11 @@ const musicGroupSchema = JSON.stringify({
         image.src = container.dataset.imageSrc;
         if (image.complete && image.naturalWidth) revealImage();
       });
+      document.querySelectorAll('.release-cover img').forEach((image) => {
+        const revealImage = () => requestAnimationFrame(() => image.classList.add('is-loaded'));
+        image.addEventListener('load', revealImage, { once: true });
+        if (image.complete && image.naturalWidth) revealImage();
+      });
       const closeMenu = () => {
         document.body.classList.remove('menu-open');
         button?.setAttribute('aria-expanded', 'false');

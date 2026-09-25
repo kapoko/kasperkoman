@@ -436,6 +436,11 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.release-cover img.is-loaded {
+  opacity: 1;
 }
 .release-detail {
   position: fixed;
