@@ -34,6 +34,14 @@ const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kaspe
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <title>{pageTitle}</title>
+    <style is:inline>
+      @media (min-width: 768px) {
+        html { scrollbar-gutter: stable; }
+      }
+      @media (max-width: 767px) {
+        .site-nav { visibility: hidden; opacity: 0; pointer-events: none; }
+      }
+    </style>
     <script is:inline>
       try {
         const transitionTheme = sessionStorage.getItem('kk-transition-theme');

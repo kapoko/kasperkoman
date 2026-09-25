@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
 
 :root {
-  --light: #ede9e1;
-  --light-shade: #e4e0d7;
-  --dark: #262624;
-  --dark-shade: #191919;
-  --text: #767472;
-  --text-muted: rgba(118, 116, 112, 0.4);
+  --light: #dbe1e8;
+  --light-shade: #d1d8e1;
+  --dark: #202731;
+  --dark-shade: #151b23;
+  --text: #5b6a79;
+  --text-muted: rgba(91, 106, 121, 0.4);
   --pink: #f896af;
   --hamburger-bar: #fff;
 }
@@ -25,6 +25,23 @@ body {
 }
 body.dark {
   background: var(--dark);
+}
+html.dark,
+html.transition-dark {
+  background: var(--dark);
+  scrollbar-color: var(--dark-shade) var(--dark);
+}
+html.transition-light {
+  background: var(--light);
+  scrollbar-color: var(--light-shade) var(--light);
+}
+html.dark::-webkit-scrollbar-track,
+html.transition-dark::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+html.dark::-webkit-scrollbar-thumb,
+html.transition-dark::-webkit-scrollbar-thumb {
+  background: var(--dark-shade);
 }
 body[data-page="contact"] {
   --hamburger-bar: #fff;
@@ -86,11 +103,11 @@ html.suppress-nav-hover .site-nav a:hover::after {
 }
 .dark a::before,
 .dark a::after {
-  background: #41413e;
+  background: #3b424b;
 }
 html.transition-dark a::before,
 html.transition-dark a::after {
-  background: #41413e;
+  background: #3b424b;
 }
 html.transition-light a::before,
 html.transition-light a::after {
@@ -155,10 +172,10 @@ html.transition-light a::after {
     transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
 }
 .dark .split-logo .kk-logo svg {
-  fill: #373735;
+  fill: #313842;
 }
 html.transition-dark .split-logo .kk-logo svg {
-  fill: #373735;
+  fill: #313842;
 }
 html.transition-light .split-logo .kk-logo svg {
   fill: #fff;
@@ -293,8 +310,8 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   justify-content: center;
   width: 1.9em;
   height: 1.6em;
-  font-size: 1.4em;
-  color: var(--text-muted);
+  font-size: 1.55em;
+  color: color-mix(in srgb, var(--text) 65%, transparent);
 }
 .social-links a::before,
 .social-links a::after {
@@ -450,9 +467,10 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 }
 .release-links {
   margin: 0;
-}
-.release-links a {
-  margin-left: 0.35em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.35em;
 }
 .button {
   cursor: pointer;
@@ -521,7 +539,9 @@ html.transition-dark .button::before {
 }
 .transition-block.right {
   left: 50%;
+  right: calc(100% - 100vw);
   top: 100vh;
+  width: auto;
   background: var(--light);
 }
 .dark .transition-block.left,
@@ -617,7 +637,7 @@ html.is-entering:not(.is-revealing) .contact-image::before {
       opacity 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   .menu-open .hamburger span {
-    background: #41413e;
+    background: #3b424b;
   }
   .menu-open .hamburger span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
@@ -787,12 +807,8 @@ html.is-entering:not(.is-revealing) .contact-image::before {
   .release-info .subtitle {
     font-size: 3em;
   }
-  .release-links a {
-    margin: 0 0.2em;
-  }
-  .contact-content {
-    min-height: max(0px, calc(100svh - 350px));
-    background: var(--light);
+  .release-links {
+    justify-content: center;
   }
   .transition-block {
     width: 100%;
