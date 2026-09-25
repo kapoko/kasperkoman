@@ -1,9 +1,6 @@
 # Kasper Koman website, Wordpress + Astro
 
-## Local URLs
-
-
-## Dev
+## Development
 
 ```sh
 docker compose up -d --build
