@@ -27,7 +27,7 @@ body.dark {
   background: var(--dark);
 }
 body[data-page="contact"] {
-  --hamburger-bar: #41413e;
+  --hamburger-bar: #fff;
 }
 a {
   color: inherit;
