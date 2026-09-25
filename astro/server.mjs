@@ -4,6 +4,22 @@ import { createReadStream, existsSync, statSync } from 'node:fs';
 import { join, normalize } from 'node:path';
 
 const root = join(process.cwd(), 'dist');
+const contentTypes = {
+  '.avif': 'image/avif',
+  '.css': 'text/css; charset=utf-8',
+  '.html': 'text/html; charset=utf-8',
+  '.ico': 'image/x-icon',
+  '.jpg': 'image/jpeg',
+  '.js': 'text/javascript; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.png': 'image/png',
+  '.svg': 'image/svg+xml',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
+  '.webp': 'image/webp',
+  '.woff2': 'font/woff2',
+  '.xml': 'application/xml; charset=utf-8',
+};
 let building = false;
 
 function build() {
@@ -45,7 +61,12 @@ createServer((request, response) => {
     response.writeHead(503).end('Initial site build in progress');
     return;
   }
-  response.writeHead(found ? 200 : 404);
+  const extension = file.slice(file.lastIndexOf('.')).toLowerCase();
+  const immutable = file.includes('/_astro/');
+  response.writeHead(found ? 200 : 404, {
+    'Content-Type': contentTypes[extension] || 'application/octet-stream',
+    'Cache-Control': extension === '.html' ? 'no-cache' : immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=86400',
+  });
   createReadStream(file).pipe(response);
 }).listen(4321, () => {
   build();
