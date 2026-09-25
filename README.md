@@ -1,16 +1,7 @@
-# Kasper Koman: WordPress + Astro
-
-This is an isolated replacement for the Strapi and Next.js stack. Persistent Docker data lives exclusively in `data/`:
-
-- `data/mariadb`: WordPress database
-- `data/wordpress`: WordPress files and imported media
-- `data/import`: source migration data and original Strapi upload variants
-- `data/site`: generated Astro site
+# Kasper Koman website, Wordpress + Astro
 
 ## Local URLs
 
-- Astro static site: <http://localhost:4321>
-- WordPress editor: <http://localhost:8080/wp-admin>
 
 ## Dev
 
@@ -19,6 +10,9 @@ docker compose up -d --build
 cd astro
 npm run dev -- --host 127.0.0.1 --port 4322
 ```
+
+- Astro static site: <http://localhost:4321> (or :4322 for dev server)
+- WordPress editor: <http://localhost:8080/wp-admin>
 
 ## Content model
 
