@@ -36,6 +36,9 @@ services:
         define('WP_SITEURL', '${WORDPRESS_URL}');
         define('KK_ASTRO_WEBHOOK_URL', 'http://astro:4321/build');
         define('KK_BUILD_WEBHOOK_SECRET', '${BUILD_WEBHOOK_SECRET}');
+    configs:
+      - source: extra.ini
+        target: /usr/local/etc/php/conf.d/extra.ini
     volumes:
       - ./data/wordpress:/var/www/html
 
@@ -78,3 +81,9 @@ services:
       - ./data/wordpress:/var/www/html
       - ./data/import:/import:ro
     entrypoint: wp
+
+configs:
+  extra.ini:
+    content: |
+      upload_max_filesize = 64M
+      post_max_size = 64M
