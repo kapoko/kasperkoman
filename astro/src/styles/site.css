@@ -206,7 +206,7 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   background-image: url("/images/background_new.jpg");
 }
 .contact-image::before {
-  background-image: url("/images/background_contact.jpg");
+  background-image: url("/images/background_contact_2.jpg");
 }
 .content-column {
   background: var(--light);

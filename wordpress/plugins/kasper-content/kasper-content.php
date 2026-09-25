@@ -29,6 +29,46 @@ final class Kasper_Koman_Content
         add_filter('manage_edit-gig_sortable_columns', [self::class, 'gig_sortable_columns']);
         add_action('pre_get_posts', [self::class, 'sort_gigs']);
         add_filter('rest_prepare_attachment', [self::class, 'release_cover_fallback'], 10, 3);
+        add_action('init', [self::class, 'disable_comment_support'], 100);
+        add_filter('comments_open', '__return_false', 20, 2);
+        add_filter('pings_open', '__return_false', 20, 2);
+        add_filter('comments_array', '__return_empty_array', 10, 2);
+        add_filter('pre_option_default_comment_status', [self::class, 'default_comment_status']);
+        add_filter('rest_endpoints', [self::class, 'disable_comment_routes']);
+        add_action('admin_menu', [self::class, 'remove_comments_menu']);
+        add_action('admin_bar_menu', [self::class, 'remove_comments_admin_bar'], 999);
+    }
+
+    public static function disable_comment_support()
+    {
+        foreach (get_post_types([], 'names') as $type) {
+            remove_post_type_support($type, 'comments');
+            remove_post_type_support($type, 'trackbacks');
+        }
+    }
+
+    public static function default_comment_status()
+    {
+        return 'closed';
+    }
+
+    public static function disable_comment_routes($endpoints)
+    {
+        unset($endpoints['/wp/v2/comments']);
+        unset($endpoints['/wp/v2/comments/(?P<id>[\d]+)']);
+        return $endpoints;
+    }
+
+    public static function remove_comments_menu()
+    {
+        remove_menu_page('edit.php');
+        remove_menu_page('edit.php?post_type=page');
+        remove_menu_page('edit-comments.php');
+    }
+
+    public static function remove_comments_admin_bar($admin_bar)
+    {
+        $admin_bar->remove_node('comments');
     }
 
     public static function release_cover_fallback($response, $attachment)
