@@ -8,6 +8,21 @@ const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const imageUrl = new URL('/images/facebook_og.jpg', siteUrl).toString();
 const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kasper Koman`;
+const themeColor = theme === 'dark' ? '#202731' : '#dbe1e8';
+const musicGroupSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'MusicGroup',
+  name: 'Kasper Koman',
+  url: siteUrl,
+  image: imageUrl,
+  sameAs: [
+    'https://instagram.com/kasperkoman',
+    'https://soundcloud.com/kasperkoman',
+    'https://facebook.com/kasperkomanofficial',
+    'https://open.spotify.com/artist/2fjKKBOOCTqkDTRC7wH6dO',
+    'https://www.beatport.com/artist/kasper-koman/69322',
+  ],
+}).replace(/</g, '\\u003c');
 ---
 <!doctype html>
 <html lang="en" class={theme}>
@@ -19,8 +34,9 @@ const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kaspe
     <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png" />
     <link rel="manifest" href="/favicons/site.webmanifest" />
     <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#262624" />
-    <meta name="msapplication-TileColor" content="#ede9e1" />
-    <meta name="theme-color" content="#ede9e1" />
+    <meta name="msapplication-TileColor" content={themeColor} />
+    <meta name="theme-color" content={themeColor} />
+    <link rel="preload" href="/fonts/roboto-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
@@ -33,6 +49,7 @@ const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kaspe
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+    <script type="application/ld+json" set:html={musicGroupSchema}></script>
     <title>{pageTitle}</title>
     <style is:inline>
       @media (min-width: 768px) {
@@ -67,6 +84,7 @@ const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kaspe
         const image = new Image();
         const revealImage = () => requestAnimationFrame(() => container.classList.add('is-loaded'));
         image.addEventListener('load', revealImage, { once: true });
+        image.addEventListener('error', revealImage, { once: true });
         image.src = container.dataset.imageSrc;
         if (image.complete && image.naturalWidth) revealImage();
       });

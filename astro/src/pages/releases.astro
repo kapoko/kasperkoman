@@ -3,9 +3,21 @@ import Base from '../layouts/Base.astro';
 import ReleaseInfo from '../components/ReleaseInfo.astro';
 import { getReleases, squareCoverUrl } from '../lib/content.js';
 const releases = (await getReleases()).sort((a, b) => new Date(b.meta.release_date) - new Date(a.meta.release_date));
+const albumSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': releases.map((release) => ({
+    '@type': 'MusicAlbum',
+    name: release.title.rendered,
+    datePublished: release.meta.release_date || undefined,
+    image: squareCoverUrl(release) || undefined,
+    byArtist: { '@type': 'MusicGroup', name: 'Kasper Koman' },
+  })),
+}).replace(/</g, '\\u003c');
 ---
 <Base title="Releases" theme="dark">
+  <script type="application/ld+json" set:html={albumSchema}></script>
   <section class="two-columns releases-page">
+    <h1 class="visually-hidden">Releases</h1>
     <div class="column release-column"><ul class="release-cover-list">
       {releases.map((release, index) => <li class={index === 0 ? 'is-active' : ''} data-release={release.id}><div class="release-cover">{squareCoverUrl(release) && <img src={squareCoverUrl(release)} alt={`Cover art for ${release.title.rendered}`} loading={index < 3 ? 'eager' : 'lazy'} />}</div><div class="mobile-release-info"><ReleaseInfo release={release} /></div></li>)}
     </ul></div>
@@ -25,7 +37,7 @@ const releases = (await getReleases()).sort((a, b) => new Date(b.meta.release_da
         const words = part.split(' ').map((word) => `<span class="word">${[...word].map((character) => `<span class="char-container"><span class="char" style="--char-delay:${delay++ * 0.03}s">${escapeHtml(character)}</span></span>`).join('')}</span>`).join('');
         return `${words}${partIndex < parts.length - 1 ? '<span class="title-separator">/</span>' : ''}`;
       }).join('');
-      return `<div class="release-info"><p class="release-date">${dateText}</p><h1 class="title reveal-title">${title}</h1>${release.meta.release_subtitle ? `<h2 class="subtitle">${release.meta.release_subtitle}</h2>` : ''}<p class="label">${release.meta.release_label || ''}</p><p class="release-links">${links}</p></div>`;
+      return `<div class="release-info"><p class="release-date">${dateText}</p><h2 class="title reveal-title">${title}</h2>${release.meta.release_subtitle ? `<h3 class="subtitle">${release.meta.release_subtitle}</h3>` : ''}<p class="label">${release.meta.release_label || ''}</p><p class="release-links">${links}</p></div>`;
     };
     const reveal = (container) => {
       const title = container?.querySelector('.reveal-title');

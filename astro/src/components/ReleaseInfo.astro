@@ -11,10 +11,10 @@ const titleParts = release.title.rendered.split('/').map((part) => part.split(' 
 ---
 <div class="release-info">
   <p class="release-date">{releaseDate && `${releaseDate < new Date() ? 'Released' : 'Releasing'} ${releaseDate.toLocaleDateString('en-US', { month: 'long' })} ${ordinal(releaseDate.getDate())} ${releaseDate.getFullYear()}`}</p>
-  <h1 class:list={['title', reveal && 'reveal-title']}>
+  <h2 class:list={['title', reveal && 'reveal-title']}>
     {reveal ? titleParts.map((part, partIndex) => <>{part.map((word) => <span class="word">{word.map((char) => <span class="char-container"><span class="char" style={`--char-delay:${char.delay}s`}>{char.letter}</span></span>)}</span>)}{partIndex < titleParts.length - 1 && <span class="title-separator">/</span>}</>) : release.title.rendered}
-  </h1>
-  {release.meta.release_subtitle && <h2 class="subtitle">{release.meta.release_subtitle}</h2>}
+  </h2>
+  {release.meta.release_subtitle && <h3 class="subtitle">{release.meta.release_subtitle}</h3>}
   <p class="label">{release.meta.release_label}</p>
   {links.length > 0 && <p class="release-links">{links.sort((a, b) => a.label.localeCompare(b.label)).map((link) => <a class="button" href={link.url} target="_blank">{link.label}</a>)}</p>}
 </div>
