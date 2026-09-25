@@ -233,6 +233,16 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 .gig-list li + li {
   margin-top: 0.25em;
 }
+.gig-list a.is-wrapped {
+  display: inline;
+  background: linear-gradient(#fff 0 0) 0 56% / 100% 4px no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.gig-list a.is-wrapped::before,
+.gig-list a.is-wrapped::after {
+  content: none;
+}
 .gig-list h6,
 .contact-content h6 {
   font-size: 0.8em;

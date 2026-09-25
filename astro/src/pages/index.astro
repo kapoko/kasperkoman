@@ -17,4 +17,22 @@ const formatDate = (date) => new Intl.DateTimeFormat('en', { day: 'numeric', mon
       {past.length > 0 && <><h6>Past</h6><ul class="past">{past.map((gig) => <li>{formatDate(gig.meta.gig_date)} {gig.title.rendered}{gig.meta.gig_venue && ` @ ${gig.meta.gig_venue}`} <span class="separator">|</span> {gig.meta.gig_city}, {gig.meta.gig_country_code}</li>)}</ul></>}
     </div><SocialLinks /></div></div>
   </section>
+  <script>
+    const updateGigLinkWrapping = () => {
+      document.querySelectorAll('.gig-list a').forEach((link) => {
+        link.classList.remove('is-wrapped');
+        const lineHeight = Number.parseFloat(getComputedStyle(link).lineHeight);
+        link.classList.toggle('is-wrapped', link.getBoundingClientRect().height > lineHeight + 1);
+      });
+    };
+
+    updateGigLinkWrapping();
+    document.fonts?.ready.then(updateGigLinkWrapping);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(updateGigLinkWrapping, 150);
+    });
+  </script>
 </Base>
