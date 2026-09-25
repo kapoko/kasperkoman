@@ -28,6 +28,28 @@ final class Kasper_Koman_Content
         add_action('manage_gig_posts_custom_column', [self::class, 'gig_column_value'], 10, 2);
         add_filter('manage_edit-gig_sortable_columns', [self::class, 'gig_sortable_columns']);
         add_action('pre_get_posts', [self::class, 'sort_gigs']);
+        add_filter('rest_prepare_attachment', [self::class, 'release_cover_fallback'], 10, 3);
+    }
+
+    public static function release_cover_fallback($response, $attachment)
+    {
+        $data = $response->get_data();
+        $cover = $data['media_details']['sizes']['release-cover'] ?? null;
+        $original_path = get_attached_file($attachment->ID);
+        $cover_path = !empty($cover['file']) ? trailingslashit(dirname($original_path)) . $cover['file'] : '';
+
+        if (!empty($cover['source_url']) && $cover_path && file_exists($cover_path)) {
+            return $response;
+        }
+
+        $original_url = wp_get_attachment_url($attachment->ID);
+        if (!$original_url) {
+            return $response;
+        }
+
+        $data['media_details']['sizes']['release-cover'] = ['source_url' => $original_url];
+        $response->set_data($data);
+        return $response;
     }
 
     public static function gig_columns($columns)
@@ -68,12 +90,18 @@ final class Kasper_Koman_Content
     public static function register_content()
     {
         register_post_type('release', [
-            'labels' => ['name' => 'Releases', 'singular_name' => 'Release'],
+            'labels' => [
+                'name' => 'Releases', 'singular_name' => 'Release',
+                'add_new' => 'Add Release', 'add_new_item' => 'Add Release',
+            ],
             'public' => true, 'show_in_rest' => true, 'rest_base' => 'releases', 'menu_icon' => 'dashicons-album',
             'supports' => ['title', 'thumbnail', 'custom-fields'], 'has_archive' => false,
         ]);
         register_post_type('gig', [
-            'labels' => ['name' => 'Gigs', 'singular_name' => 'Gig'],
+            'labels' => [
+                'name' => 'Gigs', 'singular_name' => 'Gig',
+                'add_new' => 'Add Gig', 'add_new_item' => 'Add Gig',
+            ],
             'public' => true, 'show_in_rest' => true, 'rest_base' => 'gigs', 'menu_icon' => 'dashicons-tickets-alt',
             'supports' => ['title', 'custom-fields'], 'has_archive' => false,
         ]);
