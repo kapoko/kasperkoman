@@ -29,6 +29,9 @@ body.dark {
 body[data-page="contact"] {
   --hamburger-bar: #fff;
 }
+body[data-page="404"] {
+  --hamburger-bar: var(--dark);
+}
 a {
   color: inherit;
   text-decoration: none;
