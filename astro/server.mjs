@@ -39,14 +39,13 @@ createServer((request, response) => {
     ? 'index.html'
     : `${pathname.replace(/^\/+/, '')}${pathname.endsWith('/') ? 'index.html' : ''}`;
   const candidate = normalize(join(root, relativePath));
-  const file = candidate.startsWith(root) && existsSync(candidate) && statSync(candidate).isFile()
-    ? candidate
-    : join(root, '404.html');
+  const found = candidate.startsWith(root) && existsSync(candidate) && statSync(candidate).isFile();
+  const file = found ? candidate : join(root, '404.html');
   if (!existsSync(file)) {
     response.writeHead(503).end('Initial site build in progress');
     return;
   }
-  response.writeHead(200);
+  response.writeHead(found ? 200 : 404);
   createReadStream(file).pipe(response);
 }).listen(4321, () => {
   build();
