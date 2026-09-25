@@ -23,9 +23,8 @@
   --text: #5b6a79;
   --text-muted: rgba(91, 106, 121, 0.4);
   --pink: #f896af;
-  --contact-background: #f4953c;
-  --contact-panel-left: #d97927;
-  --contact-panel-right: #f4953c;
+  --orange: #f4953c;
+  --orange-shade: #d97927;
   --hamburger-bar: #fff;
 }
 * {
@@ -75,25 +74,25 @@ html.dark::-webkit-scrollbar-thumb,
 html.transition-dark::-webkit-scrollbar-thumb {
   background: var(--dark-shade);
 }
-body.contact {
+body.orange {
   --hamburger-bar: #fff;
   --text: #fff;
   --text-muted: rgba(255, 255, 255, 0.6);
-  background: var(--contact-background);
+  background: var(--orange);
 }
-html.contact {
-  background: var(--contact-background);
+html.orange {
+  background: var(--orange);
 }
-body.contact .content-column {
-  background: var(--contact-panel-right);
+body.orange .content-column {
+  background: var(--orange);
 }
-body.contact .contact-image {
-  background: var(--contact-panel-left);
+body.orange .contact-image {
+  background: var(--orange-shade);
 }
-body.contact a::before {
+body.orange a::before {
   opacity: 0.2;
 }
-body[data-page="404"] {
+body.is-404 {
   --hamburger-bar: var(--dark);
 }
 a {
@@ -227,7 +226,7 @@ html.transition-dark .split-logo .kk-logo svg {
 html.transition-light .split-logo .kk-logo svg {
   fill: #fff;
 }
-html.transition-contact .split-logo .kk-logo svg {
+html.transition-orange .split-logo .kk-logo svg {
   fill: #fff;
 }
 html.is-settled .split-logo .kk-logo {
@@ -624,11 +623,11 @@ html.transition-light .transition-block.left {
 html.transition-light .transition-block.right {
   background: var(--light);
 }
-html.transition-contact .transition-block.left {
-  background: var(--contact-panel-left);
+html.transition-orange .transition-block.left {
+  background: var(--orange-shade);
 }
-html.transition-contact .transition-block.right {
-  background: var(--contact-panel-right);
+html.transition-orange .transition-block.right {
+  background: var(--orange);
 }
 html.is-leaving .transition-block.left {
   transform: translateY(100vh);
@@ -710,13 +709,16 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
       opacity 0.20833s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   .menu-open .hamburger span {
-    background: #3b424b;
+    background: var(--hamburger-bar);
+  }
+  body.light.menu-open .hamburger span {
+    background: var(--dark);
   }
   .menu-open .hamburger span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
   .menu-open .hamburger span:nth-child(2) {
-    opacity: 0;
+    transform: scaleX(0);
   }
   .menu-open .hamburger span:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
@@ -739,8 +741,8 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   .dark .site-nav {
     background: var(--dark);
   }
-  .contact .site-nav {
-    background: var(--contact-panel-left);
+  .orange .site-nav {
+    background: var(--orange-shade);
   }
   .menu-open .site-nav {
     visibility: visible;
@@ -891,6 +893,9 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   }
   .transition-block.left {
     top: 100vh;
+  }
+  html.transition-orange .transition-block.left {
+    background: var(--orange);
   }
   .transition-block.right {
     display: none;

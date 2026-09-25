@@ -3,12 +3,12 @@ import '../styles/site.css';
 import Logo from '../components/Logo.astro';
 import SocialLinks from '../components/SocialLinks.astro';
 const { title = 'Kasper Koman', theme = 'light', description = 'Official website of Kasper Koman.', preloadImage } = Astro.props;
-const page = Astro.url.pathname === '/' ? 'home' : Astro.url.pathname.split('/')[1];
+const is404 = Astro.url.pathname === '/404/' || Astro.url.pathname === '/404';
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
 const imageUrl = new URL('/images/facebook_og.jpg', siteUrl).toString();
 const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kasper Koman`;
-const themeColor = theme === 'dark' ? '#202731' : theme === 'contact' ? '#f4953c' : '#dbe1e8';
+const themeColor = theme === 'dark' ? '#202731' : theme === 'orange' ? '#f4953c' : '#dbe1e8';
 const musicGroupSchema = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'MusicGroup',
@@ -70,7 +70,7 @@ const musicGroupSchema = JSON.stringify({
       } catch {}
     </script>
   </head>
-  <body class={`theme ${theme}`} data-page={page}>
+  <body class:list={['theme', theme, is404 && 'is-404']}>
     <header class="site-header">
       <button class="hamburger" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
       <nav class="site-nav" aria-label="Main navigation"><a href="/">Home</a><i>/</i><a href="/releases/">Releases</a><i>/</i><a href="/contact/">Bookings</a><SocialLinks /></nav>
@@ -117,7 +117,7 @@ const musicGroupSchema = JSON.stringify({
         const settleDelay = Math.max(0, 800 - elapsed);
         requestAnimationFrame(() => root.classList.add('is-revealing'));
         window.setTimeout(() => {
-          root.classList.remove('is-entering', 'is-revealing', 'transition-light', 'transition-dark', 'transition-contact');
+          root.classList.remove('is-entering', 'is-revealing', 'transition-light', 'transition-dark', 'transition-orange');
           root.classList.add('is-settled');
         }, settleDelay);
         window.setTimeout(() => {
@@ -130,12 +130,12 @@ const musicGroupSchema = JSON.stringify({
         event.preventDefault();
         closeMenu();
         const href = link.getAttribute('href');
-        const destinationTheme = href.startsWith('/releases') ? 'dark' : href.startsWith('/contact') ? 'contact' : 'light';
+        const destinationTheme = href.startsWith('/releases') ? 'dark' : href.startsWith('/contact') ? 'orange' : 'light';
         try {
           sessionStorage.setItem('kk-transition-theme', destinationTheme);
           sessionStorage.setItem('kk-transition-start', String(Date.now()));
         } catch {}
-        root.classList.remove('is-settled', 'is-reset', 'transition-light', 'transition-dark', 'transition-contact');
+        root.classList.remove('is-settled', 'is-reset', 'transition-light', 'transition-dark', 'transition-orange');
         requestAnimationFrame(() => root.classList.add('is-leaving', `transition-${destinationTheme}`));
         window.setTimeout(() => { window.location.href = href; }, 800);
       }));
