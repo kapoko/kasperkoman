@@ -23,6 +23,9 @@
   --text: #5b6a79;
   --text-muted: rgba(91, 106, 121, 0.4);
   --pink: #f896af;
+  --contact-background: #f4953c;
+  --contact-panel-left: #d97927;
+  --contact-panel-right: #f4953c;
   --hamburger-bar: #fff;
 }
 * {
@@ -72,8 +75,23 @@ html.dark::-webkit-scrollbar-thumb,
 html.transition-dark::-webkit-scrollbar-thumb {
   background: var(--dark-shade);
 }
-body[data-page="contact"] {
+body.contact {
   --hamburger-bar: #fff;
+  --text: #fff;
+  --text-muted: rgba(255, 255, 255, 0.6);
+  background: var(--contact-background);
+}
+html.contact {
+  background: var(--contact-background);
+}
+body.contact .content-column {
+  background: var(--contact-panel-right);
+}
+body.contact .contact-image {
+  background: var(--contact-panel-left);
+}
+body.contact a::before {
+  opacity: 0.2;
 }
 body[data-page="404"] {
   --hamburger-bar: var(--dark);
@@ -207,6 +225,9 @@ html.transition-dark .split-logo .kk-logo svg {
   fill: #313842;
 }
 html.transition-light .split-logo .kk-logo svg {
+  fill: #fff;
+}
+html.transition-contact .split-logo .kk-logo svg {
   fill: #fff;
 }
 html.is-settled .split-logo .kk-logo {
@@ -390,6 +411,11 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   font-size: 0.7em;
   font-weight: 700;
   text-transform: uppercase;
+}
+.copyright-symbol {
+  font-size: 1.35em;
+  line-height: 0;
+  vertical-align: -0.08em;
 }
 .release-column {
   background: var(--dark-shade);
@@ -597,6 +623,12 @@ html.transition-light .transition-block.left {
 }
 html.transition-light .transition-block.right {
   background: var(--light);
+}
+html.transition-contact .transition-block.left {
+  background: var(--contact-panel-left);
+}
+html.transition-contact .transition-block.right {
+  background: var(--contact-panel-right);
 }
 html.is-leaving .transition-block.left {
   transform: translateY(100vh);
