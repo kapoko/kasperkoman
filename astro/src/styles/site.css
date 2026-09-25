@@ -242,15 +242,12 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 .contact-image {
   overflow: hidden;
 }
-.image-column picture,
 .page-image {
   position: absolute;
   inset: 0;
 }
-.image-column picture {
-  z-index: 0;
-}
 .page-image {
+  z-index: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -607,11 +604,11 @@ html.is-leaving .transition-block.left {
 html.is-leaving .transition-block.right {
   transform: translateY(-100vh);
 }
-.two-columns > .column > :not(.mobile-logo) {
+.two-columns > .column > :not(.mobile-logo):not(.page-image) {
   opacity: 1;
   transition: opacity 0.8s ease;
 }
-html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo) {
+html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):not(.page-image) {
   opacity: 0;
 }
 @media (min-width: 768px) {

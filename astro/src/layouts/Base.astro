@@ -85,6 +85,12 @@ const musicGroupSchema = JSON.stringify({
         const container = image.closest('.image-column');
         const revealImage = () => requestAnimationFrame(() => container?.classList.add('is-loaded'));
         image.addEventListener('load', revealImage, { once: true });
+        image.addEventListener('error', () => {
+          if (image.dataset.fallbackSrc) {
+            image.src = image.dataset.fallbackSrc;
+            delete image.dataset.fallbackSrc;
+          }
+        }, { once: true });
         if (image.complete && image.naturalWidth) revealImage();
       });
       document.querySelectorAll('.release-cover img').forEach((image) => {
