@@ -788,7 +788,8 @@ html.is-entering:not(.is-revealing) .contact-image::before {
     margin: 0 0.2em;
   }
   .contact-content {
-    min-height: 0;
+    min-height: max(0px, calc(100svh - 350px));
+    background: var(--light);
   }
   .transition-block {
     width: 100%;
