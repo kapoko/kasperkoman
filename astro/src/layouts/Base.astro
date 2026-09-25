@@ -2,7 +2,7 @@
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-const { title = 'Kasper Koman', theme = 'light', description = 'Official website of Kasper Koman.' } = Astro.props;
+const { title = 'Kasper Koman', theme = 'light', description = 'Official website of Kasper Koman.', preloadImage } = Astro.props;
 const page = Astro.url.pathname === '/' ? 'home' : Astro.url.pathname.split('/')[1];
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.url.origin;
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
@@ -37,6 +37,7 @@ const musicGroupSchema = JSON.stringify({
     <meta name="msapplication-TileColor" content={themeColor} />
     <meta name="theme-color" content={themeColor} />
     <link rel="preload" href="/fonts/roboto-mono-latin.woff2" as="font" type="font/woff2" crossorigin />
+    {preloadImage && <link rel="preload" href={preloadImage} as="image" type="image/webp" fetchpriority="high" />}
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <meta property="og:type" content="website" />
@@ -80,12 +81,10 @@ const musicGroupSchema = JSON.stringify({
     <script>
       const button = document.querySelector('.hamburger');
       const nav = document.querySelector('.site-nav');
-      document.querySelectorAll('[data-image-src]').forEach((container) => {
-        const image = new Image();
-        const revealImage = () => requestAnimationFrame(() => container.classList.add('is-loaded'));
+      document.querySelectorAll('.page-image').forEach((image) => {
+        const container = image.closest('.image-column');
+        const revealImage = () => requestAnimationFrame(() => container?.classList.add('is-loaded'));
         image.addEventListener('load', revealImage, { once: true });
-        image.addEventListener('error', revealImage, { once: true });
-        image.src = container.dataset.imageSrc;
         if (image.complete && image.naturalWidth) revealImage();
       });
       document.querySelectorAll('.release-cover img').forEach((image) => {

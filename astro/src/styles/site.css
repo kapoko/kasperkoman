@@ -242,33 +242,27 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 .contact-image {
   overflow: hidden;
 }
-.home-image::before,
-.contact-image::before {
-  content: "";
+.image-column picture,
+.page-image {
   position: absolute;
   inset: 0;
-  z-index: 0;
-  background-size: cover;
-  background-position: center;
 }
-.image-column[data-image-src]::before {
+.image-column picture {
+  z-index: 0;
+}
+.page-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0;
   transform: scale(1);
   transition:
     opacity 0.8s ease,
     transform 0.8s ease;
 }
-.image-column[data-image-src].is-loaded::before {
+.image-column.is-loaded .page-image {
   opacity: 1;
   transform: scale(1);
-}
-.home-image::before {
-  background-image: url("/images/background_new.jpg");
-  background-image: image-set(url("/images/background_new.webp") type("image/webp") 1x, url("/images/background_new.jpg") type("image/jpeg") 1x);
-}
-.contact-image::before {
-  background-image: url("/images/background_contact_2.jpg");
-  background-image: image-set(url("/images/background_contact_2.webp") type("image/webp") 1x, url("/images/background_contact_2.jpg") type("image/jpeg") 1x);
 }
 .content-column {
   background: var(--light);
@@ -613,18 +607,15 @@ html.is-leaving .transition-block.left {
 html.is-leaving .transition-block.right {
   transform: translateY(-100vh);
 }
-.two-columns > .column > :not(.mobile-logo),
-.contact-image::before {
+.two-columns > .column > :not(.mobile-logo) {
   opacity: 1;
   transition: opacity 0.8s ease;
 }
-html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo),
-html.is-entering:not(.is-revealing) .home-image::before,
-html.is-entering:not(.is-revealing) .contact-image::before {
+html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo) {
   opacity: 0;
 }
 @media (min-width: 768px) {
-  .image-column[data-image-src]::before {
+  .page-image {
     transform: scale(1.08);
   }
 }
