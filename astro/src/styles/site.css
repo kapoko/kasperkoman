@@ -739,6 +739,9 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   .dark .site-nav {
     background: var(--dark);
   }
+  .contact .site-nav {
+    background: var(--contact-panel-left);
+  }
   .menu-open .site-nav {
     visibility: visible;
     opacity: 1;
