@@ -12,8 +12,6 @@ This is an isolated replacement for the Strapi and Next.js stack. Persistent Doc
 - Astro static site: <http://localhost:4321>
 - WordPress editor: <http://localhost:8080/wp-admin>
 
-All settings, including credentials and the build-webhook secret, are in `.env`. Replace its initial development values before exposing this stack publicly.
-
 ## Dev
 
 ```sh
@@ -28,8 +26,6 @@ The `Kasper Koman Content` plugin defines:
 
 - **Releases**: title, subtitle, date, label, original artist, links, and featured cover art.
 - **Gigs**: title, date, city, country code, venue, and ticket/event URL.
-
-WordPress creates its standard image sizes, plus a `release-cover` 1200px square crop, whenever cover art is imported or uploaded.
 
 ## Build hook
 
