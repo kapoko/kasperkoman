@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;700&display=swap");
 
 :root {
   --light: #dbe1e8;
@@ -18,10 +18,13 @@ body {
   margin: 0;
   min-height: 100%;
   font:
-    15px/1.7 "Roboto Mono",
+    17px/1.7 "Roboto Mono",
     monospace;
   color: var(--text);
   background: var(--light);
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
 }
 body.dark {
   background: var(--dark);
@@ -263,9 +266,9 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 .gig-list a.is-wrapped::after {
   content: none;
 }
-.gig-list h6,
-.contact-content h6 {
-  font-size: 0.8em;
+.gig-list h2,
+.contact-content h2 {
+  font-size: 0.85em;
   text-transform: uppercase;
   margin: 1.5em 0 0.3em;
   color: var(--text-muted);
