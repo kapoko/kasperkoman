@@ -63,6 +63,13 @@ const pageTitle = title === 'Official Home' ? 'Kasper Koman' : `${title} | Kaspe
     <script>
       const button = document.querySelector('.hamburger');
       const nav = document.querySelector('.site-nav');
+      document.querySelectorAll('[data-image-src]').forEach((container) => {
+        const image = new Image();
+        const revealImage = () => requestAnimationFrame(() => container.classList.add('is-loaded'));
+        image.addEventListener('load', revealImage, { once: true });
+        image.src = container.dataset.imageSrc;
+        if (image.complete && image.naturalWidth) revealImage();
+      });
       const closeMenu = () => {
         document.body.classList.remove('menu-open');
         button?.setAttribute('aria-expanded', 'false');

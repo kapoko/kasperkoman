@@ -225,6 +225,17 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   background-size: cover;
   background-position: center;
 }
+.image-column[data-image-src]::before {
+  opacity: 0;
+  transform: scale(1);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.image-column[data-image-src].is-loaded::before {
+  opacity: 1;
+  transform: scale(1);
+}
 .home-image::before {
   background-image: url("/images/background_new.jpg");
 }
@@ -568,7 +579,6 @@ html.is-leaving .transition-block.right {
   transform: translateY(-100vh);
 }
 .two-columns > .column > :not(.mobile-logo),
-.home-image::before,
 .contact-image::before {
   opacity: 1;
   transition: opacity 0.8s ease;
@@ -577,6 +587,11 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo),
 html.is-entering:not(.is-revealing) .home-image::before,
 html.is-entering:not(.is-revealing) .contact-image::before {
   opacity: 0;
+}
+@media (min-width: 768px) {
+  .image-column[data-image-src]::before {
+    transform: scale(1.08);
+  }
 }
 .mobile-release-info {
   display: none;
