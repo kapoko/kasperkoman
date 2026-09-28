@@ -1001,7 +1001,7 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   }
   .site-footer .social-links {
     align-self: center;
-    margin: 0;
+    margin: 2.5rem 0 0;
   }
   .footer-booking {
     align-self: auto;
