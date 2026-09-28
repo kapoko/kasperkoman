@@ -48,6 +48,7 @@ body {
   font:
     17px/1.7 "Roboto Mono",
     monospace;
+  font-weight: 300;
   color: var(--text);
   background: var(--light);
 }
@@ -609,7 +610,7 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 }
 .release-info .release-date {
   margin: 0 0 1em;
-  color: var(--text-muted);
+  color: #8493a2;
   text-transform: uppercase;
 }
 .release-info .title,
