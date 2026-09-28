@@ -549,6 +549,8 @@ html.is-entering .split-logo .kk-logo svg:last-child {
 .release-detail-column {
   background: var(--dark);
   min-height: 100vh;
+  overflow: hidden;
+  clip-path: inset(0);
 }
 .release-cover-list {
   list-style: none;
