@@ -2,6 +2,7 @@
 import '../styles/site.css';
 import Logo from '../components/Logo.astro';
 import SocialLinks from '../components/SocialLinks.astro';
+import { bookingEmail } from '../lib/contact.js';
 const { title = 'Kasper Koman', theme = 'light', description = 'Official website of Kasper Koman.', preloadImage } = Astro.props;
 const is404 = Astro.url.pathname === '/404/' || Astro.url.pathname === '/404';
 const siteUrl = import.meta.env.PUBLIC_SITE_URL || Astro.url.origin;
@@ -79,7 +80,7 @@ const musicGroupSchema = JSON.stringify({
     <main><slot /></main>
     <footer class="site-footer">
       <div class="footer-menu"><h2>Menu</h2><nav class="footer-nav" aria-label="Footer navigation"><a href="/">Home</a><a href="/releases/">Releases</a><a href="/contact/">Bookings</a></nav></div>
-      <div class="footer-booking"><h2>Bookings</h2><p>Worldwide <span class="separator">|</span> Jonan Kouwenhoven<br /><a href="mailto:jonan@unifybookings.com">jonan@unifybookings.com</a></p></div>
+      <div class="footer-booking"><h2>Bookings</h2><p>Worldwide <span class="separator">|</span> Jonan Kouwenhoven<br /><a href={`mailto:${bookingEmail}`}>{bookingEmail}</a></p></div>
       <SocialLinks />
       <p class="footer-copyright">No cookies / tracking. <span class="copyright-symbol">&copy;</span> Kasper Koman {new Date().getFullYear()}</p>
     </footer>
