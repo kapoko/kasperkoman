@@ -77,6 +77,12 @@ const musicGroupSchema = JSON.stringify({
     </header>
     <a class="split-logo" href="/" aria-label="Kasper Koman"><Logo /></a>
     <main><slot /></main>
+    <footer class="site-footer">
+      <div class="footer-menu"><h2>Menu</h2><nav class="footer-nav" aria-label="Footer navigation"><a href="/">Home</a><a href="/releases/">Releases</a><a href="/contact/">Bookings</a></nav></div>
+      <div class="footer-booking"><h2>Bookings</h2><p>Worldwide <span class="separator">|</span> Jonan Kouwenhoven<br /><a href="mailto:jonan@unifybookings.com">jonan@unifybookings.com</a></p></div>
+      <SocialLinks />
+      <p class="footer-copyright">No cookies / tracking. <span class="copyright-symbol">&copy;</span> Kasper Koman {new Date().getFullYear()}</p>
+    </footer>
     <div class="transition-block left"></div><div class="transition-block right"></div>
     <script>
       const button = document.querySelector('.hamburger');
