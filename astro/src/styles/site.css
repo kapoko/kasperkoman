@@ -69,6 +69,10 @@ h1, h2, h3, h4, h5, h6 {
 body.dark {
   background: var(--dark);
 }
+body.light {
+  --text: #4d5d6b;
+  --text-muted: #526270;
+}
 html.dark,
 html.transition-dark {
   background: var(--dark);
@@ -473,7 +477,7 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   font-size: 0.85em;
   text-transform: uppercase;
   margin: 0 0 1em;
-  color: rgba(255, 255, 255, 0.36);
+  color: rgba(255, 255, 255, 0.5);
 }
 .footer-nav {
   display: flex;
@@ -540,7 +544,7 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   align-self: end;
   grid-column: -1;
   grid-row: 2;
-  color: rgba(255, 255, 255, 0.36);
+  color: rgba(255, 255, 255, 0.5);
   text-align: right;
 }
 .release-column {
