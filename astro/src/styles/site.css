@@ -964,7 +964,7 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   }
   .center-content {
     min-height: 0;
-    padding: 5.5em 0.75rem 1em;
+    padding: 5.5em 0.75rem 3rem;
   }
   .social-links {
     position: static;
