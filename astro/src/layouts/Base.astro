@@ -90,7 +90,7 @@ const musicGroupSchema = JSON.stringify({
       const nav = document.querySelector('.site-nav');
       document.querySelectorAll('.page-image').forEach((image) => {
         const container = image.closest('.image-column');
-        const revealImage = () => requestAnimationFrame(() => container?.classList.add('is-loaded'));
+        const revealImage = () => requestAnimationFrame(() => requestAnimationFrame(() => container?.classList.add('is-loaded')));
         image.addEventListener('load', revealImage, { once: true });
         image.addEventListener('error', () => {
           if (image.dataset.fallbackSrc) {
