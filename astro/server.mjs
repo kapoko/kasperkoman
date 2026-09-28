@@ -50,7 +50,13 @@ createServer((request, response) => {
     return;
   }
 
-  const pathname = decodeURIComponent(request.url.split('?')[0]);
+  let pathname;
+  try {
+    pathname = decodeURIComponent(request.url.split('?')[0]);
+  } catch {
+    response.writeHead(400).end('Malformed request path');
+    return;
+  }
   const relativePath = pathname === '/'
     ? 'index.html'
     : `${pathname.replace(/^\/+/, '')}${pathname.endsWith('/') ? 'index.html' : ''}`;

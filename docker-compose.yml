@@ -1,6 +1,7 @@
 services:
   db:
     image: mariadb:11.4
+    restart: unless-stopped
     environment:
       MARIADB_DATABASE: ${MYSQL_DATABASE}
       MARIADB_USER: ${MYSQL_USER}
@@ -16,6 +17,7 @@ services:
 
   wordpress:
     build: ./wordpress
+    restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
@@ -44,6 +46,7 @@ services:
 
   astro:
     build: ./astro
+    restart: unless-stopped
     working_dir: /app
     depends_on:
       - wordpress
