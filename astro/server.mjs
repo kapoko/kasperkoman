@@ -32,7 +32,7 @@ function build() {
 function scheduleDailyBuild() {
   const now = new Date();
   const next = new Date(now);
-  next.setUTCHours(24, 0, 0, 0);
+  next.setUTCHours(12, 0, 0, 0);
   setTimeout(() => {
     build();
     scheduleDailyBuild();
