@@ -45,6 +45,7 @@ html,
 body {
   margin: 0;
   min-height: 100svh;
+  scroll-behavior: smooth;
   font:
     17px/1.7 "Roboto Mono",
     monospace;
@@ -557,6 +558,46 @@ html.is-entering .split-logo .kk-logo svg:last-child {
   overflow: hidden;
   clip-path: inset(0);
 }
+.back-to-top {
+  position: fixed;
+  z-index: 40;
+  right: 2.25rem;
+  bottom: 2.25rem;
+  width: 3.25rem;
+  height: 3.25rem;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+  background: color-mix(in srgb, var(--dark) 85%, transparent);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+.back-to-top::before,
+.back-to-top::after {
+  content: none;
+}
+.back-to-top svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.25s ease;
+}
+.back-to-top:hover svg {
+  transform: translateY(-0.2rem);
+}
+.back-to-top:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
 .release-cover-list {
   list-style: none;
   width: 50%;
@@ -1042,6 +1083,12 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   .release-detail-column {
     display: none;
   }
+  .back-to-top {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 3rem;
+    height: 3rem;
+  }
   .mobile-release-info {
     display: block;
     margin: 1.5rem auto 0;
@@ -1071,6 +1118,17 @@ html.is-entering:not(.is-revealing) .two-columns > .column > :not(.mobile-logo):
   }
   html.is-leaving .transition-block.left {
     transform: translateY(-100vh);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto;
+  }
+  .back-to-top,
+  .back-to-top svg {
+    transition: none;
   }
 }
 

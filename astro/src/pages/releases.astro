@@ -16,13 +16,14 @@ const albumSchema = JSON.stringify({
 ---
 <Base title="Releases" theme="dark">
   <script type="application/ld+json" set:html={albumSchema}></script>
-  <section class="two-columns releases-page">
+  <section class="two-columns releases-page" id="releases-top">
     <h1 class="visually-hidden">Releases</h1>
     <div class="column release-column"><ul class="release-cover-list">
       {releases.map((release, index) => <li class={index === 0 ? 'is-active' : ''} data-release={release.id}><div class="release-cover">{squareCoverUrl(release) && <img src={squareCoverUrl(release)} alt={`Cover art for ${release.title.rendered}`} loading={index < 3 ? 'eager' : 'lazy'} />}</div><div class="mobile-release-info"><ReleaseInfo release={release} /></div></li>)}
     </ul></div>
     <div class="column release-detail-column"><div class="release-detail"><ReleaseInfo release={releases[0]} reveal /></div></div>
   </section>
+  <a class="back-to-top" href="#releases-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5" /><path d="m6 11 6-6 6 6" /></svg></a>
   <script define:vars={{ releases }}>
     const cards = [...document.querySelectorAll('.release-cover-list > li')];
     const detail = document.querySelector('.release-detail');
@@ -64,5 +65,10 @@ const albumSchema = JSON.stringify({
     };
     const observer = new IntersectionObserver((entries) => entries.forEach((entry) => { if (!entry.isIntersecting) return; cards.forEach((card) => card.classList.toggle('is-active', card === entry.target)); const release = releases.find((item) => String(item.id) === entry.target.dataset.release); if (release) showRelease(release); }), { rootMargin: '-49% 0px -49% 0px' });
     cards.forEach((card) => observer.observe(card));
+    const backToTop = document.querySelector('.back-to-top');
+    const updateBackToTop = () => backToTop?.classList.toggle('is-visible', window.scrollY >= window.innerHeight);
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    window.addEventListener('resize', updateBackToTop);
+    updateBackToTop();
   </script>
 </Base>
